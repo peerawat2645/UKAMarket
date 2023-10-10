@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Oct 11, 2023, 2:09:50 AM by Hibernate Tools 5.6.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="ukamarket" name="th.ac.ku.kps.eng.cpe.edu.project.model.User" optimistic-lock="none" table="user">
+        <id name="userId" type="java.lang.Integer">
+            <column name="userId"/>
+            <generator class="identity"/>
+        </id>
+        <property name="username" type="string">
+            <column name="username" not-null="true"/>
+        </property>
+        <property name="email" type="string">
+            <column name="email" not-null="true"/>
+        </property>
+        <property name="password" type="string">
+            <column name="password" not-null="true"/>
+        </property>
+        <property name="name" type="string">
+            <column name="name" not-null="true"/>
+        </property>
+        <property name="surname" type="string">
+            <column name="surname" not-null="true"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="likestores" table="likestore">
+            <key>
+                <column name="userId" not-null="true"/>
+            </key>
+            <one-to-many class="th.ac.ku.kps.eng.cpe.edu.project.model.Likestore"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="stores" table="store">
+            <key>
+                <column name="userId" not-null="true"/>
+            </key>
+            <one-to-many class="th.ac.ku.kps.eng.cpe.edu.project.model.Store"/>
+        </set>
+        <bag fetch="select" inverse="true" lazy="true" name="roles" table="role">
+            <key>
+                <column name="userId" not-null="true"/>
+            </key>
+            <one-to-many class="th.ac.ku.kps.eng.cpe.edu.project.model.Role"/>
+        </bag>
+    </class>
+</hibernate-mapping>

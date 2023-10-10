@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Oct 10, 2023, 5:36:31 PM by Hibernate Tools 5.6.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="ukamarket" name="th.ac.ku.kps.eng.cpe.edu.project.model.Likestore" optimistic-lock="none" table="likestore">
+        <id name="likeId" type="java.lang.Integer">
+            <column name="likeId"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="th.ac.ku.kps.eng.cpe.edu.project.model.Store" fetch="select" name="store">
+            <column name="storeId" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="th.ac.ku.kps.eng.cpe.edu.project.model.User" fetch="select" name="user">
+            <column name="userId" not-null="true"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

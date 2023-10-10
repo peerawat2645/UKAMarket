@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Oct 11, 2023, 1:40:25 AM by Hibernate Tools 5.6.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="ukamarket" name="th.ac.ku.kps.eng.cpe.edu.project.model.Reservation" optimistic-lock="none" table="reservation">
+        <id name="reservationId" type="java.lang.Integer">
+            <column name="reservationId"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="th.ac.ku.kps.eng.cpe.edu.project.model.Area" fetch="select" name="area">
+            <column name="areaId" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="th.ac.ku.kps.eng.cpe.edu.project.model.Store" fetch="select" name="store">
+            <column name="storeId" not-null="true"/>
+        </many-to-one>
+        <property name="startDate" type="timestamp">
+            <column length="19" name="startDate" not-null="true"/>
+        </property>
+        <property name="endDate" type="timestamp">
+            <column length="19" name="endDate" not-null="true"/>
+        </property>
+        <property name="type" type="string">
+            <column length="5" name="type" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

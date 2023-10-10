@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Oct 10, 2023, 5:36:31 PM by Hibernate Tools 5.6.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="ukamarket" name="th.ac.ku.kps.eng.cpe.edu.project.model.Area" optimistic-lock="none" table="area">
+        <id name="areaId" type="java.lang.Integer">
+            <column name="areaId"/>
+            <generator class="identity"/>
+        </id>
+        <property name="row" type="int">
+            <column name="row" not-null="true"/>
+        </property>
+        <property name="col" type="int">
+            <column name="col" not-null="true"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="reservations" table="reservation">
+            <key>
+                <column name="areaId" not-null="true"/>
+            </key>
+            <one-to-many class="th.ac.ku.kps.eng.cpe.edu.project.model.Reservation"/>
+        </set>
+    </class>
+</hibernate-mapping>
