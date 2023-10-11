@@ -106,7 +106,6 @@ public class StoreRestController {
 				User user = userService.findByUsername(username);
 				store.setUser(user);
 				Store ss = storeService.save(store);
-				System.out.println(store.getDescription()+" "+store.getImgPath()+" "+store.getName()+" "+store.getPhone()+" "+store.getType()+" "+store.getUser().getUserId());
 				res.setBody(ss);
 				res.setHttpStatus(HttpStatus.OK);
 			} else {
