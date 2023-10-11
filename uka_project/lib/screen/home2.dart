@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uka_project/screen/home.dart';
+import 'package:uka_project/ui/afterlogin/main_page2.dart';
 
 class Home2Page extends StatefulWidget {
   const Home2Page({super.key});
@@ -22,7 +23,7 @@ class _Home2PageState extends State<Home2Page> {
           color: const Color(0xFFFAF1E4), // Background color
            // Border radius
         ),
-        child: Center(
+        child: SingleChildScrollView(
           child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -50,7 +51,7 @@ class _Home2PageState extends State<Home2Page> {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => HomePage()),
+                            MaterialPageRoute(builder: (context) => MainPage2()),
                           );
                         },
                         style: ElevatedButton.styleFrom(

@@ -7543,16 +7543,6 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                       ),
                     ),
                   ),
-                  Container(
-                    width: MediaQuery.of(context).size.width, // 50% width
-                    height: 50, // Adjust the height as needed
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(
-                          255, 255, 255, 255), // Background color
-                      borderRadius: BorderRadius.circular(10), // Border radius
-                    ),
-                    child: const Center(),
-                  ),
                 ]),
           ),
         ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uka_project/screen/navbar.dart';
 import 'package:uka_project/screen/reserve.dart';
+import 'package:uka_project/ui/afterlogin/main_page.dart';
 
 class PaymentPage extends StatefulWidget {
   const PaymentPage({super.key});
@@ -132,7 +133,7 @@ class _PaymentPageState extends State<PaymentPage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => NavBar()),
+                                      builder: (context) => MainPage()),
                                 );
                               },
                               style: ElevatedButton.styleFrom(
