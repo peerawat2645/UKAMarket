@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../main_view.dart';
-import './editStore/edit_store.dart';
+import 'editStore/my_store.dart';
 import './resetpassword/repass.dart';
 import './edit_profile.dart';
 
@@ -98,7 +98,7 @@ class _Profile extends State<Profile> {
                             context,
                             MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    EditStore() ));
+                                    MyStore() ));
                   },
                 ),
                 ProfileMenuWidget(

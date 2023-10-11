@@ -39,6 +39,7 @@ dependencies:
   flutter_screenutil: ^5.9.0
   flutter_riverpod: ^2.4.3
   salomon_bottom_bar: ^3.3.2
+  flutter_slidable: ^3.0.0
   
 
 dev_dependencies:

@@ -1,27 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+
 class EditStore extends StatelessWidget {
+  final TextEditingController _repassController = TextEditingController();
+
   EditStore({super.key});
-  final storeList = [
-    {
-      'icon': 'restaurant_menu',
-      'title': 'Store 1',
-      'desc': 'Description',
-    },
-    {
-      'icon': 'restaurant_menu',
-      'title': 'Store 1',
-      'desc': 'Description',
-    }
-  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'แก้ไขข้อมูลร้านค้า',
+          'รายละเอียดร้านค้า',
           style: TextStyle(
               fontFamily: 'Baijamjuree',
               fontSize: 15.sp,
@@ -30,43 +21,127 @@ class EditStore extends StatelessWidget {
         ),
         backgroundColor: Color(0xFF435334),
       ),
-      body: ListView.builder(
-          itemCount: storeList.length,
-          itemBuilder: (context, index) {
-            final item = storeList[index];
-            return Padding(
-                padding: (index == 0)
-                    ? const EdgeInsets.symmetric(vertical: 20.0)
-                    : const EdgeInsets.only(bottom: 20.0),
-                child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: 20.0),
-                  padding: EdgeInsets.all(10.0),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.r),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 1.0,
-                          spreadRadius: 1.0,
-                          color: Colors.grey.shade300,
-                        )
-                      ]),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+      body: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.all(15),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 10.h,
+              ),
+              Padding(
+                  padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                  child: Column(
                     children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Icon(
-                          Icons.store,
-                          size: 50,
+                      TextField(
+                        controller: _repassController,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: const Color(0xFF393939),
+                          fontSize: 13.sp,
+                          fontFamily: 'BaiJamjuree',
+                          fontWeight: FontWeight.w400,
+                        ),
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.person),
+                          labelText: 'รหัสผ่านเดิม',
+                          labelStyle: TextStyle(
+                            color: const Color(0xFF040D12),
+                            fontSize: 15.sp,
+                            fontFamily: 'BaiJamjuree',
+                            fontWeight: FontWeight.w100,
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(100)),
+                            borderSide: BorderSide(
+                              width: 1.w,
+                              color: const Color(0xFF837E93),
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(80)),
+                            borderSide: BorderSide(
+                              width: 1.w,
+                              color: const Color(0xFF040D12),
+                            ),
+                          ),
                         ),
                       ),
-                      SizedBox()
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      TextField(
+                        controller: _repassController,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: const Color(0xFF393939),
+                          fontSize: 13.sp,
+                          fontFamily: 'BaiJamjuree',
+                          fontWeight: FontWeight.w400,
+                        ),
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.email),
+                          labelText: 'รหัสผ่านใหม่',
+                          labelStyle: TextStyle(
+                            color: const Color(0xFF040D12),
+                            fontSize: 15.sp,
+                            fontFamily: 'BaiJamjuree',
+                            fontWeight: FontWeight.w100,
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(100)),
+                            borderSide: BorderSide(
+                              width: 1.w,
+                              color: const Color(0xFF837E93),
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(80)),
+                            borderSide: BorderSide(
+                              width: 1.w,
+                              color: const Color(0xFF040D12),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15.h,
+                      ),
+                      ClipRRect(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(100)),
+                        child: SizedBox(
+                          width: 129.w,
+                          height: 36.h,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFF435334),
+                            ),
+                            child: Text(
+                              'บันทึก',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 15.sp,
+                                fontFamily: 'BaiJamjuree',
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
-                  ),
-                ));
-          }),
+                  ))
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
