@@ -20,11 +20,11 @@ class _Home2PageState extends State<Home2Page> {
       body: Container(
         decoration: BoxDecoration(
           color: const Color(0xFFFAF1E4), // Background color
-          borderRadius: BorderRadius.circular(40), // Border radius
+           // Border radius
         ),
         child: Center(
           child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Row(
@@ -7558,16 +7558,6 @@ class _Home2PageState extends State<Home2Page> {
                           )),
                     ),
                   ),
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width, // 50% width
-                  height: 50, // Adjust the height as needed
-                  decoration: BoxDecoration(
-                    color: const Color.fromARGB(
-                        255, 255, 255, 255), // Background color
-                    borderRadius: BorderRadius.circular(10), // Border radius
-                  ),
-                  child: const Center(),
                 ),
               ]),
         ),

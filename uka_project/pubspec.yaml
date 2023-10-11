@@ -36,6 +36,10 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   table_calendar: ^3.0.9
+  flutter_screenutil: ^5.9.0
+  flutter_riverpod: ^2.4.3
+  salomon_bottom_bar: ^3.3.2
+  
 
 dev_dependencies:
   flutter_test:
@@ -60,6 +64,7 @@ flutter:
   uses-material-design: true
 
   assets:
+      - assets/images/
       - assets/
 
   # To add assets to your application, add an assets section, like this:
@@ -78,6 +83,16 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
+  fonts:
+    - family: Poppins
+      fonts: 
+        - asset: assets/fonts/Poppins-Regular.ttf
+    - family: NotoSerifThai
+      fonts: 
+        - asset: assets/fonts/NotoSerifThai-Regular.ttf
+    - family: BaiJamjuree
+      fonts: 
+        - asset: assets/fonts/BaiJamjuree-Regular.ttf
   # fonts:
   #   - family: Schyler
   #     fonts:
