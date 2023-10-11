@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:uka_project/screen/home.dart';
-import 'package:uka_project/screen/navbar.dart';
 import '../../screen/reserve.dart';
 import 'favModel/favStore.dart';
 import 'profile/profile.dart';
