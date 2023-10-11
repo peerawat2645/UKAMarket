@@ -19,7 +19,7 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("th.ac.ku.kps.eng.cpe.ds.project.api.service")) // Change to your base package
+                .apis(RequestHandlerSelectors.basePackage("th.ac.ku.kps.eng.cpe.edu.project.api.service")) // Change to your base package
                 .build()
                 .securitySchemes(Arrays.asList(apiKey()));
     }
