@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 10, 2023 at 09:28 PM
+-- Generation Time: Oct 16, 2023 at 09:27 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -123,7 +123,14 @@ CREATE TABLE `store` (
 
 INSERT INTO `store` (`storeId`, `name`, `phone`, `userId`, `description`, `type`, `imgPath`) VALUES
 (1, 'A', '12345', 1, 'asd', 'food', 'asdasd'),
-(2, 'B', '12345', 1, 'asd', 'food', 'asdasd');
+(2, 'B', '12345', 1, 'asd', 'food', 'asdasd'),
+(13, 'CC', '12345', 2, 'asd', 'food', 'asdasd'),
+(15, 'CCCC', '12345', 2, 'asd', 'food', 'asdasd'),
+(16, 'C', '12345', 3, 'asd', 'food', 'asdasd'),
+(18, 'CCCCC', '12345', 3, 'asd', 'food', 'asdasd'),
+(19, 'CCCCC22', '12345', 3, 'asd', 'food', 'asdasd'),
+(20, 'CCCCC222', '12345', 3, 'asd', 'food', 'asdasd'),
+(21, 'CCCCC22222', '12345', 3, 'asd', 'food', 'asdasd');
 
 -- --------------------------------------------------------
 
@@ -140,6 +147,14 @@ CREATE TABLE `user` (
   `surname` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`userId`, `username`, `email`, `password`, `name`, `surname`) VALUES
+(1, 'username', 'peace@gmail.com', '$2a$10$5VXIjLjtfOxzMNzLo4e6Lus/oj7.WrTYs.eZvSsULTvsORRyDLz6W', 'Peerawat', 'Wongmek'),
+(2, 'username1', 'peace1@gmail.com', '$2a$10$xUjZ9s8IopA8I3Z.CtsWgu3tAwz88R2LRY66FpyeCstIXWlBTmiha', 'Peerawat', 'Wongmek'),
+(3, 'username2', 'peace1@gmail.com', '$2a$10$nwRm7uUODn/PvlOUcS5mXOdSPFWp6f5RxZmeij4KPHn2UpWtiMgFm', 'Peerawat', 'Wongmek');
 
 --
 -- Indexes for dumped tables
@@ -220,13 +235,13 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `store`
 --
 ALTER TABLE `store`
-  MODIFY `storeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `storeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
