@@ -215,7 +215,9 @@ public class StoreRestController {
 	public ResponseEntity<Response<List<LikestoreDTO>>> like() {
 		Response<List<LikestoreDTO>> res = new Response<>();
 		try {
-			List<Likestore> likestore = likestoreService.findByUserId(1);
+			String username = jwtUtils.getUserNameFromJwtToken(jwtUtils.getJwtFromCookies(request));
+			User user = userService.findByUsername(username);
+			List<Likestore> likestore = likestoreService.findByUserId(user.getUserId());
 			List<LikestoreDTO> likestoreDTOs = new ArrayList<LikestoreDTO>();
 			for (Likestore ls : likestore) {
 				Reservation reservation = reservationService.findByStoreIdAndCurrentDate(ls.getStore().getStoreId());
