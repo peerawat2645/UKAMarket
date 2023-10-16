@@ -21,6 +21,9 @@ SET time_zone = "+00:00";
 -- Database: `ukamarket`
 --
 
+CREATE DATABASE IF NOT EXISTS `ukamarket` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `ukamarket`;
+
 -- --------------------------------------------------------
 
 --
