@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:uka_project/screen/selectDayorMonth.dart';
 
+import 'selectDate.dart';
+
 class FoodAreaPage extends StatefulWidget {
   const FoodAreaPage({super.key});
 
@@ -14,7 +16,15 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
     bool p = true;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Select Food Area Page'),
+        title: Text(
+          'เลือกพื้นที่การจอง',
+          style: TextStyle(
+              fontFamily: 'Baijamjuree',
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+              color: Color(0xFFFAF1E4)),
+        ),
+        backgroundColor: Color(0xFF435334),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -54,7 +64,8 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                       height: 510, // Adjust the height as needed
                       decoration: BoxDecoration(
                         color: const Color(0xFF9EB384), // Background color
-                        borderRadius: BorderRadius.circular(10), // Border radius
+                        borderRadius:
+                            BorderRadius.circular(10), // Border radius
                       ),
                       child: Center(
                         child: InteractiveViewer(
@@ -81,74 +92,124 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
-                                                                title: const Text(
-                                                                    'Popup Title'),
-                                                                content: const Text(
-                                                                    'This is the content of the popup.'),
+                                                                title:
+                                                                    const Text(
+                                                                  'ร้านค้าเลขที่ : 00',
+                                                                  style: TextStyle(
+                                                                      fontFamily:
+                                                                          'Baijamjuree',
+                                                                      fontSize:
+                                                                          25,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600),
+                                                                ),
+                                                                content:
+                                                                    Container(
+                                                                  height: 90,
+                                                                  child: Column(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .start,
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
+                                                                    children: [
+                                                                      const Text(
+                                                                        'ประเภทร้านค้า : ของกิน',
+                                                                        style: TextStyle(
+                                                                            fontFamily:
+                                                                                'Baijamjuree',
+                                                                            fontSize:
+                                                                                20,
+                                                                            fontWeight:
+                                                                                FontWeight.w400),
+                                                                      ),
+                                                                      Text(
+                                                                        'ราคารายวัน : 100 บาท',
+                                                                        style: TextStyle(
+                                                                            fontFamily:
+                                                                                'Baijamjuree',
+                                                                            fontSize:
+                                                                                20,
+                                                                            fontWeight:
+                                                                                FontWeight.w400),
+                                                                      ),
+                                                                      Text(
+                                                                        'ราคารายเดือน : 800 บาท',
+                                                                        style: TextStyle(
+                                                                            fontFamily:
+                                                                                'Baijamjuree',
+                                                                            fontSize:
+                                                                                20,
+                                                                            fontWeight:
+                                                                                FontWeight.w400),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
                                                                 actions: <Widget>[
                                                                   ElevatedButton
                                                                       .icon(
                                                                     onPressed:
                                                                         () {
+                                                                      // Handle "Reserve" button press
+                                                                      // You can add your reservation logic here
+                                                                      Navigator.of(
+                                                                              context)
+                                                                          .pop();
                                                                       Navigator
                                                                           .push(
                                                                         context,
                                                                         MaterialPageRoute(
                                                                             builder: (context) =>
-                                                                                SelectDayOrMonthPage()),
-                                                                      );
+                                                                                ReservationSelectDate()),
+                                                                      ); // Close the dialog
                                                                     },
                                                                     icon:
                                                                         const Icon(
                                                                       Icons
-                                                                          .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                          .add, // Replace with your custom "Reserve" icon
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          255,
+                                                                          255), // Custom color
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'จอง',
-                                                                      style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                      style:
+                                                                          TextStyle(
+                                                                        color: Color.fromARGB(
+                                                                            255,
+                                                                            255,
+                                                                            255,
+                                                                            255),
+                                                                      ),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary: const Color
-                                                                          .fromARGB(
+                                                                      primary: Color.fromARGB(
                                                                           255,
-                                                                          255,
-                                                                          255,
-                                                                          255),
+                                                                          14,
+                                                                          93,
+                                                                          27), // Custom color
                                                                     ),
                                                                   ),
-                                                                  ElevatedButton(
+                                                                  IconButton(
+                                                                    icon: Icon(Icons
+                                                                        .close),
                                                                     onPressed:
                                                                         () {
-                                                                      // Close the popup when this button is pressed
                                                                       Navigator.of(
                                                                               context)
                                                                           .pop();
                                                                     },
-                                                                    style: ElevatedButton
-                                                                        .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
-                                                                    ),
-                                                                    child: const Text(
-                                                                        'Close'),
                                                                   ),
                                                                 ],
                                                               );
@@ -156,9 +217,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -196,8 +259,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -214,19 +278,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -248,13 +311,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -265,9 +327,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -305,8 +369,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -323,19 +388,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -357,13 +421,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -374,9 +437,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -414,8 +479,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -432,19 +498,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -466,13 +531,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -483,9 +547,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -523,8 +589,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -541,19 +608,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -575,13 +641,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -592,9 +657,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -632,8 +699,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -650,19 +718,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -684,13 +751,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -701,9 +767,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -741,8 +809,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -759,19 +828,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -793,13 +861,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -810,9 +877,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -850,8 +919,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -868,19 +938,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -902,13 +971,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -919,9 +987,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -968,8 +1038,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -986,19 +1057,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -1020,13 +1090,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -1037,9 +1106,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -1077,8 +1148,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -1095,19 +1167,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -1129,13 +1200,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -1146,9 +1216,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -1186,8 +1258,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -1204,19 +1277,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -1238,13 +1310,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -1255,9 +1326,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -1295,8 +1368,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -1313,19 +1387,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -1347,13 +1420,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -1364,9 +1436,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -1404,8 +1478,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -1422,19 +1497,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -1456,13 +1530,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -1473,9 +1546,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -1513,8 +1588,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -1531,19 +1607,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -1565,13 +1640,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -1582,9 +1656,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -1622,8 +1698,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -1640,19 +1717,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -1674,13 +1750,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -1691,9 +1766,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -1731,8 +1808,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -1749,19 +1827,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -1783,13 +1860,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -1800,9 +1876,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -1845,8 +1923,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -1863,19 +1942,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -1897,13 +1975,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -1914,9 +1991,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -1954,8 +2033,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -1972,19 +2052,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -2006,13 +2085,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -2023,9 +2101,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -2063,8 +2143,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -2081,19 +2162,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -2115,13 +2195,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -2132,9 +2211,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -2172,8 +2253,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -2190,19 +2272,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -2224,13 +2305,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -2241,9 +2321,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -2281,8 +2363,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -2299,19 +2382,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -2333,13 +2415,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -2350,9 +2431,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -2390,8 +2473,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -2408,19 +2492,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -2442,13 +2525,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -2459,9 +2541,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -2499,8 +2583,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -2517,19 +2602,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -2551,13 +2635,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -2568,9 +2651,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -2608,8 +2693,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -2626,19 +2712,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -2660,13 +2745,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -2677,9 +2761,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -2726,8 +2812,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -2744,19 +2831,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -2778,13 +2864,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -2795,9 +2880,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -2835,8 +2922,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -2853,19 +2941,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -2887,13 +2974,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -2904,9 +2990,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -2944,8 +3032,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -2962,19 +3051,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -2996,13 +3084,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -3013,9 +3100,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -3053,8 +3142,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -3071,19 +3161,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -3105,13 +3194,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -3122,9 +3210,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -3162,8 +3252,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -3180,19 +3271,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -3214,13 +3304,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -3231,9 +3320,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -3271,8 +3362,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -3289,19 +3381,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -3323,13 +3414,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -3340,9 +3430,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -3380,8 +3472,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -3398,19 +3491,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -3432,13 +3524,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -3449,9 +3540,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -3489,8 +3582,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -3507,19 +3601,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -3541,13 +3634,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -3558,9 +3650,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -3603,8 +3697,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -3621,19 +3716,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -3655,13 +3749,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -3672,9 +3765,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -3712,8 +3807,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -3730,19 +3826,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -3764,13 +3859,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -3781,9 +3875,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -3821,8 +3917,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -3839,19 +3936,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -3873,13 +3969,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -3890,9 +3985,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -3930,8 +4027,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -3948,19 +4046,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -3982,13 +4079,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -3999,9 +4095,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -4039,8 +4137,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -4057,19 +4156,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -4091,13 +4189,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -4108,9 +4205,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -4148,8 +4247,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -4166,19 +4266,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -4200,13 +4299,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -4217,9 +4315,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -4257,8 +4357,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -4275,19 +4376,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -4309,13 +4409,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -4326,9 +4425,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -4366,8 +4467,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -4384,19 +4486,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -4418,13 +4519,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -4435,9 +4535,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -4484,8 +4586,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -4502,19 +4605,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -4536,13 +4638,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -4553,9 +4654,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -4593,8 +4696,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -4611,19 +4715,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -4645,13 +4748,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -4662,9 +4764,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -4702,8 +4806,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -4720,19 +4825,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -4754,13 +4858,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -4771,9 +4874,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -4811,8 +4916,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -4829,19 +4935,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -4863,13 +4968,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -4880,9 +4984,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -4920,8 +5026,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -4938,19 +5045,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -4972,13 +5078,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -4989,9 +5094,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -5029,8 +5136,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -5047,19 +5155,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -5081,13 +5188,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -5098,9 +5204,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -5138,8 +5246,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -5156,19 +5265,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -5190,13 +5298,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -5207,9 +5314,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -5247,8 +5356,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -5265,19 +5375,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -5299,13 +5408,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -5316,9 +5424,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -5361,8 +5471,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -5379,19 +5490,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -5413,13 +5523,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -5430,9 +5539,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -5470,8 +5581,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -5488,19 +5600,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -5522,13 +5633,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -5539,9 +5649,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -5579,8 +5691,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -5597,19 +5710,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -5631,13 +5743,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -5648,9 +5759,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -5688,8 +5801,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -5706,19 +5820,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -5740,13 +5853,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -5757,9 +5869,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -5797,8 +5911,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -5815,19 +5930,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -5849,13 +5963,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -5866,9 +5979,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -5906,8 +6021,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -5924,19 +6040,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -5958,13 +6073,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -5975,9 +6089,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -6015,8 +6131,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -6033,19 +6150,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -6067,13 +6183,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -6084,9 +6199,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -6124,8 +6241,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -6142,19 +6260,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -6176,13 +6293,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -6193,9 +6309,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -6242,8 +6360,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -6260,19 +6379,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -6294,13 +6412,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -6311,9 +6428,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -6351,8 +6470,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -6369,19 +6489,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -6403,13 +6522,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -6420,9 +6538,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -6460,8 +6580,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -6478,19 +6599,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -6512,13 +6632,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -6529,9 +6648,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -6569,8 +6690,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -6587,19 +6709,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -6621,13 +6742,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -6638,9 +6758,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -6678,8 +6800,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -6696,19 +6819,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -6730,13 +6852,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -6747,9 +6868,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -6787,8 +6910,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -6805,19 +6929,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -6839,13 +6962,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -6856,9 +6978,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -6896,8 +7020,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -6914,19 +7039,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -6948,13 +7072,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -6965,9 +7088,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -7005,8 +7130,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           // Show the popup when the button is pressed
                                                           showDialog(
                                                             context: context,
-                                                            builder: (BuildContext
-                                                                context) {
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
                                                               return AlertDialog(
                                                                 title: const Text(
                                                                     'Popup Title'),
@@ -7023,19 +7149,18 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                         const Icon(
                                                                       Icons
                                                                           .favorite,
-                                                                      color: Color
-                                                                          .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              156,
-                                                                              212),
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
                                                                     ),
                                                                     label:
                                                                         const Text(
                                                                       'Like',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38),
+                                                                          color:
+                                                                              Colors.black38),
                                                                     ),
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -7057,13 +7182,12 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
-                                                                          const Color
-                                                                              .fromARGB(
-                                                                              255,
-                                                                              255,
-                                                                              66,
-                                                                              66),
+                                                                      primary: const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
                                                                     ),
                                                                     child: const Text(
                                                                         'Close'),
@@ -7074,9 +7198,11 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                           );
                                                         }
                                                       : null,
-                                                  style: ElevatedButton.styleFrom(
-                                                    primary: const Color.fromARGB(
-                                                        255, 15, 92, 25),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        const Color.fromARGB(
+                                                            255, 15, 92, 25),
                                                     // Button background color
                                                   ),
                                                   child: const Text(''),
@@ -7133,12 +7259,15 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                             content: const Text(
                                                                 'This is the content of the popup.'),
                                                             actions: <Widget>[
-                                                              ElevatedButton.icon(
+                                                              ElevatedButton
+                                                                  .icon(
                                                                 onPressed: () {
                                                                   // Add your button action here
                                                                 },
-                                                                icon: const Icon(
-                                                                  Icons.favorite,
+                                                                icon:
+                                                                    const Icon(
+                                                                  Icons
+                                                                      .favorite,
                                                                   color: Color
                                                                       .fromARGB(
                                                                           255,
@@ -7146,15 +7275,15 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                           156,
                                                                           212),
                                                                 ),
-                                                                label: const Text(
+                                                                label:
+                                                                    const Text(
                                                                   'Like',
                                                                   style: TextStyle(
                                                                       color: Colors
                                                                           .black38),
                                                                 ),
-                                                                style:
-                                                                    ElevatedButton
-                                                                        .styleFrom(
+                                                                style: ElevatedButton
+                                                                    .styleFrom(
                                                                   primary:
                                                                       const Color
                                                                           .fromARGB(
@@ -7171,9 +7300,8 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                           context)
                                                                       .pop();
                                                                 },
-                                                                style:
-                                                                    ElevatedButton
-                                                                        .styleFrom(
+                                                                style: ElevatedButton
+                                                                    .styleFrom(
                                                                   primary:
                                                                       const Color
                                                                           .fromARGB(
@@ -7182,8 +7310,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                           66,
                                                                           66),
                                                                 ),
-                                                                child: const Text(
-                                                                    'Close'),
+                                                                child:
+                                                                    const Text(
+                                                                        'Close'),
                                                               ),
                                                             ],
                                                           );
@@ -7239,12 +7368,15 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                             content: const Text(
                                                                 'This is the content of the popup.'),
                                                             actions: <Widget>[
-                                                              ElevatedButton.icon(
+                                                              ElevatedButton
+                                                                  .icon(
                                                                 onPressed: () {
                                                                   // Add your button action here
                                                                 },
-                                                                icon: const Icon(
-                                                                  Icons.favorite,
+                                                                icon:
+                                                                    const Icon(
+                                                                  Icons
+                                                                      .favorite,
                                                                   color: Color
                                                                       .fromARGB(
                                                                           255,
@@ -7252,15 +7384,15 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                           156,
                                                                           212),
                                                                 ),
-                                                                label: const Text(
+                                                                label:
+                                                                    const Text(
                                                                   'Like',
                                                                   style: TextStyle(
                                                                       color: Colors
                                                                           .black38),
                                                                 ),
-                                                                style:
-                                                                    ElevatedButton
-                                                                        .styleFrom(
+                                                                style: ElevatedButton
+                                                                    .styleFrom(
                                                                   primary:
                                                                       const Color
                                                                           .fromARGB(
@@ -7277,9 +7409,8 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                           context)
                                                                       .pop();
                                                                 },
-                                                                style:
-                                                                    ElevatedButton
-                                                                        .styleFrom(
+                                                                style: ElevatedButton
+                                                                    .styleFrom(
                                                                   primary:
                                                                       const Color
                                                                           .fromARGB(
@@ -7288,8 +7419,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                           66,
                                                                           66),
                                                                 ),
-                                                                child: const Text(
-                                                                    'Close'),
+                                                                child:
+                                                                    const Text(
+                                                                        'Close'),
                                                               ),
                                                             ],
                                                           );
@@ -7345,12 +7477,15 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                             content: const Text(
                                                                 'This is the content of the popup.'),
                                                             actions: <Widget>[
-                                                              ElevatedButton.icon(
+                                                              ElevatedButton
+                                                                  .icon(
                                                                 onPressed: () {
                                                                   // Add your button action here
                                                                 },
-                                                                icon: const Icon(
-                                                                  Icons.favorite,
+                                                                icon:
+                                                                    const Icon(
+                                                                  Icons
+                                                                      .favorite,
                                                                   color: Color
                                                                       .fromARGB(
                                                                           255,
@@ -7358,15 +7493,15 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                           156,
                                                                           212),
                                                                 ),
-                                                                label: const Text(
+                                                                label:
+                                                                    const Text(
                                                                   'Like',
                                                                   style: TextStyle(
                                                                       color: Colors
                                                                           .black38),
                                                                 ),
-                                                                style:
-                                                                    ElevatedButton
-                                                                        .styleFrom(
+                                                                style: ElevatedButton
+                                                                    .styleFrom(
                                                                   primary:
                                                                       const Color
                                                                           .fromARGB(
@@ -7383,9 +7518,8 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                           context)
                                                                       .pop();
                                                                 },
-                                                                style:
-                                                                    ElevatedButton
-                                                                        .styleFrom(
+                                                                style: ElevatedButton
+                                                                    .styleFrom(
                                                                   primary:
                                                                       const Color
                                                                           .fromARGB(
@@ -7394,8 +7528,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                           66,
                                                                           66),
                                                                 ),
-                                                                child: const Text(
-                                                                    'Close'),
+                                                                child:
+                                                                    const Text(
+                                                                        'Close'),
                                                               ),
                                                             ],
                                                           );
@@ -7451,12 +7586,15 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                             content: const Text(
                                                                 'This is the content of the popup.'),
                                                             actions: <Widget>[
-                                                              ElevatedButton.icon(
+                                                              ElevatedButton
+                                                                  .icon(
                                                                 onPressed: () {
                                                                   // Add your button action here
                                                                 },
-                                                                icon: const Icon(
-                                                                  Icons.favorite,
+                                                                icon:
+                                                                    const Icon(
+                                                                  Icons
+                                                                      .favorite,
                                                                   color: Color
                                                                       .fromARGB(
                                                                           255,
@@ -7464,15 +7602,15 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                           156,
                                                                           212),
                                                                 ),
-                                                                label: const Text(
+                                                                label:
+                                                                    const Text(
                                                                   'Like',
                                                                   style: TextStyle(
                                                                       color: Colors
                                                                           .black38),
                                                                 ),
-                                                                style:
-                                                                    ElevatedButton
-                                                                        .styleFrom(
+                                                                style: ElevatedButton
+                                                                    .styleFrom(
                                                                   primary:
                                                                       const Color
                                                                           .fromARGB(
@@ -7489,9 +7627,8 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                           context)
                                                                       .pop();
                                                                 },
-                                                                style:
-                                                                    ElevatedButton
-                                                                        .styleFrom(
+                                                                style: ElevatedButton
+                                                                    .styleFrom(
                                                                   primary:
                                                                       const Color
                                                                           .fromARGB(
@@ -7500,8 +7637,9 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                           66,
                                                                           66),
                                                                 ),
-                                                                child: const Text(
-                                                                    'Close'),
+                                                                child:
+                                                                    const Text(
+                                                                        'Close'),
                                                               ),
                                                             ],
                                                           );

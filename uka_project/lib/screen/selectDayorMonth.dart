@@ -3,6 +3,8 @@ import 'package:uka_project/screen/selectDate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
+import 'selectArea.dart';
+
 class SelectDayOrMonthPage extends StatefulWidget {
   const SelectDayOrMonthPage({super.key});
 
@@ -53,7 +55,7 @@ class _SelectDayOrMonthPageState extends State<SelectDayOrMonthPage> {
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return ReservationSelectDate(); // Replace with the name of the screen you want to navigate to
+                                return SelectAreaPage(); // Replace with the name of the screen you want to navigate to
                               },
                             ),
                           );
@@ -83,7 +85,7 @@ class _SelectDayOrMonthPageState extends State<SelectDayOrMonthPage> {
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return ReservationSelectDate(); // Replace with the name of the screen you want to navigate to
+                                return SelectAreaPage(); // Replace with the name of the screen you want to navigate to
                               },
                             ),
                           );

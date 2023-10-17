@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:uka_project/screen/selectDayorMonth.dart';
 
+import 'selectDate.dart';
+
 class ThingAreaPage extends StatefulWidget {
   const ThingAreaPage({super.key});
 
@@ -81,74 +83,130 @@ class _ThingAreaPageState extends State<ThingAreaPage> {
                                                     ? () {
                                                         // Show the popup when the button is pressed
                                                         showDialog(
-                                                          context: context,
-                                                          builder: (BuildContext
-                                                              context) {
-                                                            return AlertDialog(
-                                                              title: const Text(
-                                                                  'Popup Title'),
-                                                              content: const Text(
-                                                                  'This is the content of the popup.'),
-                                                              actions: <Widget>[
-                                                                ElevatedButton.icon(
-                                                                  onPressed: () {
-                                                                    Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => SelectDayOrMonthPage()),
-              );
-                                                                  },
-                                                                  icon: const Icon(
-                                                                    Icons.favorite,
-                                                                    color: Color
-                                                                        .fromARGB(
-                                                                            255,
-                                                                            255,
-                                                                            156,
-                                                                            212),
+                                                            context: context,
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
+                                                              return AlertDialog(
+                                                                title:
+                                                                    const Text(
+                                                                  'ร้านค้าเลขที่ : 00',
+                                                                  style: TextStyle(
+                                                                      fontFamily:
+                                                                          'Baijamjuree',
+                                                                      fontSize:
+                                                                          25,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600),
+                                                                ),
+                                                                content:
+                                                                    Container(
+                                                                  height: 90,
+                                                                  child: Column(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .start,
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
+                                                                    children: [
+                                                                      const Text(
+                                                                        'ประเภทร้านค้า : ของใช้',
+                                                                        style: TextStyle(
+                                                                            fontFamily:
+                                                                                'Baijamjuree',
+                                                                            fontSize:
+                                                                                20,
+                                                                            fontWeight:
+                                                                                FontWeight.w400),
+                                                                      ),
+                                                                      Text(
+                                                                        'ราคารายวัน : 100 บาท',
+                                                                        style: TextStyle(
+                                                                            fontFamily:
+                                                                                'Baijamjuree',
+                                                                            fontSize:
+                                                                                20,
+                                                                            fontWeight:
+                                                                                FontWeight.w400),
+                                                                      ),
+                                                                      Text(
+                                                                        'ราคารายเดือน : 800 บาท',
+                                                                        style: TextStyle(
+                                                                            fontFamily:
+                                                                                'Baijamjuree',
+                                                                            fontSize:
+                                                                                20,
+                                                                            fontWeight:
+                                                                                FontWeight.w400),
+                                                                      ),
+                                                                    ],
                                                                   ),
-                                                                  label: const Text(
-                                                                    'จอง',
-                                                                    style: TextStyle(
-                                                                        color: Colors
-                                                                            .black38),
-                                                                  ),
-                                                                  style:
-                                                                      ElevatedButton
-                                                                          .styleFrom(
-                                                                    primary:
-                                                                        const Color
-                                                                            .fromARGB(
+                                                                ),
+                                                                actions: <Widget>[
+                                                                  ElevatedButton
+                                                                      .icon(
+                                                                    onPressed:
+                                                                        () {
+                                                                      // Handle "Reserve" button press
+                                                                      // You can add your reservation logic here
+                                                                      Navigator.of(
+                                                                              context)
+                                                                          .pop();
+                                                                      Navigator
+                                                                          .push(
+                                                                        context,
+                                                                        MaterialPageRoute(
+                                                                            builder: (context) =>
+                                                                                ReservationSelectDate()),
+                                                                      ); // Close the dialog
+                                                                    },
+                                                                    icon:
+                                                                        const Icon(
+                                                                      Icons
+                                                                          .add, // Replace with your custom "Reserve" icon
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          255,
+                                                                          255), // Custom color
+                                                                    ),
+                                                                    label:
+                                                                        const Text(
+                                                                      'จอง',
+                                                                      style:
+                                                                          TextStyle(
+                                                                        color: Color.fromARGB(
                                                                             255,
                                                                             255,
                                                                             255,
                                                                             255),
+                                                                      ),
+                                                                    ),
+                                                                    style: ElevatedButton
+                                                                        .styleFrom(
+                                                                      primary: Color.fromARGB(
+                                                                          255,
+                                                                          14,
+                                                                          93,
+                                                                          27), // Custom color
+                                                                    ),
                                                                   ),
-                                                                ),
-                                                                ElevatedButton(
-                                                                  onPressed: () {
-                                                                    // Close the popup when this button is pressed
-                                                                    Navigator.of(
-                                                                            context)
-                                                                        .pop();
-                                                                  },
-                                                                  style:
-                                                                      ElevatedButton
-                                                                          .styleFrom(
-                                                                    primary:
-                                                                        const Color
-                                                                            .fromARGB(
-                                                                            255,
-                                                                            255,
-                                                                            66,
-                                                                            66),
+                                                                  IconButton(
+                                                                    icon: Icon(Icons
+                                                                        .close),
+                                                                    onPressed:
+                                                                        () {
+                                                                      Navigator.of(
+                                                                              context)
+                                                                          .pop();
+                                                                    },
                                                                   ),
-                                                                  child: const Text(
-                                                                      'Close'),
-                                                                ),
-                                                              ],
-                                                            );
-                                                          },
-                                                        );
+                                                                ],
+                                                              );
+                                                            },
+                                                          );
                                                       }
                                                     : null,
                                                 style: ElevatedButton.styleFrom(
