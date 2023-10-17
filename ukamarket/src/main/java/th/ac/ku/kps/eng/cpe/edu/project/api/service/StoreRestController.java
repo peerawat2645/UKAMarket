@@ -83,7 +83,7 @@ public class StoreRestController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Response<Store>> getStoreData(@PathVariable("id") int storeId) {
+	public ResponseEntity<Response<Store>> editStore(@PathVariable("id") int storeId) {
 		Response<Store> res = new Response<>();
 		try {
 			Store store = storeService.findById(storeId);
@@ -143,7 +143,7 @@ public class StoreRestController {
 	}
 
 	@PostMapping("/delete/{id}")
-	public ResponseEntity<Response<String>> update(@PathVariable("id") int storeId) {
+	public ResponseEntity<Response<String>> delete(@PathVariable("id") int storeId) {
 		Response<String> res = new Response<>();
 		try {
 			if (storeService.findById(storeId) == null) {

@@ -82,7 +82,7 @@ public class ReservationRestController {
 
 		DateFormatSymbols dfs = new DateFormatSymbols(Locale.getDefault());
 
-		for (int month = currentMonth + 1; month <= Calendar.DECEMBER; month++) {
+		for (int month = currentMonth; month <= Calendar.DECEMBER; month++) {
 			String monthName = dfs.getMonths()[month];
 			months.add(monthName);
 		}
@@ -137,8 +137,8 @@ public class ReservationRestController {
 		}
 	}
 
-	@GetMapping("/choice/store/{id}/type/{type}") // dropdown month
-	public ResponseEntity<Response<ReservationDTO>> getDate(@PathVariable("id") int storeId,
+	@GetMapping("/choice/store/{id}/type/{type}") //drop down month
+	public ResponseEntity<Response<ReservationDTO>> dropDownMonth(@PathVariable("id") int storeId,
 			@PathVariable("type") String type) {
 		Response<ReservationDTO> res = new Response<>();
 		try {
@@ -158,22 +158,22 @@ public class ReservationRestController {
 		}
 	}
 
-	@GetMapping("/choice/") // dropdown month
-	public ResponseEntity<Response<List<Area>>> getStore() {
-		Response<List<Area>> res = new Response<>();
-		try {
-			List<Area> areas = reservationService.findByNotInCurrentDate();
-			res.setBody(areas);
-			res.setHttpStatus(HttpStatus.OK);
-			return new ResponseEntity<Response<List<Area>>>(res, res.getHttpStatus());
-		} catch (Exception ex) {
-			res.setBody(null);
-			res.setHttpStatus(HttpStatus.NOT_FOUND);
-			return new ResponseEntity<Response<List<Area>>>(res, res.getHttpStatus());
-		}
-	}
+//	@GetMapping("/choice/") // dropdown month
+//	public ResponseEntity<Response<List<Area>>> getStore() {
+//		Response<List<Area>> res = new Response<>();
+//		try {
+//			List<Area> areas = reservationService.findByNotInCurrentDate();
+//			res.setBody(areas);
+//			res.setHttpStatus(HttpStatus.OK);
+//			return new ResponseEntity<Response<List<Area>>>(res, res.getHttpStatus());
+//		} catch (Exception ex) {
+//			res.setBody(null);
+//			res.setHttpStatus(HttpStatus.NOT_FOUND);
+//			return new ResponseEntity<Response<List<Area>>>(res, res.getHttpStatus());
+//		}
+//	}
 
-	@GetMapping("/choice/row/{row}/col/{col}") // dropdown month
+	@GetMapping("/choice/row/{row}/col/{col}")
 	public ResponseEntity<Response<String>> checkLock(@PathVariable("row") int row, @PathVariable("col") int col) {
 		Response<String> res = new Response<>();
 		try {
@@ -207,9 +207,9 @@ public class ReservationRestController {
 		return calendar.getTime();
 	}
 
-	@GetMapping("/choice/month/{month}") // dropdown month
-	public ResponseEntity<Response<List<Area>>> checkLock(@PathVariable("month") String month) {
-		Response<List<Area>> res = new Response<>();
+	@GetMapping("/choice/month/{month}/row/{row}/col/{col}") 
+	public ResponseEntity<Response<String>> checkLockMonth(@PathVariable("month") String month,@PathVariable("row") int row,@PathVariable("col") int col) {
+		Response<String> res = new Response<>();
 		try {
 			// Convert month string to Month enum
 			int monthInt = getMonthInt(month);
@@ -217,18 +217,25 @@ public class ReservationRestController {
 			// Get the first day of the month
 			Date firstDayOfMonth = getFirstDayOfMonth(monthInt);
 			List<Area> areas = reservationService.findByDate(firstDayOfMonth);
-			res.setBody(areas);
+			Area area = areaService.findByRowAndCol(row, col);
+			res.setBody("fail");
+			for(Area a : areas) {
+				if(a.getAreaId() == area.getAreaId()) {
+					res.setBody("success");
+					break;
+				}
+			}
 			res.setHttpStatus(HttpStatus.OK);
-			return new ResponseEntity<Response<List<Area>>>(res, res.getHttpStatus());
+			return new ResponseEntity<Response<String>>(res, res.getHttpStatus());
 		} catch (Exception ex) {
 			res.setBody(null);
 			res.setHttpStatus(HttpStatus.NOT_FOUND);
-			return new ResponseEntity<Response<List<Area>>>(res, res.getHttpStatus());
+			return new ResponseEntity<Response<String>>(res, res.getHttpStatus());
 		}
 	}
 
 	@GetMapping("/description") // checkinfo
-	public ResponseEntity<Response<ReservationCreateDTO>> getDate(
+	public ResponseEntity<Response<ReservationCreateDTO>> checkInfo(
 			@Valid @RequestBody ReservationDescriptionRequestDTO req) {
 		Response<ReservationCreateDTO> res = new Response<>();
 		try {
@@ -255,7 +262,7 @@ public class ReservationRestController {
 	}
 
 	@PostMapping("/create")
-	public ResponseEntity<Response<Reservation>> getStoreData(@Valid @RequestBody ReservationRequestDTO req) {
+	public ResponseEntity<Response<Reservation>> create(@Valid @RequestBody ReservationRequestDTO req) {
 		Response<Reservation> res = new Response<>();
 		try {
 			Area a = areaService.findByRowAndCol(req.getRow(), req.getCol());

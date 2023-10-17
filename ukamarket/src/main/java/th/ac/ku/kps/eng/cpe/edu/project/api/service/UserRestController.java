@@ -95,13 +95,13 @@ public class UserRestController {
 				res.setHttpStatus(HttpStatus.BAD_REQUEST);
 				return new ResponseEntity<Response<String>>(res, res.getHttpStatus());
 			} else if (!reset.getNewPassword().equals(reset.getConfirmPassword())) {
-				res.setBody("password not matching!");
+				res.setBody("new password not matching!");
 				res.setHttpStatus(HttpStatus.BAD_REQUEST);
 				return new ResponseEntity<Response<String>>(res, res.getHttpStatus());
 			}
 			user.setPassword(encoder.encode(reset.getNewPassword()));
 			userService.save(user);
-			res.setBody("change passwrod successfully!");
+			res.setBody("change password successfully!");
 			res.setHttpStatus(HttpStatus.OK);
 			return new ResponseEntity<Response<String>>(res, res.getHttpStatus());
 		} catch (Exception ex) {
