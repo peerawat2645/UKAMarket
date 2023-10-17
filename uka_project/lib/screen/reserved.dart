@@ -5,6 +5,7 @@ import 'package:uka_project/screen/selectDate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
+import 'regisReservation.dart';
 import 'selectDayorMonth.dart';
 
 class ReservationPage extends StatefulWidget {
@@ -41,6 +42,26 @@ class _ReservationPageState extends State<ReservationPage> {
               color: Color(0xFFFAF1E4)),
         ),
         backgroundColor: Color(0xFF435334),
+        actions: <Widget>[
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => RegisterReservation()),
+              );
+              print('Add button pressed');
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(right: 20),
+              child: Row(
+                children: <Widget>[
+                  Icon(Icons.add), // Icon for the "Add" button
+                  Text('Add'), // Text for the "Add" button
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
       body: ListView.builder(
           itemCount: stores.length,

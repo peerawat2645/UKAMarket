@@ -178,8 +178,8 @@ class _Home2PageState extends State<Home2Page> {
                                                                   children: [
                                                                     Text(
                                                                       isLiked
-                                                                          ? 'You liked this store!'
-                                                                          : 'You have not liked this store',
+                                                                          ? 'คุณถูกใจร้านนี้!'
+                                                                          : '',
                                                                       style: TextStyle(
                                                                           fontFamily:
                                                                               'Baijamjuree',

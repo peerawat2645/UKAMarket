@@ -3,6 +3,8 @@ import 'package:uka_project/screen/reserve.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
+import '../ui/afterlogin/main_page.dart';
+
 class RegisterReservation extends StatefulWidget {
   const RegisterReservation({super.key});
 
@@ -179,7 +181,7 @@ class _RegisterReservationState extends State<RegisterReservation> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => ReservationCheck()),
+                            builder: (context) => MainPage()),
                       );
                       // Submit the form data to your backend or process it as needed
                       // You can access the form values like _storeName, _phoneNumber, etc.
