@@ -38,7 +38,7 @@ class EditStore extends StatelessWidget {
                     children: [
                       TextField(
                         controller: _nameStoreController,
-                        textAlign: TextAlign.center,
+                        textAlign: TextAlign.start,
                         style: TextStyle(
                           color: const Color(0xFF393939),
                           fontSize: 13.sp,
@@ -77,7 +77,7 @@ class EditStore extends StatelessWidget {
                       ),
                       TextField(
                         controller: _detailController,
-                        textAlign: TextAlign.center,
+                        textAlign: TextAlign.start,
                         style: TextStyle(
                           color: const Color(0xFF393939),
                           fontSize: 13.sp,
@@ -116,7 +116,7 @@ class EditStore extends StatelessWidget {
                       ),
                       TextField(
                         controller: _phoneController,
-                        textAlign: TextAlign.center,
+                        textAlign: TextAlign.start,
                         style: TextStyle(
                           color: const Color(0xFF393939),
                           fontSize: 13.sp,

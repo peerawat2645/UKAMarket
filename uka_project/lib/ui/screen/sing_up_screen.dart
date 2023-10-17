@@ -161,7 +161,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                             fontWeight: FontWeight.w400,
                           ),
                           decoration:InputDecoration(
-                            labelText: 'อีเมล์',
+                            labelText: 'อีเมล',
                             labelStyle: TextStyle(
                               color: Color(0xFF040D12),
                               fontSize: 15.sp,

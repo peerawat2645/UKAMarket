@@ -34,7 +34,7 @@ class Repass extends StatelessWidget {
                     children: [
                       TextField(
                         controller: _repassController,
-                        textAlign: TextAlign.center,
+                        textAlign: TextAlign.start,
                         style: TextStyle(
                           color: const Color(0xFF393939),
                           fontSize: 13.sp,
@@ -73,7 +73,7 @@ class Repass extends StatelessWidget {
                       ),
                       TextField(
                         controller: _repassController,
-                        textAlign: TextAlign.center,
+                        textAlign: TextAlign.start,
                         style: TextStyle(
                           color: const Color(0xFF393939),
                           fontSize: 13.sp,

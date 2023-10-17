@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class EditProfile extends StatelessWidget {
   final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -35,22 +36,6 @@ class EditProfile extends StatelessWidget {
                           image: AssetImage('assets/images/profile.jpg')),
                     ),
                   ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: Container(
-                      width: 35,
-                      height: 35,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100),
-                          color: Color.fromARGB(255, 173, 216, 148)),
-                      child: const Icon(
-                        Icons.access_alarms,
-                        color: Colors.black,
-                        size: 20,
-                      ),
-                    ),
-                  ),
                 ],
               ),
               SizedBox(
@@ -62,7 +47,7 @@ class EditProfile extends StatelessWidget {
                 children: [
                   TextField(
                     controller: _usernameController,
-                    textAlign: TextAlign.center,
+                    textAlign: TextAlign.start,
                     style: TextStyle(
                       color: const Color(0xFF393939),
                       fontSize: 13.sp,
@@ -88,7 +73,7 @@ class EditProfile extends StatelessWidget {
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius:
-                             BorderRadius.all(Radius.circular(80.r)),
+                             BorderRadius.all(Radius.circular(20.r)),
                         borderSide: BorderSide(
                           width: 1.w,
                           color: const Color(0xFF040D12),
@@ -100,8 +85,8 @@ class EditProfile extends StatelessWidget {
                         height: 10.h,
                       ),
                   TextField(
-                    controller: _usernameController,
-                    textAlign: TextAlign.center,
+                    controller: _emailController,
+                    textAlign: TextAlign.start,
                     style: TextStyle(
                       color: const Color(0xFF393939),
                       fontSize: 13.sp,
@@ -110,7 +95,7 @@ class EditProfile extends StatelessWidget {
                     ),
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.email),
-                      labelText: 'อีเมล์',
+                      labelText: 'อีเมล',
                       labelStyle: TextStyle(
                         color: const Color(0xFF040D12),
                         fontSize: 15.sp,
@@ -127,7 +112,7 @@ class EditProfile extends StatelessWidget {
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius:
-                            BorderRadius.all(Radius.circular(80.r)),
+                            BorderRadius.all(Radius.circular(20.r)),
                         borderSide: BorderSide(
                           width: 1.w,
                           color: const Color(0xFF040D12),
