@@ -12,6 +12,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -117,7 +118,7 @@ public class ReservationRestController {
 		return dates;
 	}
 
-	@GetMapping("/choice/store/{id}/type/{type}")
+	@GetMapping("/choice/store/{id}/type/{type}") //dropdown month
 	public ResponseEntity<Response<ReservationDTO>> getDate(@PathVariable("id") int storeId,
 			@PathVariable("type") String type) {
 		Response<ReservationDTO> res = new Response<>();
@@ -138,9 +139,10 @@ public class ReservationRestController {
 		}
 	}
 
-	@GetMapping("/description")
-	public ResponseEntity<Response<ReservationCreateDTO>> getDate(@Param("date") Date date,
+	@GetMapping("/description") //checkinfo
+	public ResponseEntity<Response<ReservationCreateDTO>> getDate(@Param("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Date date,
 			@Param("month") String month, @Param("type") String type, @Param("storeId") int storeId) {
+		System.out.println(date);
 		Response<ReservationCreateDTO> res = new Response<>();
 		try {
 			ReservationCreateDTO reserv = new ReservationCreateDTO();
@@ -151,7 +153,9 @@ public class ReservationRestController {
 				dates.add(date);
 				reserv.setDates(dates);
 			}
-			reserv.setStore(storeService.findById(storeId));
+			Store store = storeService.findById(storeId);
+			System.out.println(store.getUser().getUsername());
+			reserv.setStore(store);
 			res.setBody(reserv);
 			res.setHttpStatus(HttpStatus.OK);
 			return new ResponseEntity<Response<ReservationCreateDTO>>(res, res.getHttpStatus());

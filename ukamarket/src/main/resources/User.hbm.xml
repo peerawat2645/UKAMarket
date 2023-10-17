@@ -21,18 +21,18 @@
         <property name="surname" type="string">
             <column name="surname" not-null="true"/>
         </property>
-        <set fetch="select" inverse="true" lazy="true" name="likestores" table="likestore">
+        <bag fetch="select" inverse="true" lazy="true" name="likestores" table="likestore">
             <key>
                 <column name="userId" not-null="true"/>
             </key>
             <one-to-many class="th.ac.ku.kps.eng.cpe.edu.project.model.Likestore"/>
-        </set>
-        <set fetch="select" inverse="true" lazy="true" name="stores" table="store">
+        </bag>
+        <bag fetch="select" inverse="true" lazy="true" name="stores" table="store">
             <key>
                 <column name="userId" not-null="true"/>
             </key>
             <one-to-many class="th.ac.ku.kps.eng.cpe.edu.project.model.Store"/>
-        </set>
+        </bag>
         <bag fetch="select" inverse="true" lazy="true" name="roles" table="role">
             <key>
                 <column name="userId" not-null="true"/>

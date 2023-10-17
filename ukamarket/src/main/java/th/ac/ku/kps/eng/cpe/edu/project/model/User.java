@@ -20,9 +20,9 @@ public class User implements java.io.Serializable {
 	private String name;
 	private String surname;
 	@JsonIgnore
-	private Set likestores = new HashSet(0);
+	private List<Likestore> likestores = new ArrayList<Likestore>();
 	@JsonIgnore
-	private Set stores = new HashSet(0);
+	private List<Store> stores = new ArrayList<Store>();
 	@JsonIgnore
 	private List<Role> roles = new ArrayList<Role>();
 
@@ -37,7 +37,7 @@ public class User implements java.io.Serializable {
 		this.surname = surname;
 	}
 
-	public User(String username, String email, String password, String name, String surname, Set likestores, Set stores,
+	public User(String username, String email, String password, String name, String surname, List<Likestore> likestores, List<Store> stores,
 			List<Role> roles) {
 		this.username = username;
 		this.email = email;
@@ -97,19 +97,19 @@ public class User implements java.io.Serializable {
 		this.surname = surname;
 	}
 
-	public Set getLikestores() {
+	public List<Likestore> getLikestores() {
 		return this.likestores;
 	}
 
-	public void setLikestores(Set likestores) {
+	public void setLikestores(List<Likestore> likestores) {
 		this.likestores = likestores;
 	}
 
-	public Set getStores() {
+	public List<Store> getStores() {
 		return this.stores;
 	}
 
-	public void setStores(Set stores) {
+	public void setStores(List<Store> stores) {
 		this.stores = stores;
 	}
 

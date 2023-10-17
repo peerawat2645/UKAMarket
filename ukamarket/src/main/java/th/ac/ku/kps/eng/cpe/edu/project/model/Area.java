@@ -1,7 +1,9 @@
 package th.ac.ku.kps.eng.cpe.edu.project.model;
 // Generated Oct 10, 2023, 5:36:31 PM by Hibernate Tools 5.6.3.Final
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -15,7 +17,7 @@ public class Area implements java.io.Serializable {
 	private int row;
 	private int col;
 	@JsonIgnore
-	private Set reservations = new HashSet(0);
+	private List<Reservation> reservations = new ArrayList<Reservation>();
 
 	public Area() {
 	}
@@ -25,7 +27,7 @@ public class Area implements java.io.Serializable {
 		this.col = col;
 	}
 
-	public Area(int row, int col, Set reservations) {
+	public Area(int row, int col, List<Reservation> reservations) {
 		this.row = row;
 		this.col = col;
 		this.reservations = reservations;
@@ -55,11 +57,11 @@ public class Area implements java.io.Serializable {
 		this.col = col;
 	}
 
-	public Set getReservations() {
+	public List<Reservation> getReservations() {
 		return this.reservations;
 	}
 
-	public void setReservations(Set reservations) {
+	public void setReservations(List<Reservation> reservations) {
 		this.reservations = reservations;
 	}
 

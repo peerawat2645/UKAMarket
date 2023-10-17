@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Store implements java.io.Serializable {
 
 	private Integer storeId;
+	@JsonIgnore
 	private User user;
 	private String name;
 	private String phone;
@@ -21,7 +22,7 @@ public class Store implements java.io.Serializable {
 	private String type;
 	private String imgPath;
 	@JsonIgnore
-	private Set likestores = new HashSet(0);
+	private List<Likestore> likestores = new ArrayList<Likestore>();
 	@JsonIgnore
 	private List<Reservation> reservations = new ArrayList<Reservation>();
 
@@ -37,7 +38,7 @@ public class Store implements java.io.Serializable {
 		this.imgPath = imgPath;
 	}
 
-	public Store(User user, String name, String phone, String description, String type, String imgPath, Set likestores,
+	public Store(User user, String name, String phone, String description, String type, String imgPath, List<Likestore> likestores,
 			List<Reservation> reservations) {
 		this.user = user;
 		this.name = name;
@@ -105,11 +106,11 @@ public class Store implements java.io.Serializable {
 		this.imgPath = imgPath;
 	}
 
-	public Set getLikestores() {
+	public List<Likestore> getLikestores() {
 		return this.likestores;
 	}
 
-	public void setLikestores(Set likestores) {
+	public void setLikestores(List<Likestore> likestores) {
 		this.likestores = likestores;
 	}
 

@@ -12,11 +12,11 @@
         <property name="col" type="int">
             <column name="col" not-null="true"/>
         </property>
-        <set fetch="select" inverse="true" lazy="true" name="reservations" table="reservation">
+        <bag fetch="select" inverse="true" lazy="true" name="reservations" table="reservation">
             <key>
                 <column name="areaId" not-null="true"/>
             </key>
             <one-to-many class="th.ac.ku.kps.eng.cpe.edu.project.model.Reservation"/>
-        </set>
+        </bag>
     </class>
 </hibernate-mapping>

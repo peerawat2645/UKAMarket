@@ -1,5 +1,7 @@
 package th.ac.ku.kps.eng.cpe.edu.project.api.service;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +51,7 @@ public class TestRestController {
 
 	@GetMapping("/all")
 	public String allAccess(HttpServletRequest request) {
+		System.out.println(new Date());
 		return "Public Content.";
 	}
 

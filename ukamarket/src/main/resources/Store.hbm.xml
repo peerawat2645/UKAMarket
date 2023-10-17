@@ -24,12 +24,12 @@
         <property name="imgPath" type="string">
             <column name="imgPath" not-null="true"/>
         </property>
-        <set fetch="select" inverse="true" lazy="true" name="likestores" table="likestore">
+        <bag fetch="select" inverse="true" lazy="true" name="likestores" table="likestore">
             <key>
                 <column name="storeId" not-null="true"/>
             </key>
             <one-to-many class="th.ac.ku.kps.eng.cpe.edu.project.model.Likestore"/>
-        </set>
+        </bag>
         <bag fetch="select" inverse="true" lazy="true" name="reservations" table="reservation">
             <key>
                 <column name="storeId" not-null="true"/>
