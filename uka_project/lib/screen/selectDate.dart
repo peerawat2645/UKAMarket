@@ -4,6 +4,8 @@ import 'package:uka_project/screen/reserveInfo.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
+import 'selectArea.dart';
+
 class ReservationSelectDate extends StatefulWidget {
   const ReservationSelectDate({super.key});
 
@@ -38,7 +40,7 @@ String selectedValue = 'ตุลาคม 2566'; // Initial selected value
   ];
   @override
   Widget build(BuildContext context) {
-    bool p =true;
+    bool p =false;
     bool _isSelectable(DateTime day) {
     return true;
   }
@@ -110,7 +112,7 @@ String selectedValue = 'ตุลาคม 2566'; // Initial selected value
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return ReservationInfo(); // Replace with the name of the screen you want to navigate to
+                                return SelectAreaPage(); // Replace with the name of the screen you want to navigate to
                               },
                             ),
                           );
@@ -212,7 +214,7 @@ String selectedValue = 'ตุลาคม 2566'; // Initial selected value
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return ReservationInfo(); // Replace with the name of the screen you want to navigate to
+                                return SelectAreaPage(); // Replace with the name of the screen you want to navigate to
                               },
                             ),
                           );

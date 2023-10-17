@@ -55,7 +55,7 @@ class _SelectDayOrMonthPageState extends State<SelectDayOrMonthPage> {
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return SelectAreaPage(); // Replace with the name of the screen you want to navigate to
+                                return ReservationSelectDate(); // Replace with the name of the screen you want to navigate to
                               },
                             ),
                           );
@@ -85,7 +85,7 @@ class _SelectDayOrMonthPageState extends State<SelectDayOrMonthPage> {
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return SelectAreaPage(); // Replace with the name of the screen you want to navigate to
+                                return ReservationSelectDate(); // Replace with the name of the screen you want to navigate to
                               },
                             ),
                           );

@@ -17,7 +17,7 @@ class _EditReservationState extends State<EditReservation> {
   String _storeDetails = '';
   String _storeType = '';
 
-   String selectedValue = 'ของกิน'; // Initial selected value
+  String selectedValue = 'ของกิน'; // Initial selected value
 
   // Define a list of items for the dropdown
   List<String> items = [
@@ -50,12 +50,20 @@ class _EditReservationState extends State<EditReservation> {
                 child: SizedBox(
                   width: 250,
                   child: TextFormField(
-                    obscureText: true,
+                    obscureText: false,
+                    
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       labelText: 'Store Name',
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFF435334)),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFF435334)),
+                      ),
+                      labelStyle: TextStyle(color: Color(0xFF435334)),
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -74,12 +82,20 @@ class _EditReservationState extends State<EditReservation> {
                 child: SizedBox(
                   width: 250,
                   child: TextFormField(
-                    obscureText: true,
+                    obscureText: false,
+                    keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       labelText: 'Phone number',
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFF435334)),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFF435334)),
+                      ),
+                      labelStyle: TextStyle(color: Color(0xFF435334)),
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -98,12 +114,19 @@ class _EditReservationState extends State<EditReservation> {
                 child: SizedBox(
                   width: 250,
                   child: TextFormField(
-                    obscureText: true,
+                    obscureText: false,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       labelText: 'Store Details',
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFF435334)),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFF435334)),
+                      ),
+                      labelStyle: TextStyle(color: Color(0xFF435334)),
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -137,14 +160,18 @@ class _EditReservationState extends State<EditReservation> {
                     }
                   },
                   style: ButtonStyle(
-    backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF435334)),
-     // Set the background color
-  ),
-                  child: Text('บันทึก', style: TextStyle(
-              fontFamily: 'Baijamjuree',
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
-              color: Color.fromARGB(255, 255, 255, 255)),),
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Color(0xFF435334)),
+                    // Set the background color
+                  ),
+                  child: Text(
+                    'บันทึก',
+                    style: TextStyle(
+                        fontFamily: 'Baijamjuree',
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                        color: Color.fromARGB(255, 255, 255, 255)),
+                  ),
                 ),
               ),
             ],

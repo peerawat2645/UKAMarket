@@ -105,44 +105,81 @@ class _ReservationInfoState extends State<ReservationInfo> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'ตำแหน่งร้าน : ',
+                            'รายละเอียดการจอง',
           style: TextStyle(
               fontFamily: 'Baijamjuree',
-              fontSize: 20,
+              fontSize: 25,
               fontWeight: FontWeight.w600,
-              color: Color(0xFF435334),)
+              color: Color.fromARGB(255, 0, 0, 0),)
                           ),
-                          Text(
-                            'รายละเอียดเจ้าของร้าน : ',
-                            style: TextStyle(
-              fontFamily: 'Baijamjuree',
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
-              color: Color(0xFF435334),)
+                          SizedBox(
+                            height: 10,
                           ),
-                          Text(
-                            'ประเภทการจอง : ',
-                            style: TextStyle(
-              fontFamily: 'Baijamjuree',
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
-              color: Color(0xFF435334),)
+                          Padding(
+                            padding: EdgeInsets.all(5.0),
+                            child: Text(
+                              'ตำแหน่งร้าน : ',
+                                    style: TextStyle(
+                                        fontFamily: 'Baijamjuree',
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600,
+                                        color: Color(0xFF435334),)
+                            ),
                           ),
-                          Text(
-                            'หมวดหมู่ร้านค้า : ',
-                            style: TextStyle(
-              fontFamily: 'Baijamjuree',
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
-              color: Color(0xFF435334),)
+                          Padding(
+                            padding: EdgeInsets.all(5.0),
+                            child: Text(
+                              'รายละเอียดเจ้าของร้าน : ',
+                              style: TextStyle(
+                                        fontFamily: 'Baijamjuree',
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600,
+                                        color: Color(0xFF435334),)
+                            ),
                           ),
-                          Text(
-                            'วันที่จอง : ',
-                            style: TextStyle(
-              fontFamily: 'Baijamjuree',
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
-              color: Color(0xFF435334),)
+                          Padding(
+                            padding: EdgeInsets.all(5.0),
+                            child: Text(
+                              'ประเภทการจอง : ',
+                              style: TextStyle(
+                                        fontFamily: 'Baijamjuree',
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600,
+                                        color: Color(0xFF435334),)
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(5.0),
+                            child: Text(
+                              'หมวดหมู่ร้านค้า : ',
+                              style: TextStyle(
+                                        fontFamily: 'Baijamjuree',
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600,
+                                        color: Color(0xFF435334),)
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(5.0),
+                            child: Text(
+                              'ราคา : ',
+                              style: TextStyle(
+                                        fontFamily: 'Baijamjuree',
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600,
+                                        color: Color(0xFF435334),)
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(5.0),
+                            child: Text(
+                              'วันที่จอง : ',
+                              style: TextStyle(
+                                        fontFamily: 'Baijamjuree',
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600,
+                                        color: Color(0xFF435334),)
+                            ),
                           ),
                         ],
                       ),
@@ -151,7 +188,7 @@ class _ReservationInfoState extends State<ReservationInfo> {
                       padding: const EdgeInsets.only(top: 10),
                       child: Container(
                         width: 150,
-                        height: 50,
+                        height: 40,
                         decoration: BoxDecoration(
                           color: Color(0xFF435334), // Set the background color
                           borderRadius: BorderRadius.circular(

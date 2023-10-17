@@ -18,6 +18,7 @@ class _Home2PageState extends State<Home2Page> {
     bool p = true;
     bool q = false;
     return Scaffold(
+      backgroundColor: Color(0xFFFAF1E4),
       appBar: AppBar(
         title: Text(
           'กินอะไรดี?',
@@ -34,9 +35,10 @@ class _Home2PageState extends State<Home2Page> {
           color: const Color(0xFFFAF1E4), // Background color
           // Border radius
         ),
-        child: SingleChildScrollView(
+        child: Container(
+          height:700,
           child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Row(
@@ -57,7 +59,7 @@ class _Home2PageState extends State<Home2Page> {
                           "ของใช้",
                           style: TextStyle(
                               fontFamily: 'Baijamjuree',
-                              fontSize: 13.sp,
+                              fontSize: 18.sp,
                               fontWeight: FontWeight.w600),
                         ),
                       ),
@@ -82,7 +84,7 @@ class _Home2PageState extends State<Home2Page> {
                           "ของกิน",
                           style: TextStyle(
                               fontFamily: 'Baijamjuree',
-                              fontSize: 13.sp,
+                              fontSize: 18.sp,
                               fontWeight: FontWeight.w600),
                         ),
                       ),
@@ -90,11 +92,11 @@ class _Home2PageState extends State<Home2Page> {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(0),
+                  padding: const EdgeInsets.all(10),
                   child: Container(
                     width:
-                        MediaQuery.of(context).size.width * 0.95, // 50% width
-                    height: 510, // Adjust the height as needed
+                        MediaQuery.of(context).size.width, // 50% width
+                    height: 485, // Adjust the height as needed
                     decoration: BoxDecoration(
                       color: const Color(0xFF9EB384), // Background color
                       borderRadius: BorderRadius.circular(10), // Border radius
@@ -106,520 +108,523 @@ class _Home2PageState extends State<Home2Page> {
                           boundaryMargin: const EdgeInsets.all(20),
                           child: Row(
                             children: [
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment
-                                    .spaceBetween, // Center the contents vertically
-                                crossAxisAlignment: CrossAxisAlignment
-                                    .center, // Center the contents horizontally
-                                children: [
-                                  //lockcar00
-                                  Padding(
-                                    padding: const EdgeInsets.all(4.0),
-                                    child: Column(
-                                      children: [
-                                        SizedBox(
-                                          width: 35.0,
-                                          height: 100.0,
-                                          child: ElevatedButton(
-                                            onPressed: p
-                                                ? () {
-                                                    showDialog(
-                                                      context: context,
-                                                      builder: (BuildContext
-                                                          context) {
-                                                        return StatefulBuilder(
-                                                          builder: (context,
-                                                              setState) {
-                                                            return AlertDialog(
-                                                              actions: <Widget>[
-                                                                IconButton(
-                                                                  icon: Icon(
-                                                                    isLiked
-                                                                        ? Icons
-                                                                            .favorite
-                                                                        : Icons
-                                                                            .favorite_border,
-                                                                    color: isLiked
-                                                                        ? Colors
-                                                                            .red
-                                                                        : Colors
-                                                                            .grey,
-                                                                  ),
-                                                                  onPressed:
-                                                                      () {
-                                                                    setState(
-                                                                        () {
-                                                                      // Toggle the like status
-                                                                      isLiked =
-                                                                          !isLiked;
-                                                                    });
-                                                                  },
-                                                                ),
-                                                                IconButton(
-                                                                  icon: Icon(Icons
-                                                                      .close),
-                                                                  onPressed:
-                                                                      () {
-                                                                    Navigator.of(
-                                                                            context)
-                                                                        .pop();
-                                                                  },
-                                                                ),
-                                                              ],
-                                                              content: SizedBox(
-                                                                height: 100,
-                                                                child: Column(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .center, // Aligns children to the start (top) of the column
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start, // Centers children along the horizontal axis
-                                                                  children: [
-                                                                    Text(
+                              Padding(
+                                padding: const EdgeInsets.only(left: 6),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment
+                                      .spaceBetween, // Center the contents vertically
+                                  crossAxisAlignment: CrossAxisAlignment
+                                      .center, // Center the contents horizontally
+                                  children: [
+                                    //lockcar00
+                                    Padding(
+                                      padding: const EdgeInsets.all(2.0),
+                                      child: Column(
+                                        children: [
+                                          SizedBox(
+                                            width: 35.0,
+                                            height: 90.0,
+                                            child: ElevatedButton(
+                                              onPressed: p
+                                                  ? () {
+                                                      showDialog(
+                                                        context: context,
+                                                        builder: (BuildContext
+                                                            context) {
+                                                          return StatefulBuilder(
+                                                            builder: (context,
+                                                                setState) {
+                                                              return AlertDialog(
+                                                                actions: <Widget>[
+                                                                  IconButton(
+                                                                    icon: Icon(
                                                                       isLiked
-                                                                          ? 'คุณถูกใจร้านนี้!'
-                                                                          : '',
-                                                                      style: TextStyle(
-                                                                          fontFamily:
-                                                                              'Baijamjuree',
-                                                                          fontSize: 18
-                                                                              .sp,
-                                                                          fontWeight:
-                                                                              FontWeight.w600),
+                                                                          ? Icons
+                                                                              .favorite
+                                                                          : Icons
+                                                                              .favorite_border,
+                                                                      color: isLiked
+                                                                          ? Colors
+                                                                              .red
+                                                                          : Colors
+                                                                              .grey,
                                                                     ),
-                                                                    SizedBox(
-                                                                        height:
-                                                                            10),
-                                                                    Text(
-                                                                      "ชื่อร้าน : ไก่ย่างเฉลิมชัย",
-                                                                      style: TextStyle(
-                                                                          fontFamily:
-                                                                              'Baijamjuree',
-                                                                          fontSize: 15
-                                                                              .sp,
-                                                                          fontWeight:
-                                                                              FontWeight.w400),
-                                                                    ),
-                                                                    Text(
-                                                                      "วันนี้ : เปิด",
-                                                                      style: TextStyle(
-                                                                          fontFamily:
-                                                                              'Baijamjuree',
-                                                                          fontSize: 15
-                                                                              .sp,
-                                                                          fontWeight:
-                                                                              FontWeight.w400),
-                                                                    ),
-                                                                    Text(
-                                                                      "ครั้งถัดไป : วันพุธที่ 12/02/2566",
-                                                                      style: TextStyle(
-                                                                          fontFamily:
-                                                                              'Baijamjuree',
-                                                                          fontSize: 15
-                                                                              .sp,
-                                                                          fontWeight:
-                                                                              FontWeight.w400),
-                                                                    )
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                            );
-                                                          },
-                                                        );
-                                                      },
-                                                    );
-                                                  }
-                                                : null,
-                                            style: ElevatedButton.styleFrom(
-                                              primary: const Color.fromARGB(
-                                                  255, 15, 92, 25),
-                                              // Button background color
-                                            ),
-                                            child: const Text(''),
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          width: 35,
-                                          child: FittedBox(
-                                            fit: BoxFit
-                                                .scaleDown, // Scale the text to fit within the container
-                                            alignment: Alignment.center,
-                                            child: Text(
-                                              'store 1',
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize:
-                                                    18.0, // Adjust the font size as needed
-                                              ),
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  //lockcar01
-                                  Padding(
-                                    padding: const EdgeInsets.all(4.0),
-                                    child: Column(
-                                      children: [
-                                        SizedBox(
-                                          width: 35.0,
-                                          height: 100.0,
-                                          child: ElevatedButton(
-                                            onPressed: p
-                                                ? () {
-                                                    // Show the popup when the button is pressed
-                                                    showDialog(
-                                                      context: context,
-                                                      builder: (BuildContext
-                                                          context) {
-                                                        return StatefulBuilder(
-                                                          builder: (context,
-                                                              setState) {
-                                                            return AlertDialog(
-                                                              actions: <Widget>[
-                                                                IconButton(
-                                                                  icon: Icon(
-                                                                    isLiked
-                                                                        ? Icons
-                                                                            .favorite
-                                                                        : Icons
-                                                                            .favorite_border,
-                                                                    color: isLiked
-                                                                        ? Colors
-                                                                            .red
-                                                                        : Colors
-                                                                            .grey,
-                                                                  ),
-                                                                  onPressed:
-                                                                      () {
-                                                                    setState(
+                                                                    onPressed:
                                                                         () {
-                                                                      // Toggle the like status
-                                                                      isLiked =
-                                                                          !isLiked;
-                                                                    });
-                                                                  },
+                                                                      setState(
+                                                                          () {
+                                                                        // Toggle the like status
+                                                                        isLiked =
+                                                                            !isLiked;
+                                                                      });
+                                                                    },
+                                                                  ),
+                                                                  IconButton(
+                                                                    icon: Icon(Icons
+                                                                        .close),
+                                                                    onPressed:
+                                                                        () {
+                                                                      Navigator.of(
+                                                                              context)
+                                                                          .pop();
+                                                                    },
+                                                                  ),
+                                                                ],
+                                                                content: SizedBox(
+                                                                  height: 100,
+                                                                  child: Column(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .center, // Aligns children to the start (top) of the column
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start, // Centers children along the horizontal axis
+                                                                    children: [
+                                                                      Text(
+                                                                        isLiked
+                                                                            ? 'คุณถูกใจร้านนี้!'
+                                                                            : '',
+                                                                        style: TextStyle(
+                                                                            fontFamily:
+                                                                                'Baijamjuree',
+                                                                            fontSize: 18
+                                                                                .sp,
+                                                                            fontWeight:
+                                                                                FontWeight.w600),
+                                                                      ),
+                                                                      SizedBox(
+                                                                          height:
+                                                                              10),
+                                                                      Text(
+                                                                        "ชื่อร้าน : ไก่ย่างเฉลิมชัย",
+                                                                        style: TextStyle(
+                                                                            fontFamily:
+                                                                                'Baijamjuree',
+                                                                            fontSize: 15
+                                                                                .sp,
+                                                                            fontWeight:
+                                                                                FontWeight.w400),
+                                                                      ),
+                                                                      Text(
+                                                                        "วันนี้ : เปิด",
+                                                                        style: TextStyle(
+                                                                            fontFamily:
+                                                                                'Baijamjuree',
+                                                                            fontSize: 15
+                                                                                .sp,
+                                                                            fontWeight:
+                                                                                FontWeight.w400),
+                                                                      ),
+                                                                      Text(
+                                                                        "ครั้งถัดไป : วันพุธที่ 12/02/2566",
+                                                                        style: TextStyle(
+                                                                            fontFamily:
+                                                                                'Baijamjuree',
+                                                                            fontSize: 15
+                                                                                .sp,
+                                                                            fontWeight:
+                                                                                FontWeight.w400),
+                                                                      )
+                                                                    ],
+                                                                  ),
                                                                 ),
-                                                                IconButton(
-                                                                  icon: Icon(Icons
-                                                                      .close),
-                                                                  onPressed:
-                                                                      () {
-                                                                    Navigator.of(
-                                                                            context)
-                                                                        .pop();
-                                                                  },
-                                                                ),
-                                                              ],
-                                                              content: SizedBox(
-                                                                height: 100,
-                                                                child: Column(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .center, // Aligns children to the start (top) of the column
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start, // Centers children along the horizontal axis
-                                                                  children: [
-                                                                    Text(
+                                                              );
+                                                            },
+                                                          );
+                                                        },
+                                                      );
+                                                    }
+                                                  : null,
+                                              style: ElevatedButton.styleFrom(
+                                                primary: const Color.fromARGB(
+                                                    255, 15, 92, 25),
+                                                // Button background color
+                                              ),
+                                              child: const Text(''),
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            width: 35,
+                                            child: FittedBox(
+                                              fit: BoxFit
+                                                  .scaleDown, // Scale the text to fit within the container
+                                              alignment: Alignment.center,
+                                              child: Text(
+                                                'store 1',
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize:
+                                                      18.0, // Adjust the font size as needed
+                                                ),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    //lockcar01
+                                    Padding(
+                                      padding: const EdgeInsets.all(2.0),
+                                      child: Column(
+                                        children: [
+                                          SizedBox(
+                                            width: 35.0,
+                                            height: 90.0,
+                                            child: ElevatedButton(
+                                              onPressed: p
+                                                  ? () {
+                                                      // Show the popup when the button is pressed
+                                                      showDialog(
+                                                        context: context,
+                                                        builder: (BuildContext
+                                                            context) {
+                                                          return StatefulBuilder(
+                                                            builder: (context,
+                                                                setState) {
+                                                              return AlertDialog(
+                                                                actions: <Widget>[
+                                                                  IconButton(
+                                                                    icon: Icon(
                                                                       isLiked
-                                                                          ? 'You liked this store!'
-                                                                          : 'You have not liked this store',
-                                                                      style: TextStyle(
-                                                                          fontFamily:
-                                                                              'Baijamjuree',
-                                                                          fontSize: 18
-                                                                              .sp,
-                                                                          fontWeight:
-                                                                              FontWeight.w600),
+                                                                          ? Icons
+                                                                              .favorite
+                                                                          : Icons
+                                                                              .favorite_border,
+                                                                      color: isLiked
+                                                                          ? Colors
+                                                                              .red
+                                                                          : Colors
+                                                                              .grey,
                                                                     ),
-                                                                    SizedBox(
-                                                                        height:
-                                                                            10),
-                                                                    Text(
-                                                                      "ชื่อร้าน : ไก่ย่างเฉลิมชัย",
-                                                                      style: TextStyle(
-                                                                          fontFamily:
-                                                                              'Baijamjuree',
-                                                                          fontSize: 15
-                                                                              .sp,
-                                                                          fontWeight:
-                                                                              FontWeight.w400),
-                                                                    ),
-                                                                    Text(
-                                                                      "วันนี้ : เปิด",
-                                                                      style: TextStyle(
-                                                                          fontFamily:
-                                                                              'Baijamjuree',
-                                                                          fontSize: 15
-                                                                              .sp,
-                                                                          fontWeight:
-                                                                              FontWeight.w400),
-                                                                    ),
-                                                                    Text(
-                                                                      "ครั้งถัดไป : วันพุธที่ 12/02/2566",
-                                                                      style: TextStyle(
-                                                                          fontFamily:
-                                                                              'Baijamjuree',
-                                                                          fontSize: 15
-                                                                              .sp,
-                                                                          fontWeight:
-                                                                              FontWeight.w400),
-                                                                    )
-                                                                  ],
+                                                                    onPressed:
+                                                                        () {
+                                                                      setState(
+                                                                          () {
+                                                                        // Toggle the like status
+                                                                        isLiked =
+                                                                            !isLiked;
+                                                                      });
+                                                                    },
+                                                                  ),
+                                                                  IconButton(
+                                                                    icon: Icon(Icons
+                                                                        .close),
+                                                                    onPressed:
+                                                                        () {
+                                                                      Navigator.of(
+                                                                              context)
+                                                                          .pop();
+                                                                    },
+                                                                  ),
+                                                                ],
+                                                                content: SizedBox(
+                                                                  height: 100,
+                                                                  child: Column(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .center, // Aligns children to the start (top) of the column
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start, // Centers children along the horizontal axis
+                                                                    children: [
+                                                                      Text(
+                                                                        isLiked
+                                                                            ? 'You liked this store!'
+                                                                            : 'You have not liked this store',
+                                                                        style: TextStyle(
+                                                                            fontFamily:
+                                                                                'Baijamjuree',
+                                                                            fontSize: 18
+                                                                                .sp,
+                                                                            fontWeight:
+                                                                                FontWeight.w600),
+                                                                      ),
+                                                                      SizedBox(
+                                                                          height:
+                                                                              10),
+                                                                      Text(
+                                                                        "ชื่อร้าน : ไก่ย่างเฉลิมชัย",
+                                                                        style: TextStyle(
+                                                                            fontFamily:
+                                                                                'Baijamjuree',
+                                                                            fontSize: 15
+                                                                                .sp,
+                                                                            fontWeight:
+                                                                                FontWeight.w400),
+                                                                      ),
+                                                                      Text(
+                                                                        "วันนี้ : เปิด",
+                                                                        style: TextStyle(
+                                                                            fontFamily:
+                                                                                'Baijamjuree',
+                                                                            fontSize: 15
+                                                                                .sp,
+                                                                            fontWeight:
+                                                                                FontWeight.w400),
+                                                                      ),
+                                                                      Text(
+                                                                        "ครั้งถัดไป : วันพุธที่ 12/02/2566",
+                                                                        style: TextStyle(
+                                                                            fontFamily:
+                                                                                'Baijamjuree',
+                                                                            fontSize: 15
+                                                                                .sp,
+                                                                            fontWeight:
+                                                                                FontWeight.w400),
+                                                                      )
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              );
+                                                            },
+                                                          );
+                                                        },
+                                                      );
+                                                    }
+                                                  : null,
+                                              style: ElevatedButton.styleFrom(
+                                                primary: const Color.fromARGB(
+                                                    255, 15, 92, 25),
+                                                // Button background color
+                                              ),
+                                              child: const Text(''),
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            width: 35,
+                                            child: FittedBox(
+                                              fit: BoxFit
+                                                  .scaleDown, // Scale the text to fit within the container
+                                              alignment: Alignment.center,
+                                              child: Text(
+                                                'store 1',
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize:
+                                                      18.0, // Adjust the font size as needed
+                                                ),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    //lockcar02
+                                    Padding(
+                                      padding: const EdgeInsets.all(2.0),
+                                      child: Column(
+                                        children: [
+                                          SizedBox(
+                                            width: 35.0,
+                                            height: 90.0,
+                                            child: ElevatedButton(
+                                              onPressed: p
+                                                  ? () {
+                                                      // Show the popup when the button is pressed
+                                                      showDialog(
+                                                        context: context,
+                                                        builder: (BuildContext
+                                                            context) {
+                                                          return AlertDialog(
+                                                            title: const Text(
+                                                                'Popup Title'),
+                                                            content: const Text(
+                                                                'This is the content of the popup.'),
+                                                            actions: <Widget>[
+                                                              ElevatedButton.icon(
+                                                                onPressed: () {
+                                                                  // Add your button action here
+                                                                },
+                                                                icon: const Icon(
+                                                                  Icons.favorite,
+                                                                  color: Color
+                                                                      .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
+                                                                ),
+                                                                label: const Text(
+                                                                  'Like',
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .black38),
+                                                                ),
+                                                                style:
+                                                                    ElevatedButton
+                                                                        .styleFrom(
+                                                                  primary:
+                                                                      const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          255,
+                                                                          255),
                                                                 ),
                                                               ),
-                                                            );
-                                                          },
-                                                        );
-                                                      },
-                                                    );
-                                                  }
-                                                : null,
-                                            style: ElevatedButton.styleFrom(
-                                              primary: const Color.fromARGB(
-                                                  255, 15, 92, 25),
-                                              // Button background color
+                                                              ElevatedButton(
+                                                                onPressed: () {
+                                                                  // Close the popup when this button is pressed
+                                                                  Navigator.of(
+                                                                          context)
+                                                                      .pop();
+                                                                },
+                                                                style:
+                                                                    ElevatedButton
+                                                                        .styleFrom(
+                                                                  primary:
+                                                                      const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
+                                                                ),
+                                                                child: const Text(
+                                                                    'Close'),
+                                                              ),
+                                                            ],
+                                                          );
+                                                        },
+                                                      );
+                                                    }
+                                                  : null,
+                                              style: ElevatedButton.styleFrom(
+                                                primary: const Color.fromARGB(
+                                                    255, 15, 92, 25),
+                                                // Button background color
+                                              ),
+                                              child: const Text(''),
                                             ),
-                                            child: const Text(''),
                                           ),
-                                        ),
-                                        const SizedBox(
-                                          width: 35,
-                                          child: FittedBox(
-                                            fit: BoxFit
-                                                .scaleDown, // Scale the text to fit within the container
-                                            alignment: Alignment.center,
-                                            child: Text(
-                                              'store 1',
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize:
-                                                    18.0, // Adjust the font size as needed
+                                          const SizedBox(
+                                            width: 35,
+                                            child: FittedBox(
+                                              fit: BoxFit
+                                                  .scaleDown, // Scale the text to fit within the container
+                                              alignment: Alignment.center,
+                                              child: Text(
+                                                'store 1',
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize:
+                                                      18.0, // Adjust the font size as needed
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        )
-                                      ],
+                                          )
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  //lockcar02
-                                  Padding(
-                                    padding: const EdgeInsets.all(4.0),
-                                    child: Column(
-                                      children: [
-                                        SizedBox(
-                                          width: 35.0,
-                                          height: 100.0,
-                                          child: ElevatedButton(
-                                            onPressed: p
-                                                ? () {
-                                                    // Show the popup when the button is pressed
-                                                    showDialog(
-                                                      context: context,
-                                                      builder: (BuildContext
-                                                          context) {
-                                                        return AlertDialog(
-                                                          title: const Text(
-                                                              'Popup Title'),
-                                                          content: const Text(
-                                                              'This is the content of the popup.'),
-                                                          actions: <Widget>[
-                                                            ElevatedButton.icon(
-                                                              onPressed: () {
-                                                                // Add your button action here
-                                                              },
-                                                              icon: const Icon(
-                                                                Icons.favorite,
-                                                                color: Color
-                                                                    .fromARGB(
-                                                                        255,
-                                                                        255,
-                                                                        156,
-                                                                        212),
+                                    //lockcar03
+                                    Padding(
+                                      padding: const EdgeInsets.all(2.0),
+                                      child: Column(
+                                        children: [
+                                          SizedBox(
+                                            width: 35.0,
+                                            height: 90.0,
+                                            child: ElevatedButton(
+                                              onPressed: p
+                                                  ? () {
+                                                      // Show the popup when the button is pressed
+                                                      showDialog(
+                                                        context: context,
+                                                        builder: (BuildContext
+                                                            context) {
+                                                          return AlertDialog(
+                                                            title: const Text(
+                                                                'Popup Title'),
+                                                            content: const Text(
+                                                                'This is the content of the popup.'),
+                                                            actions: <Widget>[
+                                                              ElevatedButton.icon(
+                                                                onPressed: () {
+                                                                  // Add your button action here
+                                                                },
+                                                                icon: const Icon(
+                                                                  Icons.favorite,
+                                                                  color: Color
+                                                                      .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          156,
+                                                                          212),
+                                                                ),
+                                                                label: const Text(
+                                                                  'Like',
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .black38),
+                                                                ),
+                                                                style:
+                                                                    ElevatedButton
+                                                                        .styleFrom(
+                                                                  primary:
+                                                                      const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          255,
+                                                                          255),
+                                                                ),
                                                               ),
-                                                              label: const Text(
-                                                                'Like',
-                                                                style: TextStyle(
-                                                                    color: Colors
-                                                                        .black38),
+                                                              ElevatedButton(
+                                                                onPressed: () {
+                                                                  // Close the popup when this button is pressed
+                                                                  Navigator.of(
+                                                                          context)
+                                                                      .pop();
+                                                                },
+                                                                style:
+                                                                    ElevatedButton
+                                                                        .styleFrom(
+                                                                  primary:
+                                                                      const Color
+                                                                          .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          66,
+                                                                          66),
+                                                                ),
+                                                                child: const Text(
+                                                                    'Close'),
                                                               ),
-                                                              style:
-                                                                  ElevatedButton
-                                                                      .styleFrom(
-                                                                primary:
-                                                                    const Color
-                                                                        .fromARGB(
-                                                                        255,
-                                                                        255,
-                                                                        255,
-                                                                        255),
-                                                              ),
-                                                            ),
-                                                            ElevatedButton(
-                                                              onPressed: () {
-                                                                // Close the popup when this button is pressed
-                                                                Navigator.of(
-                                                                        context)
-                                                                    .pop();
-                                                              },
-                                                              style:
-                                                                  ElevatedButton
-                                                                      .styleFrom(
-                                                                primary:
-                                                                    const Color
-                                                                        .fromARGB(
-                                                                        255,
-                                                                        255,
-                                                                        66,
-                                                                        66),
-                                                              ),
-                                                              child: const Text(
-                                                                  'Close'),
-                                                            ),
-                                                          ],
-                                                        );
-                                                      },
-                                                    );
-                                                  }
-                                                : null,
-                                            style: ElevatedButton.styleFrom(
-                                              primary: const Color.fromARGB(
-                                                  255, 15, 92, 25),
-                                              // Button background color
+                                                            ],
+                                                          );
+                                                        },
+                                                      );
+                                                    }
+                                                  : null,
+                                              style: ElevatedButton.styleFrom(
+                                                primary: const Color.fromARGB(
+                                                    255, 15, 92, 25),
+                                                // Button background color
+                                              ),
+                                              child: const Text(''),
                                             ),
-                                            child: const Text(''),
                                           ),
-                                        ),
-                                        const SizedBox(
-                                          width: 35,
-                                          child: FittedBox(
-                                            fit: BoxFit
-                                                .scaleDown, // Scale the text to fit within the container
-                                            alignment: Alignment.center,
-                                            child: Text(
-                                              'store 1',
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize:
-                                                    18.0, // Adjust the font size as needed
+                                          const SizedBox(
+                                            width: 35,
+                                            child: FittedBox(
+                                              fit: BoxFit
+                                                  .scaleDown, // Scale the text to fit within the container
+                                              alignment: Alignment.center,
+                                              child: Text(
+                                                'store 1',
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize:
+                                                      18.0, // Adjust the font size as needed
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        )
-                                      ],
+                                          )
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  //lockcar03
-                                  Padding(
-                                    padding: const EdgeInsets.all(4.0),
-                                    child: Column(
-                                      children: [
-                                        SizedBox(
-                                          width: 35.0,
-                                          height: 100.0,
-                                          child: ElevatedButton(
-                                            onPressed: p
-                                                ? () {
-                                                    // Show the popup when the button is pressed
-                                                    showDialog(
-                                                      context: context,
-                                                      builder: (BuildContext
-                                                          context) {
-                                                        return AlertDialog(
-                                                          title: const Text(
-                                                              'Popup Title'),
-                                                          content: const Text(
-                                                              'This is the content of the popup.'),
-                                                          actions: <Widget>[
-                                                            ElevatedButton.icon(
-                                                              onPressed: () {
-                                                                // Add your button action here
-                                                              },
-                                                              icon: const Icon(
-                                                                Icons.favorite,
-                                                                color: Color
-                                                                    .fromARGB(
-                                                                        255,
-                                                                        255,
-                                                                        156,
-                                                                        212),
-                                                              ),
-                                                              label: const Text(
-                                                                'Like',
-                                                                style: TextStyle(
-                                                                    color: Colors
-                                                                        .black38),
-                                                              ),
-                                                              style:
-                                                                  ElevatedButton
-                                                                      .styleFrom(
-                                                                primary:
-                                                                    const Color
-                                                                        .fromARGB(
-                                                                        255,
-                                                                        255,
-                                                                        255,
-                                                                        255),
-                                                              ),
-                                                            ),
-                                                            ElevatedButton(
-                                                              onPressed: () {
-                                                                // Close the popup when this button is pressed
-                                                                Navigator.of(
-                                                                        context)
-                                                                    .pop();
-                                                              },
-                                                              style:
-                                                                  ElevatedButton
-                                                                      .styleFrom(
-                                                                primary:
-                                                                    const Color
-                                                                        .fromARGB(
-                                                                        255,
-                                                                        255,
-                                                                        66,
-                                                                        66),
-                                                              ),
-                                                              child: const Text(
-                                                                  'Close'),
-                                                            ),
-                                                          ],
-                                                        );
-                                                      },
-                                                    );
-                                                  }
-                                                : null,
-                                            style: ElevatedButton.styleFrom(
-                                              primary: const Color.fromARGB(
-                                                  255, 15, 92, 25),
-                                              // Button background color
-                                            ),
-                                            child: const Text(''),
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          width: 35,
-                                          child: FittedBox(
-                                            fit: BoxFit
-                                                .scaleDown, // Scale the text to fit within the container
-                                            alignment: Alignment.center,
-                                            child: Text(
-                                              'store 1',
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize:
-                                                    18.0, // Adjust the font size as needed
-                                              ),
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                               Column(
                                 children: [
@@ -628,7 +633,7 @@ class _Home2PageState extends State<Home2Page> {
                                     children: [
                                       //locka00
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -738,7 +743,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka01
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -848,7 +853,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka02
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -958,7 +963,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka03
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -1068,7 +1073,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka04
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -1178,7 +1183,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka05
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -1288,7 +1293,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka06
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -1398,7 +1403,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka07
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -1517,7 +1522,7 @@ class _Home2PageState extends State<Home2Page> {
                                     children: [
                                       //locka10
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -1627,7 +1632,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka11
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -1737,7 +1742,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka12
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -1847,7 +1852,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka13
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -1957,7 +1962,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka14
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -2067,7 +2072,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka15
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -2177,7 +2182,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka16
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -2287,7 +2292,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka17
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -2402,7 +2407,7 @@ class _Home2PageState extends State<Home2Page> {
                                     children: [
                                       //locka20
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -2512,7 +2517,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka21
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -2622,7 +2627,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka22
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -2732,7 +2737,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka23
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -2842,7 +2847,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka24
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -2952,7 +2957,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka25
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -3062,7 +3067,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka26
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -3172,7 +3177,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka27
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -3291,7 +3296,7 @@ class _Home2PageState extends State<Home2Page> {
                                     children: [
                                       //locka20
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -3401,7 +3406,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka31
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -3511,7 +3516,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka32
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -3621,7 +3626,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka33
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -3731,7 +3736,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka34
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -3841,7 +3846,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka35
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -3951,7 +3956,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka36
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -4061,7 +4066,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka37
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -4176,7 +4181,7 @@ class _Home2PageState extends State<Home2Page> {
                                     children: [
                                       //locka31
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -4286,7 +4291,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka41
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -4396,7 +4401,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka42
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -4616,7 +4621,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka44
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -4726,7 +4731,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka45
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -4836,7 +4841,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka46
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -4946,7 +4951,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka47
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -5065,7 +5070,7 @@ class _Home2PageState extends State<Home2Page> {
                                     children: [
                                       //locka50
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -5175,7 +5180,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka51
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -5285,7 +5290,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka52
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -5395,7 +5400,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka53
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -5505,7 +5510,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka54
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -5615,7 +5620,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka55
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -5725,7 +5730,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka56
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -5835,7 +5840,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka57
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -5950,7 +5955,7 @@ class _Home2PageState extends State<Home2Page> {
                                     children: [
                                       //locka60
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -6060,7 +6065,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka61
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -6170,7 +6175,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka62
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -6280,7 +6285,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka63
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -6390,7 +6395,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka64
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -6500,7 +6505,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka65
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -6610,7 +6615,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka66
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -6720,7 +6725,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka67
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -6839,7 +6844,7 @@ class _Home2PageState extends State<Home2Page> {
                                     children: [
                                       //locka70
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -6949,7 +6954,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka71
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -7059,7 +7064,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka72
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -7169,7 +7174,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka73
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -7279,7 +7284,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka74
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -7389,7 +7394,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka75
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -7499,7 +7504,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka76
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(
@@ -7609,7 +7614,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ),
                                       //locka77
                                       Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Column(
                                           children: [
                                             SizedBox(

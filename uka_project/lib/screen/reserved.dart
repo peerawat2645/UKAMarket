@@ -56,7 +56,7 @@ class _ReservationPageState extends State<ReservationPage> {
               child: Row(
                 children: <Widget>[
                   Icon(Icons.add), // Icon for the "Add" button
-                  Text('Add'), // Text for the "Add" button
+                  Text('เพิ่มร้านค้า'), // Text for the "Add" button
                 ],
               ),
             ),

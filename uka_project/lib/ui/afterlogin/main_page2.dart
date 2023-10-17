@@ -25,6 +25,7 @@ class _MyViewPage2 extends State<MainPage2> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home : Scaffold(
         body: Screen[_currentIndex],
         bottomNavigationBar: SalomonBottomBar(

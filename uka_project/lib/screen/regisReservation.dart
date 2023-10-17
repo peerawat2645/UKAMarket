@@ -54,12 +54,19 @@ class _RegisterReservationState extends State<RegisterReservation> {
                 child: SizedBox(
                   width: 250,
                   child: TextFormField(
-                    obscureText: true,
+                    obscureText: false,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
-                      labelText: 'Store Name',
+                      labelText: 'Phone number',
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFF435334)),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFF435334)),
+                      ),
+                      labelStyle: TextStyle(color: Color(0xFF435334)),
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -78,12 +85,20 @@ class _RegisterReservationState extends State<RegisterReservation> {
                 child: SizedBox(
                   width: 250,
                   child: TextFormField(
-                    obscureText: true,
+                    obscureText: false,
+                    keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       labelText: 'Phone number',
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFF435334)),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFF435334)),
+                      ),
+                      labelStyle: TextStyle(color: Color(0xFF435334)),
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -102,12 +117,19 @@ class _RegisterReservationState extends State<RegisterReservation> {
                 child: SizedBox(
                   width: 250,
                   child: TextFormField(
-                    obscureText: true,
+                    obscureText: false,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
-                      labelText: 'Store Details',
+                      labelText: 'Phone number',
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFF435334)),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFF435334)),
+                      ),
+                      labelStyle: TextStyle(color: Color(0xFF435334)),
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
