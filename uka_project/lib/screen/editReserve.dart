@@ -29,7 +29,15 @@ class _EditReservationState extends State<EditReservation> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Store Registration Form'),
+        title: Text(
+          'แก้ไขรายละเอียดร้านค้า',
+          style: TextStyle(
+              fontFamily: 'Baijamjuree',
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+              color: Color(0xFFFAF1E4)),
+        ),
+        backgroundColor: Color(0xFF435334),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -44,7 +52,9 @@ class _EditReservationState extends State<EditReservation> {
                   child: TextFormField(
                     obscureText: true,
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
                       labelText: 'Store Name',
                     ),
                     validator: (value) {
@@ -66,7 +76,9 @@ class _EditReservationState extends State<EditReservation> {
                   child: TextFormField(
                     obscureText: true,
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
                       labelText: 'Phone number',
                     ),
                     validator: (value) {
@@ -88,7 +100,9 @@ class _EditReservationState extends State<EditReservation> {
                   child: TextFormField(
                     obscureText: true,
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
                       labelText: 'Store Details',
                     ),
                     validator: (value) {
@@ -105,6 +119,7 @@ class _EditReservationState extends State<EditReservation> {
               ),
               SizedBox(height: 16.0),
               Container(
+                height: 50,
                 child: ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
@@ -125,7 +140,11 @@ class _EditReservationState extends State<EditReservation> {
     backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF435334)),
      // Set the background color
   ),
-                  child: Text('บันทึก', style: TextStyle(fontSize: 30,fontWeight: FontWeight.w800)),
+                  child: Text('บันทึก', style: TextStyle(
+              fontFamily: 'Baijamjuree',
+              fontSize: 20,
+              fontWeight: FontWeight.w600,
+              color: Color.fromARGB(255, 255, 255, 255)),),
                 ),
               ),
             ],

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -37,7 +38,7 @@ import th.ac.ku.kps.eng.cpe.edu.project.services.ReservationService;
 import th.ac.ku.kps.eng.cpe.edu.project.services.StoreService;
 import th.ac.ku.kps.eng.cpe.edu.project.services.UserService;
 
-@CrossOrigin("http://localhost:8081/")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/v1/stores")
 public class StoreRestController {
@@ -53,9 +54,6 @@ public class StoreRestController {
 
 	@Autowired
 	private ReservationService reservationService;
-
-	@Autowired
-	private JwtUtils jwtUtils;
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<Response<ObjectNode>> handleValidationExceptions(MethodArgumentNotValidException ex) {
@@ -91,8 +89,8 @@ public class StoreRestController {
 		}
 	}
 
-	@PostMapping("/create")
-	public ResponseEntity<Response<Store>> create(@Valid @RequestBody Store store, HttpServletRequest request) {
+	@PostMapping("/create/{userId}")
+	public ResponseEntity<Response<Store>> create(@Valid @RequestBody Store store, @PathVariable("userId")int id) {
 		Response<Store> res = new Response<>();
 		try {
 //			if (!storeService.existsByName(store.getName())) {
@@ -102,8 +100,7 @@ public class StoreRestController {
 //				return new ResponseEntity<Response<Store>>(res, res.getHttpStatus());
 //			}
 			if (storeService.isNameUnique(store.getName())) {
-				String username = jwtUtils.getUserNameFromJwtToken(jwtUtils.getJwtFromCookies(request));
-				User user = userService.findByUsername(username);
+				User user = userService.findById(id);
 				store.setUser(user);
 				Store ss = storeService.save(store);
 				res.setBody(ss);
@@ -215,9 +212,7 @@ public class StoreRestController {
 	public ResponseEntity<Response<List<LikestoreDTO>>> like() {
 		Response<List<LikestoreDTO>> res = new Response<>();
 		try {
-			String username = jwtUtils.getUserNameFromJwtToken(jwtUtils.getJwtFromCookies(request));
-			User user = userService.findByUsername(username);
-			List<Likestore> likestore = likestoreService.findByUserId(user.getUserId());
+			List<Likestore> likestore = likestoreService.findByUserId(1);
 			List<LikestoreDTO> likestoreDTOs = new ArrayList<LikestoreDTO>();
 			for (Likestore ls : likestore) {
 				Reservation reservation = reservationService.findByStoreIdAndCurrentDate(ls.getStore().getStoreId());

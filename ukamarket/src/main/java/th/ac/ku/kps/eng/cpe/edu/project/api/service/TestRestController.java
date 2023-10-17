@@ -22,7 +22,7 @@ import th.ac.ku.kps.eng.cpe.edu.project.security.jwt.JwtUtils;
 
 @CrossOrigin("http://localhost:8081/")
 @RestController
-@RequestMapping("/api/v1/customers")
+@RequestMapping("/api/v1/test/")
 public class TestRestController {
 	
 	@Autowired
@@ -49,8 +49,6 @@ public class TestRestController {
 
 	@GetMapping("/all")
 	public String allAccess(HttpServletRequest request) {
-		String jwt = jwtUtils.getJwtFromCookies(request);
-		System.out.println(jwtUtils.getUserNameFromJwtToken(jwt));
 		return "Public Content.";
 	}
 

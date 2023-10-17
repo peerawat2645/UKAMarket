@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:uka_project/screen/home2.dart';
 import 'package:uka_project/ui/afterlogin/main_page.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -15,7 +17,15 @@ class _HomePageState extends State<HomePage> {
     bool p = true;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home Page'),
+        title: Text(
+          'กินอะไรดี?',
+          style: TextStyle(
+              fontFamily: 'Baijamjuree',
+              fontSize: 15.sp,
+              fontWeight: FontWeight.w600,
+              color: Color(0xFFFAF1E4)),
+        ),
+        backgroundColor: Color(0xFF435334),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -68,7 +78,7 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(0),
                     child: Container(
                       width:
                           MediaQuery.of(context).size.width * 0.95, // 50% width
@@ -89,6 +99,7 @@ class _HomePageState extends State<HomePage> {
                                     //lock0
                                     Row(
                                       children: [
+                                        //lock00
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -195,6 +206,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock01
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -301,6 +313,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock02
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -407,6 +420,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock03
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -513,6 +527,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock04
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -619,6 +634,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock05
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -725,6 +741,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock06
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -831,6 +848,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock07
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -946,6 +964,7 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                     Row(
                                       children: [
+                                        //lock10
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -1052,6 +1071,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock11
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -1158,6 +1178,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock12
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -1264,6 +1285,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock13
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -1370,6 +1392,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock14
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -1476,6 +1499,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock15
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -1582,6 +1606,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock16
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -1688,6 +1713,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock17
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -1799,6 +1825,7 @@ class _HomePageState extends State<HomePage> {
                                     //lock2
                                     Row(
                                       children: [
+                                        //lock20
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -1905,6 +1932,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock21
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -2011,6 +2039,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock22
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -2117,6 +2146,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock23
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -2223,6 +2253,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock24
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -2329,6 +2360,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock25
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -2435,6 +2467,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock26
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -2541,6 +2574,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock27
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -2656,6 +2690,7 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                     Row(
                                       children: [
+                                        //lock30
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -2762,6 +2797,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock31
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -2868,6 +2904,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock32
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -2974,6 +3011,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock33
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -3080,6 +3118,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock34
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -3186,6 +3225,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock35
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -3292,6 +3332,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock36
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -3398,6 +3439,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock37
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -3509,6 +3551,7 @@ class _HomePageState extends State<HomePage> {
                                     //lock4
                                     Row(
                                       children: [
+                                        //lock40
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -3615,6 +3658,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock41
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -3721,6 +3765,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock42
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -3827,6 +3872,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock43
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -3933,6 +3979,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock44
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -4039,6 +4086,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock45
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -4145,6 +4193,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock46
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -4251,6 +4300,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock47
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -4366,6 +4416,7 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                     Row(
                                       children: [
+                                        //lock50
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -4472,6 +4523,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock51
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -4578,6 +4630,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock52
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -4684,6 +4737,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock53
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -4790,6 +4844,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock54
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -4896,6 +4951,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock55
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -5002,6 +5058,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock56
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -5108,6 +5165,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock57
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -5219,6 +5277,7 @@ class _HomePageState extends State<HomePage> {
                                     //lock6
                                     Row(
                                       children: [
+                                        //lock60
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -5325,6 +5384,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock61
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -5431,6 +5491,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock62
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -5537,6 +5598,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock63
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -5643,6 +5705,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock64
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -5749,6 +5812,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock65
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -5855,6 +5919,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock66
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -5961,6 +6026,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock67
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -6069,13 +6135,14 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                       ],
                                     ),
-                                    //lock7
                                     SizedBox(
                                       width: 50,
                                       height:15,
                                     ),
+                                    //lock7
                                     Row(
                                       children: [
+                                        //lock70
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -6182,6 +6249,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock71
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -6288,6 +6356,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock72
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -6394,6 +6463,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock73
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -6500,6 +6570,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock74
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -6606,6 +6677,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock75
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -6712,6 +6784,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock76
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -6818,6 +6891,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lock77
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -6933,6 +7007,7 @@ class _HomePageState extends State<HomePage> {
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween, // Center the contents vertically
             crossAxisAlignment: CrossAxisAlignment.center, // Center the contents horizontally
                                   children: [
+                                    //lockcar00
                                     Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -7039,6 +7114,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lockcar01
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -7145,6 +7221,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lockcar02
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
@@ -7251,6 +7328,7 @@ class _HomePageState extends State<HomePage> {
                                             ],
                                           ),
                                         ),
+                                        //lockcar03
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(

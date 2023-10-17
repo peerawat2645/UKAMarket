@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -26,7 +27,7 @@ import th.ac.ku.kps.eng.cpe.edu.project.model.User;
 import th.ac.ku.kps.eng.cpe.edu.project.security.jwt.JwtUtils;
 import th.ac.ku.kps.eng.cpe.edu.project.services.UserService;
 
-@CrossOrigin("http://localhost:8081/")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/v1/user")
 public class UserRestController {
@@ -34,8 +35,6 @@ public class UserRestController {
 	@Autowired
 	private UserService userService;
 	
-	@Autowired
-	private JwtUtils jwtUtils;
 	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<Response<ObjectNode>> handleValidationExceptions(MethodArgumentNotValidException ex) {
@@ -56,12 +55,11 @@ public class UserRestController {
 		return new ResponseEntity<Response<ObjectNode>>(res, res.getHttpStatus());
 	}
 
-	@GetMapping("/")
-	public ResponseEntity<Response<User>> getUserData(HttpServletRequest request) {
+	@GetMapping("/{userId}")
+	public ResponseEntity<Response<User>> getUserData(@PathVariable("userId")String id) {
 		Response<User> res = new Response<>();
 		try {
-			String username = jwtUtils.getUserNameFromJwtToken(jwtUtils.getJwtFromCookies(request));
-			User user = userService.findByUsername(username);
+			User user =  userService.findById(Integer.valueOf(id));
 			res.setBody(user);
 			res.setHttpStatus(HttpStatus.OK);
 			return new ResponseEntity<Response<User>>(res, res.getHttpStatus());

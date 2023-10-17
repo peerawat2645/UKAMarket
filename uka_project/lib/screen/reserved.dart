@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:uka_project/screen/editReserve.dart';
 import 'package:uka_project/screen/selectArea.dart';
 import 'package:uka_project/screen/selectDate.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+
+import 'selectDayorMonth.dart';
 
 class ReservationPage extends StatefulWidget {
   const ReservationPage({super.key});
@@ -9,116 +13,137 @@ class ReservationPage extends StatefulWidget {
   @override
   State<ReservationPage> createState() => _ReservationPageState();
 }
+class Store {
+  final String name;
+  final String phonenumber;
+  final String type;
+  final String description;
 
+  Store(this.name, this.phonenumber,this.type,this.description);
+}
 class _ReservationPageState extends State<ReservationPage> {
   @override
   Widget build(BuildContext context) {
+    final List<Store> stores = [
+    Store('Store 1', '0982636676','ของกิน','หมูทอด'),
+    Store('Store 2', '0855599696','ของใช้','ยางมัดผม'),
+    // Add more stores here
+  ];
     return Scaffold(
+      backgroundColor: Color(0xFFFAF1E4),
       appBar: AppBar(
-        title: const Text('Select store page'),
+        title: Text(
+          'เลือกร้านเพื่อจองพื้นที่ขายของ',
+          style: TextStyle(
+              fontFamily: 'Baijamjuree',
+              fontSize: 15.sp,
+              fontWeight: FontWeight.w600,
+              color: Color(0xFFFAF1E4)),
+        ),
+        backgroundColor: Color(0xFF435334),
       ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            children: [
-              Card(
-                
-        color: const Color(0xFF9EB384), // Blue background color
-        margin: EdgeInsets.all(8),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ListTile(
-            title: Text('ชื่อร้าน : ', style: TextStyle(fontSize: 25,fontWeight: FontWeight.w600)),
-            trailing: 
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    IconButton(
-                      icon: Icon(Icons.edit),
-                      onPressed: () {
-                        Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => EditReservation()),
-                      );
-                      },
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.delete),
-                      onPressed: () {
-                        // Handle delete button pressed
-                      },
+      body: ListView.builder(
+          itemCount: stores.length,
+          itemBuilder: (context, index) {
+            final store = stores[index];
+            return GestureDetector(
+              onTap: () {
+                 Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SelectDayOrMonthPage(),
+                  ),
+                );
+                print('Tapped on ${store.name}');
+              },
+              child: Container(
+                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 2,
+                      blurRadius: 5,
+                      offset: Offset(0, 2),
                     ),
                   ],
                 ),
-            subtitle: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width , 
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('เบอร์โทร : ', style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400)),
-                        Text('ประเภทร้านค้า : ', style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400)),
-                        Text('รายละเอียดร้านค้า : ', style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400)),
-                      ],
-                  
+                child: ListTile(
+                  title: Text(
+                    store.name,
+                    style: TextStyle(
+                      fontFamily: 'Baijamjuree',
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: Color(0xFF000000),
                     ),
                   ),
-                  Row(
+                  subtitle: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        height: 10,
-                        width: MediaQuery.of(context).size.width*0.3 , 
-                      )
-                      ,
-                      Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Container(
-                      width: 100,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: Color(0xFF435334), // Set the background color
-                        borderRadius: BorderRadius.circular(
-                            20.0), // Set the border radius
+                      SizedBox(height: 10),
+                      Text(
+                        'เบอร์โทร : ${store.phonenumber}',
+                        style: TextStyle(
+                          fontFamily: 'Baijamjuree',
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xFF2A2A2A),
+                        ),
                       ),
-                      child: ElevatedButton(
+                      Text(
+                        'ประเภทร้านค้า : ${store.type}',
+                        style: TextStyle(
+                          fontFamily: 'Baijamjuree',
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xFF2A2A2A),
+                        ),
+                      ),
+                      Text(
+                        'รายละเอียดร้านค้า : ${store.description}',
+                        style: TextStyle(
+                          fontFamily: 'Baijamjuree',
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xFF2A2A2A),
+                        ),
+                      ),
+                    ],
+                  ),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                        icon: Icon(Icons.edit),
                         onPressed: () {
                           Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return SelectAreaPage(); // Replace with the name of the screen you want to navigate to
-                              },
-                            ),
-                          );
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => EditReservation()),
+                                );
+                          // Handle edit action
+                          print('Edit ${store.name}');
                         },
-                        style: ElevatedButton.styleFrom(
-                          primary: Color(0xFF435334),// Set the button's background color to green
-                          onPrimary:
-                              Colors.white, // Set the text color to white
-                        ),
-                        child: Text("จอง",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600),),
                       ),
-                    ),
-                  ),
+                      IconButton(
+                        icon: Icon(Icons.delete),
+                        onPressed: () {
+                          // Handle delete action
+                          print('Delete ${store.name}');
+                        },
+                      ),
                     ],
-                  )
-                ],
+                  ),
+                ),
               ),
-            ),
-            
-          ),
-        )),
-        
-            ],
-          ),
+            );
+          },
         ),
-      ),
     );
   }
 }

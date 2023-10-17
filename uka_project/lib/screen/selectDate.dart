@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:uka_project/screen/reserveInfo.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class ReservationSelectDate extends StatefulWidget {
   const ReservationSelectDate({super.key});
@@ -37,10 +39,21 @@ String selectedValue = 'ตุลาคม 2566'; // Initial selected value
   @override
   Widget build(BuildContext context) {
     bool p =true;
+    bool _isSelectable(DateTime day) {
+    return true;
+  }
     if(p){
       return Scaffold(
         appBar: AppBar(
-        title: const Text('Select Day'),
+        title: Text(
+          'เลือกวันที่ต้องการจอง',
+          style: TextStyle(
+              fontFamily: 'Baijamjuree',
+              fontSize: 15.sp,
+              fontWeight: FontWeight.w600,
+              color: Color(0xFFFAF1E4)),
+        ),
+        backgroundColor: Color(0xFF435334),
       ),
       body: Center(child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -60,7 +73,6 @@ String selectedValue = 'ตุลาคม 2566'; // Initial selected value
                 child: Column(
                         children: <Widget>[
                           TableCalendar(
-                selectedDayPredicate: _isSelectable,
                 enabledDayPredicate: _isSMon,
                 onDaySelected: (date, events) {
                   setState(() {
@@ -69,6 +81,9 @@ String selectedValue = 'ตุลาคม 2566'; // Initial selected value
                 },
                 calendarFormat: CalendarFormat.month,
                 startingDayOfWeek: StartingDayOfWeek.sunday, focusedDay: DateTime.now(), firstDay: DateTime(DateTime.now().year - 1), lastDay: DateTime(DateTime.now().year + 1),
+                selectedDayPredicate: (date) {
+                          return isSameDay(date, _selectedDate);
+                        },
                           ),
                           Text(
                 'Selected Date: ${_selectedDate.toLocal()}',
@@ -105,7 +120,12 @@ String selectedValue = 'ตุลาคม 2566'; // Initial selected value
                           onPrimary:
                               Colors.white, // Set the text color to white
                         ),
-                        child: Text("จอง",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600),),
+                        child: Text("จอง",
+          style: TextStyle(
+              fontFamily: 'Baijamjuree',
+              fontSize: 20.sp,
+              fontWeight: FontWeight.w600,
+              color: Color(0xFFFAF1E4)),),
                       ),
                     ),
                   ),
@@ -116,7 +136,15 @@ String selectedValue = 'ตุลาคม 2566'; // Initial selected value
     else{
       return Scaffold(
         appBar: AppBar(
-        title: const Text('Select Month'),
+        title: Text(
+          'เลือกเดือนที่ต้องการจอง',
+          style: TextStyle(
+              fontFamily: 'Baijamjuree',
+              fontSize: 15.sp,
+              fontWeight: FontWeight.w600,
+              color: Color(0xFFFAF1E4)),
+        ),
+        backgroundColor: Color(0xFF435334),
       ),
       body: Center(
       child: Column(
@@ -128,13 +156,11 @@ String selectedValue = 'ตุลาคม 2566'; // Initial selected value
                 child: SizedBox(
                   width: 400,
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      Text('เดือนที่ต้องการจอง : ', style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600)),
-                      
                       Padding(
-                        padding: const EdgeInsets.only(left: 20),
+                        padding: const EdgeInsets.all(0),
                         child: DropdownButton<String>(
                           value: selectedValue,
                           style: TextStyle(
@@ -150,7 +176,12 @@ String selectedValue = 'ตุลาคม 2566'; // Initial selected value
                               value: item,
                               child: Text(
                                 item,
-                                style: TextStyle(fontSize: 20),
+                                
+          style: TextStyle(
+              fontFamily: 'Baijamjuree',
+              fontSize: 20.sp,
+              fontWeight: FontWeight.w600,
+              color: Color.fromARGB(255, 0, 0, 0)),
                               ),
                             );
                           }).toList(),

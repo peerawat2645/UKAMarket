@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uka_project/screen/selectDate.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class SelectDayOrMonthPage extends StatefulWidget {
   const SelectDayOrMonthPage({super.key});
@@ -14,7 +16,15 @@ class _SelectDayOrMonthPageState extends State<SelectDayOrMonthPage> {
     return Scaffold(
       backgroundColor: Color(0xFFFAF1E4),
       appBar: AppBar(
-        title: const Text('Select Type of Reservation'),
+        title: Text(
+          'เลือกประเภทการจอง',
+          style: TextStyle(
+              fontFamily: 'Baijamjuree',
+              fontSize: 15.sp,
+              fontWeight: FontWeight.w600,
+              color: Color(0xFFFAF1E4)),
+        ),
+        backgroundColor: Color(0xFF435334),
       ),
       body: Center(
         child: Column(

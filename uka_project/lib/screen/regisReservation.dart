@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uka_project/screen/reserve.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class RegisterReservation extends StatefulWidget {
   const RegisterReservation({super.key});
@@ -29,7 +31,15 @@ class _RegisterReservationState extends State<RegisterReservation> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Store Registration Form'),
+        title: Text(
+          'ลงทะเบียนร้านค้า',
+          style: TextStyle(
+              fontFamily: 'Baijamjuree',
+              fontSize: 15.sp,
+              fontWeight: FontWeight.w600,
+              color: Color(0xFFFAF1E4)),
+        ),
+        backgroundColor: Color(0xFF435334),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -44,7 +54,9 @@ class _RegisterReservationState extends State<RegisterReservation> {
                   child: TextFormField(
                     obscureText: true,
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
                       labelText: 'Store Name',
                     ),
                     validator: (value) {
@@ -66,7 +78,9 @@ class _RegisterReservationState extends State<RegisterReservation> {
                   child: TextFormField(
                     obscureText: true,
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
                       labelText: 'Phone number',
                     ),
                     validator: (value) {
@@ -88,7 +102,9 @@ class _RegisterReservationState extends State<RegisterReservation> {
                   child: TextFormField(
                     obscureText: true,
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
                       labelText: 'Store Details',
                     ),
                     validator: (value) {
@@ -111,7 +127,11 @@ class _RegisterReservationState extends State<RegisterReservation> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      Text('ประเภทร้านค้า : ', style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600)),
+                      Text('ประเภทร้านค้า : ',  style: TextStyle(
+              fontFamily: 'Baijamjuree',
+              fontSize: 16.sp,
+              fontWeight: FontWeight.w400,
+              color: Color.fromARGB(255, 0, 0, 0)),),
                       SizedBox(height: 40),
                       Padding(
                         padding: const EdgeInsets.only(left: 20),
@@ -130,7 +150,11 @@ class _RegisterReservationState extends State<RegisterReservation> {
                               value: item,
                               child: Text(
                                 item,
-                                style: TextStyle(fontSize: 20),
+                                  style: TextStyle(
+              fontFamily: 'Baijamjuree',
+              fontSize: 16.sp,
+              fontWeight: FontWeight.w400,
+              color: Color.fromARGB(255, 0, 0, 0)),
                               ),
                             );
                           }).toList(),
@@ -147,6 +171,7 @@ class _RegisterReservationState extends State<RegisterReservation> {
               ),
               SizedBox(height: 16.0),
               Container(
+                height: 50,
                 child: ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
@@ -167,7 +192,11 @@ class _RegisterReservationState extends State<RegisterReservation> {
     backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF435334)),
      // Set the background color
   ),
-                  child: Text('ลงทะเบียนร้านค้า', style: TextStyle(fontSize: 30,fontWeight: FontWeight.w800)),
+                  child: Text('ลงทะเบียนร้านค้า',  style: TextStyle(
+              fontFamily: 'Baijamjuree',
+              fontSize: 20.sp,
+              fontWeight: FontWeight.w600,
+              color: Color.fromARGB(255, 255, 255, 255)),),
                 ),
               ),
             ],

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uka_project/screen/regisReservation.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class NotReserve extends StatefulWidget {
   const NotReserve({super.key});
@@ -13,7 +15,15 @@ class _NotReserveState extends State<NotReserve> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Please Register Reservation'),
+        title: Text(
+          'ลงทะเบียนเพื่อจองพื้นที่ขายของ',
+          style: TextStyle(
+              fontFamily: 'Baijamjuree',
+              fontSize: 15.sp,
+              fontWeight: FontWeight.w600,
+              color: Color(0xFFFAF1E4)),
+        ),
+        backgroundColor: Color(0xFF435334),
       ),
       body: Container(
         color: const Color(0xFF9EB384),
@@ -22,7 +32,7 @@ class _NotReserveState extends State<NotReserve> {
             children: [
               Container(
                 width: MediaQuery.of(context).size.width ,
-                height: 540,
+                height: 480,
                 child: SizedBox(
                         width: 200.0,
                         height: 200.0,
@@ -56,7 +66,12 @@ class _NotReserveState extends State<NotReserve> {
                     ),
                     child: Text(
                       'ลงทะเบียนร้านค้า',
-                      style: TextStyle(fontSize: 35.0),
+                      
+          style: TextStyle(
+              fontFamily: 'Baijamjuree',
+              fontSize: 25.sp,
+              fontWeight: FontWeight.w600,
+              color: Color.fromARGB(255, 0, 0, 0)),
                     ),
                   ),
                 ),

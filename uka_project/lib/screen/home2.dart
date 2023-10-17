@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:uka_project/screen/home.dart';
 import 'package:uka_project/ui/afterlogin/main_page2.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class Home2Page extends StatefulWidget {
   const Home2Page({super.key});
@@ -12,16 +14,25 @@ class Home2Page extends StatefulWidget {
 class _Home2PageState extends State<Home2Page> {
   @override
   Widget build(BuildContext context) {
+    bool isLiked = false;
     bool p = true;
     bool q = false;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home Page'),
+        title: Text(
+          'กินอะไรดี?',
+          style: TextStyle(
+              fontFamily: 'Baijamjuree',
+              fontSize: 15.sp,
+              fontWeight: FontWeight.w600,
+              color: Color(0xFFFAF1E4)),
+        ),
+        backgroundColor: Color(0xFF435334),
       ),
       body: Container(
         decoration: BoxDecoration(
           color: const Color(0xFFFAF1E4), // Background color
-           // Border radius
+          // Border radius
         ),
         child: SingleChildScrollView(
           child: Column(
@@ -42,7 +53,13 @@ class _Home2PageState extends State<Home2Page> {
                           onPrimary:
                               Colors.white, // Set the text color to white
                         ),
-                        child: Text("ของใช้"),
+                        child: Text(
+                          "ของใช้",
+                          style: TextStyle(
+                              fontFamily: 'Baijamjuree',
+                              fontSize: 13.sp,
+                              fontWeight: FontWeight.w600),
+                        ),
                       ),
                     ),
                     Padding(
@@ -51,7 +68,8 @@ class _Home2PageState extends State<Home2Page> {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => MainPage2()),
+                            MaterialPageRoute(
+                                builder: (context) => MainPage2()),
                           );
                         },
                         style: ElevatedButton.styleFrom(
@@ -60,13 +78,19 @@ class _Home2PageState extends State<Home2Page> {
                           onPrimary:
                               Colors.white, // Set the text color to white
                         ),
-                        child: Text("ของกิน"),
+                        child: Text(
+                          "ของกิน",
+                          style: TextStyle(
+                              fontFamily: 'Baijamjuree',
+                              fontSize: 13.sp,
+                              fontWeight: FontWeight.w600),
+                        ),
                       ),
                     ),
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(0),
                   child: Container(
                     width:
                         MediaQuery.of(context).size.width * 0.95, // 50% width
@@ -99,74 +123,109 @@ class _Home2PageState extends State<Home2Page> {
                                           child: ElevatedButton(
                                             onPressed: p
                                                 ? () {
-                                                    // Show the popup when the button is pressed
                                                     showDialog(
                                                       context: context,
                                                       builder: (BuildContext
                                                           context) {
-                                                        return AlertDialog(
-                                                          title: const Text(
-                                                              'ชื่อร้าน : ไก่ย่างเฉลิมชัย'),
-                                                          content: Container(
-                                                            height: 50,
-                                                            child: Column(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .start,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                const Text(
-                                                                    'วันนี้ : เปิด'),
-                                                                const Text(
-                                                                    'ครั้งถัดไป : วันพุธที่ 12/02/2566'),
+                                                        return StatefulBuilder(
+                                                          builder: (context,
+                                                              setState) {
+                                                            return AlertDialog(
+                                                              actions: <Widget>[
+                                                                IconButton(
+                                                                  icon: Icon(
+                                                                    isLiked
+                                                                        ? Icons
+                                                                            .favorite
+                                                                        : Icons
+                                                                            .favorite_border,
+                                                                    color: isLiked
+                                                                        ? Colors
+                                                                            .red
+                                                                        : Colors
+                                                                            .grey,
+                                                                  ),
+                                                                  onPressed:
+                                                                      () {
+                                                                    setState(
+                                                                        () {
+                                                                      // Toggle the like status
+                                                                      isLiked =
+                                                                          !isLiked;
+                                                                    });
+                                                                  },
+                                                                ),
+                                                                IconButton(
+                                                                  icon: Icon(Icons
+                                                                      .close),
+                                                                  onPressed:
+                                                                      () {
+                                                                    Navigator.of(
+                                                                            context)
+                                                                        .pop();
+                                                                  },
+                                                                ),
                                                               ],
-                                                            ),
-                                                          ),
-                                                          actions: <Widget>[
-                                                            ElevatedButton.icon(
-                                                              onPressed: () {
-                                                                // Add your button action here
-                                                              },
-                                                              icon: const Icon(
-                                                                Icons.favorite,
-                                                                color: Color.fromARGB(255, 255, 51, 51),
+                                                              content: SizedBox(
+                                                                height: 100,
+                                                                child: Column(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center, // Aligns children to the start (top) of the column
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start, // Centers children along the horizontal axis
+                                                                  children: [
+                                                                    Text(
+                                                                      isLiked
+                                                                          ? 'You liked this store!'
+                                                                          : 'You have not liked this store',
+                                                                      style: TextStyle(
+                                                                          fontFamily:
+                                                                              'Baijamjuree',
+                                                                          fontSize: 18
+                                                                              .sp,
+                                                                          fontWeight:
+                                                                              FontWeight.w600),
+                                                                    ),
+                                                                    SizedBox(
+                                                                        height:
+                                                                            10),
+                                                                    Text(
+                                                                      "ชื่อร้าน : ไก่ย่างเฉลิมชัย",
+                                                                      style: TextStyle(
+                                                                          fontFamily:
+                                                                              'Baijamjuree',
+                                                                          fontSize: 15
+                                                                              .sp,
+                                                                          fontWeight:
+                                                                              FontWeight.w400),
+                                                                    ),
+                                                                    Text(
+                                                                      "วันนี้ : เปิด",
+                                                                      style: TextStyle(
+                                                                          fontFamily:
+                                                                              'Baijamjuree',
+                                                                          fontSize: 15
+                                                                              .sp,
+                                                                          fontWeight:
+                                                                              FontWeight.w400),
+                                                                    ),
+                                                                    Text(
+                                                                      "ครั้งถัดไป : วันพุธที่ 12/02/2566",
+                                                                      style: TextStyle(
+                                                                          fontFamily:
+                                                                              'Baijamjuree',
+                                                                          fontSize: 15
+                                                                              .sp,
+                                                                          fontWeight:
+                                                                              FontWeight.w400),
+                                                                    )
+                                                                  ],
+                                                                ),
                                                               ),
-                                                              label: const Text(
-                                                                'Like',
-                                                                style: TextStyle(
-                                                                    color: Colors
-                                                                        .black38),
-                                                              ),
-                                                              style:
-                                                                  ElevatedButton
-                                                                      .styleFrom(
-                                                                primary: Color.fromRGBO(255, 220, 220, 1),
-                                                              ),
-                                                            ),
-                                                            ElevatedButton(
-                                                              onPressed: () {
-                                                                // Close the popup when this button is pressed
-                                                                Navigator.of(
-                                                                        context)
-                                                                    .pop();
-                                                              },
-                                                              style:
-                                                                  ElevatedButton
-                                                                      .styleFrom(
-                                                                primary:
-                                                                    const Color
-                                                                        .fromARGB(
-                                                                        255,
-                                                                        255,
-                                                                        66,
-                                                                        66),
-                                                              ),
-                                                              child: const Text(
-                                                                  'Close'),
-                                                            ),
-                                                          ],
+                                                            );
+                                                          },
                                                         );
                                                       },
                                                     );
@@ -199,6 +258,154 @@ class _Home2PageState extends State<Home2Page> {
                                       ],
                                     ),
                                   ),
+                                  //lockcar01
+                                  Padding(
+                                    padding: const EdgeInsets.all(4.0),
+                                    child: Column(
+                                      children: [
+                                        SizedBox(
+                                          width: 35.0,
+                                          height: 100.0,
+                                          child: ElevatedButton(
+                                            onPressed: p
+                                                ? () {
+                                                    // Show the popup when the button is pressed
+                                                    showDialog(
+                                                      context: context,
+                                                      builder: (BuildContext
+                                                          context) {
+                                                        return StatefulBuilder(
+                                                          builder: (context,
+                                                              setState) {
+                                                            return AlertDialog(
+                                                              actions: <Widget>[
+                                                                IconButton(
+                                                                  icon: Icon(
+                                                                    isLiked
+                                                                        ? Icons
+                                                                            .favorite
+                                                                        : Icons
+                                                                            .favorite_border,
+                                                                    color: isLiked
+                                                                        ? Colors
+                                                                            .red
+                                                                        : Colors
+                                                                            .grey,
+                                                                  ),
+                                                                  onPressed:
+                                                                      () {
+                                                                    setState(
+                                                                        () {
+                                                                      // Toggle the like status
+                                                                      isLiked =
+                                                                          !isLiked;
+                                                                    });
+                                                                  },
+                                                                ),
+                                                                IconButton(
+                                                                  icon: Icon(Icons
+                                                                      .close),
+                                                                  onPressed:
+                                                                      () {
+                                                                    Navigator.of(
+                                                                            context)
+                                                                        .pop();
+                                                                  },
+                                                                ),
+                                                              ],
+                                                              content: SizedBox(
+                                                                height: 100,
+                                                                child: Column(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center, // Aligns children to the start (top) of the column
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start, // Centers children along the horizontal axis
+                                                                  children: [
+                                                                    Text(
+                                                                      isLiked
+                                                                          ? 'You liked this store!'
+                                                                          : 'You have not liked this store',
+                                                                      style: TextStyle(
+                                                                          fontFamily:
+                                                                              'Baijamjuree',
+                                                                          fontSize: 18
+                                                                              .sp,
+                                                                          fontWeight:
+                                                                              FontWeight.w600),
+                                                                    ),
+                                                                    SizedBox(
+                                                                        height:
+                                                                            10),
+                                                                    Text(
+                                                                      "ชื่อร้าน : ไก่ย่างเฉลิมชัย",
+                                                                      style: TextStyle(
+                                                                          fontFamily:
+                                                                              'Baijamjuree',
+                                                                          fontSize: 15
+                                                                              .sp,
+                                                                          fontWeight:
+                                                                              FontWeight.w400),
+                                                                    ),
+                                                                    Text(
+                                                                      "วันนี้ : เปิด",
+                                                                      style: TextStyle(
+                                                                          fontFamily:
+                                                                              'Baijamjuree',
+                                                                          fontSize: 15
+                                                                              .sp,
+                                                                          fontWeight:
+                                                                              FontWeight.w400),
+                                                                    ),
+                                                                    Text(
+                                                                      "ครั้งถัดไป : วันพุธที่ 12/02/2566",
+                                                                      style: TextStyle(
+                                                                          fontFamily:
+                                                                              'Baijamjuree',
+                                                                          fontSize: 15
+                                                                              .sp,
+                                                                          fontWeight:
+                                                                              FontWeight.w400),
+                                                                    )
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            );
+                                                          },
+                                                        );
+                                                      },
+                                                    );
+                                                  }
+                                                : null,
+                                            style: ElevatedButton.styleFrom(
+                                              primary: const Color.fromARGB(
+                                                  255, 15, 92, 25),
+                                              // Button background color
+                                            ),
+                                            child: const Text(''),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 35,
+                                          child: FittedBox(
+                                            fit: BoxFit
+                                                .scaleDown, // Scale the text to fit within the container
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              'store 1',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize:
+                                                    18.0, // Adjust the font size as needed
+                                              ),
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  //lockcar02
                                   Padding(
                                     padding: const EdgeInsets.all(4.0),
                                     child: Column(
@@ -305,112 +512,7 @@ class _Home2PageState extends State<Home2Page> {
                                       ],
                                     ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(4.0),
-                                    child: Column(
-                                      children: [
-                                        SizedBox(
-                                          width: 35.0,
-                                          height: 100.0,
-                                          child: ElevatedButton(
-                                            onPressed: p
-                                                ? () {
-                                                    // Show the popup when the button is pressed
-                                                    showDialog(
-                                                      context: context,
-                                                      builder: (BuildContext
-                                                          context) {
-                                                        return AlertDialog(
-                                                          title: const Text(
-                                                              'Popup Title'),
-                                                          content: const Text(
-                                                              'This is the content of the popup.'),
-                                                          actions: <Widget>[
-                                                            ElevatedButton.icon(
-                                                              onPressed: () {
-                                                                // Add your button action here
-                                                              },
-                                                              icon: const Icon(
-                                                                Icons.favorite,
-                                                                color: Color
-                                                                    .fromARGB(
-                                                                        255,
-                                                                        255,
-                                                                        156,
-                                                                        212),
-                                                              ),
-                                                              label: const Text(
-                                                                'Like',
-                                                                style: TextStyle(
-                                                                    color: Colors
-                                                                        .black38),
-                                                              ),
-                                                              style:
-                                                                  ElevatedButton
-                                                                      .styleFrom(
-                                                                primary:
-                                                                    const Color
-                                                                        .fromARGB(
-                                                                        255,
-                                                                        255,
-                                                                        255,
-                                                                        255),
-                                                              ),
-                                                            ),
-                                                            ElevatedButton(
-                                                              onPressed: () {
-                                                                // Close the popup when this button is pressed
-                                                                Navigator.of(
-                                                                        context)
-                                                                    .pop();
-                                                              },
-                                                              style:
-                                                                  ElevatedButton
-                                                                      .styleFrom(
-                                                                primary:
-                                                                    const Color
-                                                                        .fromARGB(
-                                                                        255,
-                                                                        255,
-                                                                        66,
-                                                                        66),
-                                                              ),
-                                                              child: const Text(
-                                                                  'Close'),
-                                                            ),
-                                                          ],
-                                                        );
-                                                      },
-                                                    );
-                                                  }
-                                                : null,
-                                            style: ElevatedButton.styleFrom(
-                                              primary: const Color.fromARGB(
-                                                  255, 15, 92, 25),
-                                              // Button background color
-                                            ),
-                                            child: const Text(''),
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          width: 35,
-                                          child: FittedBox(
-                                            fit: BoxFit
-                                                .scaleDown, // Scale the text to fit within the container
-                                            alignment: Alignment.center,
-                                            child: Text(
-                                              'store 1',
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize:
-                                                    18.0, // Adjust the font size as needed
-                                              ),
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
+                                  //lockcar03
                                   Padding(
                                     padding: const EdgeInsets.all(4.0),
                                     child: Column(
@@ -524,6 +626,7 @@ class _Home2PageState extends State<Home2Page> {
                                   //lock0
                                   Row(
                                     children: [
+                                      //locka00
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -633,6 +736,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka01
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -742,6 +846,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka02
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -851,6 +956,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka03
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -960,6 +1066,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka04
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -1069,6 +1176,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka05
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -1178,6 +1286,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka06
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -1287,6 +1396,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka07
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -1405,6 +1515,7 @@ class _Home2PageState extends State<Home2Page> {
                                   ),
                                   Row(
                                     children: [
+                                      //locka10
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -1514,6 +1625,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka11
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -1623,6 +1735,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka12
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -1732,6 +1845,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka13
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -1841,6 +1955,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka14
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -1950,6 +2065,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka15
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -2059,6 +2175,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka16
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -2168,6 +2285,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka17
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -2282,6 +2400,7 @@ class _Home2PageState extends State<Home2Page> {
                                   //lock2
                                   Row(
                                     children: [
+                                      //locka20
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -2391,6 +2510,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka21
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -2500,6 +2620,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka22
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -2609,6 +2730,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka23
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -2718,6 +2840,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka24
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -2827,6 +2950,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka25
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -2936,6 +3060,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka26
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -3045,6 +3170,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka27
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -3163,6 +3289,7 @@ class _Home2PageState extends State<Home2Page> {
                                   ),
                                   Row(
                                     children: [
+                                      //locka20
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -3272,6 +3399,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka31
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -3381,6 +3509,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka32
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -3490,6 +3619,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka33
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -3599,6 +3729,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka34
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -3708,6 +3839,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka35
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -3817,6 +3949,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka36
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -3926,6 +4059,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka37
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -4040,6 +4174,7 @@ class _Home2PageState extends State<Home2Page> {
                                   //lock4
                                   Row(
                                     children: [
+                                      //locka31
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -4149,6 +4284,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka41
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -4258,6 +4394,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka42
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -4367,6 +4504,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka43
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -4476,6 +4614,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka44
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -4585,6 +4724,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka45
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -4694,6 +4834,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka46
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -4803,6 +4944,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka47
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -4921,6 +5063,7 @@ class _Home2PageState extends State<Home2Page> {
                                   ),
                                   Row(
                                     children: [
+                                      //locka50
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -5030,6 +5173,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka51
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -5139,6 +5283,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka52
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -5248,6 +5393,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka53
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -5357,6 +5503,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka54
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -5466,6 +5613,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka55
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -5575,6 +5723,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka56
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -5684,6 +5833,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka57
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -5798,6 +5948,7 @@ class _Home2PageState extends State<Home2Page> {
                                   //lock6
                                   Row(
                                     children: [
+                                      //locka60
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -5907,6 +6058,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka61
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -6016,6 +6168,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka62
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -6125,6 +6278,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka63
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -6234,6 +6388,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka64
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -6343,6 +6498,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka65
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -6452,6 +6608,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka66
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -6561,6 +6718,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka67
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -6679,6 +6837,7 @@ class _Home2PageState extends State<Home2Page> {
                                   ),
                                   Row(
                                     children: [
+                                      //locka70
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -6788,6 +6947,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka71
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -6897,6 +7057,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka72
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -7006,6 +7167,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka73
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -7115,6 +7277,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka74
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -7224,6 +7387,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka75
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -7333,6 +7497,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka76
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(
@@ -7442,6 +7607,7 @@ class _Home2PageState extends State<Home2Page> {
                                           ],
                                         ),
                                       ),
+                                      //locka77
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
                                         child: Column(

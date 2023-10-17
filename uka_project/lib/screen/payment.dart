@@ -14,9 +14,17 @@ class _PaymentPageState extends State<PaymentPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 248, 231, 181),
+      backgroundColor: Color(0xFFFAF1E4),
       appBar: AppBar(
-        title: const Text('Payment Page'),
+        title: Text(
+          'จ่ายเงิน',
+          style: TextStyle(
+              fontFamily: 'Baijamjuree',
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+              color: Color(0xFFFAF1E4)),
+        ),
+        backgroundColor: Color(0xFF435334),
       ),
       body: Center(
         child: Column(
@@ -29,7 +37,11 @@ class _PaymentPageState extends State<PaymentPage> {
                   width: 350,
                   child: Text('QR code สำหรับโอนเงิน',
                       style: TextStyle(
-                          fontSize: 28, fontWeight: FontWeight.w600))),
+              fontFamily: 'Baijamjuree',
+              fontSize: 25,
+              fontWeight: FontWeight.w600,
+              color: Color.fromARGB(255, 0, 0, 0)),
+        ),),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -56,20 +68,23 @@ class _PaymentPageState extends State<PaymentPage> {
                 width: 250,
                 height: 50,
                 decoration: BoxDecoration(
-                  color: Color(0xFF435334), // Set the background color
+                  color: Color.fromARGB(255, 186, 215, 159), // Set the background color
                   borderRadius:
                       BorderRadius.circular(20.0), // Set the border radius
                 ),
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    primary: Color(
-                        0xFF435334), // Set the button's background color to green
+                    primary: Color.fromARGB(255, 186, 215, 159), // Set the button's background color to green
                     onPrimary: Colors.white, // Set the text color to white
                   ),
                   child: Text(
                     "Save QR code",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                    style: TextStyle(
+              fontFamily: 'Baijamjuree',
+              fontSize: 20,
+              fontWeight: FontWeight.w600,
+              color: Color.fromRGBO(0, 0, 0, 1)),
                   ),
                 ),
               ),
@@ -80,7 +95,10 @@ class _PaymentPageState extends State<PaymentPage> {
                   width: 350,
                   child: Text('แนบสลิปโอนเงิน',
                       style: TextStyle(
-                          fontSize: 28, fontWeight: FontWeight.w600))),
+              fontFamily: 'Baijamjuree',
+              fontSize: 25,
+              fontWeight: FontWeight.w600,
+              color: Color.fromARGB(255, 0, 0, 0)))),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 10),
@@ -88,20 +106,23 @@ class _PaymentPageState extends State<PaymentPage> {
                 width: 250,
                 height: 50,
                 decoration: BoxDecoration(
-                  color: Color(0xFF435334), // Set the background color
+                  color: Color.fromARGB(255, 186, 215, 159), // Set the background color
                   borderRadius:
                       BorderRadius.circular(20.0), // Set the border radius
                 ),
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    primary: Color(
-                        0xFF435334), // Set the button's background color to green
+                    primary: Color.fromARGB(255, 186, 215, 159), // Set the button's background color to green
                     onPrimary: Colors.white, // Set the text color to white
                   ),
                   child: Text(
                     "upload",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                    style: TextStyle(
+              fontFamily: 'Baijamjuree',
+              fontSize: 20,
+              fontWeight: FontWeight.w600,
+              color: Color.fromARGB(255, 0, 0, 0)),
                   ),
                 ),
               ),
@@ -122,9 +143,9 @@ class _PaymentPageState extends State<PaymentPage> {
                       context: context,
                       builder: (BuildContext context) {
                         return AlertDialog(
-                          title: const Text('Popup Title'),
+                          title: const Text('ยืนยันการจองพื้นที่'),
                           content:
-                              const Text('This is the content of the popup.'),
+                              const Text('หากคุณกดยืนยันการจองแล้วคุณจะไม่สามารถยกเลิกการจองได้ในภายหลัง'),
                           actions: <Widget>[
                             ElevatedButton(
                               onPressed: () {
@@ -137,10 +158,11 @@ class _PaymentPageState extends State<PaymentPage> {
                                 );
                               },
                               style: ElevatedButton.styleFrom(
-                                primary: Color.fromARGB(255, 24, 107, 51),
+                                primary: Color(
+                        0xFF435334),
                               ),
                               child: const Text(
-                                'กลับหน้าหลัก',
+                                'ยืนยันการจอง',
                                 style: TextStyle(color: Colors.white70),
                               ),
                             ),
@@ -156,7 +178,11 @@ class _PaymentPageState extends State<PaymentPage> {
                   ),
                   child: Text(
                     "จอง",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                    style: TextStyle(
+              fontFamily: 'Baijamjuree',
+              fontSize: 20,
+              fontWeight: FontWeight.w600,
+              color: Color.fromARGB(255, 255, 255, 255)),
                   ),
                 ),
               ),

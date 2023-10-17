@@ -83,12 +83,11 @@ public class AuthRestController {
 				
 				SecurityContextHolder.getContext().setAuthentication(authentication);
 
-				UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+//				UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 
-				ResponseCookie jwtCookie = jwtUtils.generateJwtCookie(userDetails);
+//				ResponseCookie jwtCookie = jwtUtils.generateJwtCookie(userDetails);
 
-				res.setMessage(jwtCookie.toString());
-				System.out.println(jwtCookie.toString());
+				//res.setMessage(jwtCookie.toString());
 				res.setBody(userService.findByUsername(userDTO.getUsername()));
 				res.setHttpStatus(HttpStatus.OK);
 				return new ResponseEntity<Response<User>>(res, res.getHttpStatus());

@@ -38,7 +38,7 @@ import th.ac.ku.kps.eng.cpe.edu.project.services.AreaService;
 import th.ac.ku.kps.eng.cpe.edu.project.services.ReservationService;
 import th.ac.ku.kps.eng.cpe.edu.project.services.StoreService;
 
-@CrossOrigin("http://localhost:8081/")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/v1/reserv")
 public class ReservationRestController {
