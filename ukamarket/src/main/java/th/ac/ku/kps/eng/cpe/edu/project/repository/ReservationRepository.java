@@ -18,7 +18,7 @@ public interface ReservationRepository extends CrudRepository<Reservation, Integ
 	public List<Reservation> findByStoreIdAndCurrentDate(@Param("storeId")int storeId,@Param("currentDate")Date currentDate);
 	
 	@Query("from Reservation r inner join r.area a where a.areaId =:areaId order by r.startDate")
-	public List<Reservation> findByAreaId(@Param("areaId")int areaId);
+	public List<Reservation> findByAreaId(@Param("areaId")int areaId);	
 	
 	@Query("select a from Reservation r inner join r.area a where r.endDate >=:currentDate")
 	public List<Area> findByCurrentDate(@Param("currentDate")Date currentDate);

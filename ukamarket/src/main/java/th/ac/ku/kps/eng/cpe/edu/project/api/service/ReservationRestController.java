@@ -137,7 +137,7 @@ public class ReservationRestController {
 		}
 	}
 
-	@GetMapping("/choice/store/{id}/type/{type}") //drop down month
+	@GetMapping("/choice/store/{id}/type/{type}") // drop down month
 	public ResponseEntity<Response<ReservationDTO>> dropDownMonth(@PathVariable("id") int storeId,
 			@PathVariable("type") String type) {
 		Response<ReservationDTO> res = new Response<>();
@@ -207,8 +207,9 @@ public class ReservationRestController {
 		return calendar.getTime();
 	}
 
-	@GetMapping("/choice/month/{month}/row/{row}/col/{col}") 
-	public ResponseEntity<Response<String>> checkLockMonth(@PathVariable("month") String month,@PathVariable("row") int row,@PathVariable("col") int col) {
+	@GetMapping("/choice/month/{month}/row/{row}/col/{col}")
+	public ResponseEntity<Response<String>> checkLockMonth(@PathVariable("month") String month,
+			@PathVariable("row") int row, @PathVariable("col") int col) {
 		Response<String> res = new Response<>();
 		try {
 			// Convert month string to Month enum
@@ -219,8 +220,8 @@ public class ReservationRestController {
 			List<Area> areas = reservationService.findByDate(firstDayOfMonth);
 			Area area = areaService.findByRowAndCol(row, col);
 			res.setBody("fail");
-			for(Area a : areas) {
-				if(a.getAreaId() == area.getAreaId()) {
+			for (Area a : areas) {
+				if (a.getAreaId() == area.getAreaId()) {
 					res.setBody("success");
 					break;
 				}
@@ -291,47 +292,21 @@ public class ReservationRestController {
 		}
 	}
 
-	private Date getUTC(Date date) {
-		// Calculate milliseconds for one day
-		long oneDayInMillis = 24 * 60 * 60 * 1000;
-
-		// Calculate tomorrow's date in milliseconds
-		long tomorrowInMillis = date.getTime() + oneDayInMillis;
-
-		// Create a new Date object for tomorrow
-		Date tomorrowDate = new Date(tomorrowInMillis);
-		return tomorrowDate;
-	}
-
-	private Date getDateMonOrWed(Date startDate, Date endDate) {
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(startDate);
-
-		while (calendar.getTime().before(endDate) || calendar.getTime().equals(endDate)) {
-			int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-
-			if ((dayOfWeek == Calendar.MONDAY || dayOfWeek == Calendar.WEDNESDAY)) {
-				return getUTC(calendar.getTime());
-			}
-
-			calendar.add(Calendar.DAY_OF_MONTH, 1);
-		}
-		return null;
-	}
-
 	@GetMapping("/row/{row}/col/{col}")
 	public ResponseEntity<Response<LikestoreDTO>> getDataFromRowAndCol(@PathVariable("row") int row,
 			@PathVariable("col") int col) {
 		Response<LikestoreDTO> res = new Response<>();
 		try {
 			Area area = areaService.findByRowAndCol(row, col);
-			Reservation reservation = reservationService.findByAreaId(area.getAreaId()).get(0);
-			Date startDate = reservation.getStartDate();
-			Date endDate = reservation.getEndDate();
-			Date open1 = getDateMonOrWed(startDate, endDate);
-			Date open2 = getDateMonOrWed(getUTC(open1), endDate);
-			LikestoreDTO lsd = new LikestoreDTO(reservation.getStore().getName(), open1, open2);
-			res.setBody(lsd);
+			List<Reservation> reservation = reservationService.findByAreaId(area.getAreaId());
+			res.setBody(null);
+			if (reservation.size() > 0) {
+				Reservation r = reservation.get(0);
+				Store s = r.getStore();
+				LikestoreDTO lsd = new LikestoreDTO();
+				lsd = new LikestoreDTO(s.getName(), s.getDescription(), s.getPhone(), null, null, null);
+				res.setBody(lsd);
+			}
 			res.setHttpStatus(HttpStatus.OK);
 			return new ResponseEntity<Response<LikestoreDTO>>(res, res.getHttpStatus());
 		} catch (Exception ex) {
@@ -340,7 +315,7 @@ public class ReservationRestController {
 			return new ResponseEntity<Response<LikestoreDTO>>(res, res.getHttpStatus());
 		}
 	}
-	
+
 	@GetMapping("/price/row/{row}/col/{col}")
 	public ResponseEntity<Response<AreaDTO>> getPriceFromRowAndCol(@PathVariable("row") int row,
 			@PathVariable("col") int col) {
@@ -349,15 +324,13 @@ public class ReservationRestController {
 			AreaDTO areaDTO = new AreaDTO();
 			areaDTO.setRow(row);
 			areaDTO.setCol(col);
-			if(row == 0 || row == 7 || row == 8 || row == 15) {
+			if (row == 0 || row == 7 || row == 8 || row == 15) {
 				areaDTO.setDayPrice(200);
 				areaDTO.setMonthPrice(1400);
-			}
-			else if(row == 16 || row == 17) {
+			} else if (row == 16 || row == 17) {
 				areaDTO.setDayPrice(80);
 				areaDTO.setMonthPrice(500);
-			}
-			else {
+			} else {
 				areaDTO.setDayPrice(100);
 				areaDTO.setMonthPrice(600);
 			}

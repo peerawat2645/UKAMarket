@@ -1,8 +1,5 @@
 package th.ac.ku.kps.eng.cpe.edu.project.api.service;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -25,15 +22,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import th.ac.ku.kps.eng.cpe.edu.project.api.util.Response;
-import th.ac.ku.kps.eng.cpe.edu.project.model.Area;
-import th.ac.ku.kps.eng.cpe.edu.project.model.Likestore;
-import th.ac.ku.kps.eng.cpe.edu.project.model.Reservation;
 import th.ac.ku.kps.eng.cpe.edu.project.model.Store;
 import th.ac.ku.kps.eng.cpe.edu.project.model.User;
-import th.ac.ku.kps.eng.cpe.edu.project.model.DTO.LikestoreDTO;
-import th.ac.ku.kps.eng.cpe.edu.project.services.AreaService;
-import th.ac.ku.kps.eng.cpe.edu.project.services.LikestoreService;
-import th.ac.ku.kps.eng.cpe.edu.project.services.ReservationService;
 import th.ac.ku.kps.eng.cpe.edu.project.services.StoreService;
 import th.ac.ku.kps.eng.cpe.edu.project.services.UserService;
 
