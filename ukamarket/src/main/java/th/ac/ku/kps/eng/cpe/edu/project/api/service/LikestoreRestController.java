@@ -44,7 +44,7 @@ public class LikestoreRestController {
 
 	@Autowired
 	private LikestoreService likestoreService;
-	
+
 	@Autowired
 	private UserService userService;
 
@@ -66,9 +66,10 @@ public class LikestoreRestController {
 		res.setBody(responObject);
 		return new ResponseEntity<Response<ObjectNode>>(res, res.getHttpStatus());
 	}
-	
+
 	@PostMapping("/{storeId}/userId/{userId}")
-	public ResponseEntity<Response<String>> like(@PathVariable("storeId") int storeId,@PathVariable("userId") int userId) {
+	public ResponseEntity<Response<String>> like(@PathVariable("storeId") int storeId,
+			@PathVariable("userId") int userId) {
 		Response<String> res = new Response<>();
 		try {
 			Likestore likestore = likestoreService.findByStoreIdAndUserId(storeId, userId);
@@ -128,14 +129,21 @@ public class LikestoreRestController {
 			List<Likestore> likestore = likestoreService.findByUserId(userId);
 			List<LikestoreDTO> likestoreDTOs = new ArrayList<LikestoreDTO>();
 			for (Likestore ls : likestore) {
-				Reservation reservation = reservationService.findByStoreIdAndCurrentDate(ls.getStore().getStoreId());
+				List<Reservation> rev = reservationService.findByStoreIdAndCurrentDate(ls.getStore().getStoreId());
+				System.out.println(rev.size());
+				if (rev.size() > 0) {
+					Reservation reservation = rev.get(0);
 
-				Date startDate = reservation.getStartDate();
-				Date endDate = reservation.getEndDate();
-				Date open1 = getDateMonOrWed(startDate, endDate);
-				Date open2 = getDateMonOrWed(getUTC(open1), endDate);
+					Date startDate = reservation.getStartDate();
+					Date endDate = reservation.getEndDate();
+					Date open1 = getDateMonOrWed(startDate, endDate);
+					Date open2 = getDateMonOrWed(getUTC(open1), endDate);
 
-				likestoreDTOs.add(new LikestoreDTO(ls.getStore().getName(), open1, open2));
+					likestoreDTOs.add(new LikestoreDTO(ls.getStore().getName(), open1, open2));
+				}
+				else {
+					likestoreDTOs.add(new LikestoreDTO(ls.getStore().getName(), null, null));
+				}
 			}
 			res.setBody(likestoreDTOs);
 			res.setHttpStatus(HttpStatus.OK);

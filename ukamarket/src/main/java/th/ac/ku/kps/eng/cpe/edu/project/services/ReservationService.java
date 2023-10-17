@@ -36,9 +36,9 @@ public class ReservationService {
 		reservationRepository.deleteById(id);
 	}
 	
-	public Reservation findByStoreIdAndCurrentDate(int storeId) {
+	public List<Reservation> findByStoreIdAndCurrentDate(int storeId) {
 		Date currentDate = new Date();
-		return reservationRepository.findByStoreIdAndCurrentDate(storeId, currentDate).get(0);
+		return reservationRepository.findByStoreIdAndCurrentDate(storeId, currentDate);
 	}
 	
 	public List<Area> findByDate(Date date) {

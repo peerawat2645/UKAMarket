@@ -32,6 +32,7 @@ import th.ac.ku.kps.eng.cpe.edu.project.api.util.Response;
 import th.ac.ku.kps.eng.cpe.edu.project.model.Area;
 import th.ac.ku.kps.eng.cpe.edu.project.model.Reservation;
 import th.ac.ku.kps.eng.cpe.edu.project.model.Store;
+import th.ac.ku.kps.eng.cpe.edu.project.model.DTO.AreaDTO;
 import th.ac.ku.kps.eng.cpe.edu.project.model.DTO.LikestoreDTO;
 import th.ac.ku.kps.eng.cpe.edu.project.model.DTO.ReservationCreateDTO;
 import th.ac.ku.kps.eng.cpe.edu.project.model.DTO.ReservationDTO;
@@ -119,7 +120,7 @@ public class ReservationRestController {
 		}
 		return dates;
 	}
-	
+
 	@GetMapping("/")
 	public ResponseEntity<Response<List<Area>>> getAllOpen() {
 		Response<List<Area>> res = new Response<>();
@@ -177,13 +178,17 @@ public class ReservationRestController {
 		Response<String> res = new Response<>();
 		try {
 			Area area = areaService.findByRowAndCol(row, col);
-			reservationService.findByAreaId(area.getAreaId()).get(0);
-			res.setBody("success");
+			List<Reservation> reservs = reservationService.findByAreaId(area.getAreaId());
+			if (reservs.size() > 0) {
+				res.setBody("success");
+			} else {
+				res.setBody("fail");
+			}
 			res.setHttpStatus(HttpStatus.OK);
 			return new ResponseEntity<Response<String>>(res, res.getHttpStatus());
 		} catch (Exception ex) {
-			res.setBody("fail");
-			res.setHttpStatus(HttpStatus.OK);
+			res.setBody(null);
+			res.setHttpStatus(HttpStatus.NOT_FOUND);
 			return new ResponseEntity<Response<String>>(res, res.getHttpStatus());
 		}
 	}
@@ -223,7 +228,8 @@ public class ReservationRestController {
 	}
 
 	@GetMapping("/description") // checkinfo
-	public ResponseEntity<Response<ReservationCreateDTO>> getDate(@Valid @RequestBody ReservationDescriptionRequestDTO req) {
+	public ResponseEntity<Response<ReservationCreateDTO>> getDate(
+			@Valid @RequestBody ReservationDescriptionRequestDTO req) {
 		Response<ReservationCreateDTO> res = new Response<>();
 		try {
 			ReservationCreateDTO reserv = new ReservationCreateDTO();
@@ -277,7 +283,7 @@ public class ReservationRestController {
 			return new ResponseEntity<Response<Reservation>>(res, res.getHttpStatus());
 		}
 	}
-	
+
 	private Date getUTC(Date date) {
 		// Calculate milliseconds for one day
 		long oneDayInMillis = 24 * 60 * 60 * 1000;
@@ -305,9 +311,10 @@ public class ReservationRestController {
 		}
 		return null;
 	}
-	
+
 	@GetMapping("/row/{row}/col/{col}")
-	public ResponseEntity<Response<LikestoreDTO>> getDataFromRowAndCol(@PathVariable("row")int row ,@PathVariable("col")int col) {
+	public ResponseEntity<Response<LikestoreDTO>> getDataFromRowAndCol(@PathVariable("row") int row,
+			@PathVariable("col") int col) {
 		Response<LikestoreDTO> res = new Response<>();
 		try {
 			Area area = areaService.findByRowAndCol(row, col);
@@ -324,6 +331,36 @@ public class ReservationRestController {
 			res.setBody(null);
 			res.setHttpStatus(HttpStatus.NOT_FOUND);
 			return new ResponseEntity<Response<LikestoreDTO>>(res, res.getHttpStatus());
+		}
+	}
+	
+	@GetMapping("/price/row/{row}/col/{col}")
+	public ResponseEntity<Response<AreaDTO>> getPriceFromRowAndCol(@PathVariable("row") int row,
+			@PathVariable("col") int col) {
+		Response<AreaDTO> res = new Response<>();
+		try {
+			AreaDTO areaDTO = new AreaDTO();
+			areaDTO.setRow(row);
+			areaDTO.setCol(col);
+			if(row == 0 || row == 7 || row == 8 || row == 15) {
+				areaDTO.setDayPrice(200);
+				areaDTO.setMonthPrice(1400);
+			}
+			else if(row == 16 || row == 17) {
+				areaDTO.setDayPrice(80);
+				areaDTO.setMonthPrice(500);
+			}
+			else {
+				areaDTO.setDayPrice(100);
+				areaDTO.setMonthPrice(600);
+			}
+			res.setBody(areaDTO);
+			res.setHttpStatus(HttpStatus.OK);
+			return new ResponseEntity<Response<AreaDTO>>(res, res.getHttpStatus());
+		} catch (Exception ex) {
+			res.setBody(null);
+			res.setHttpStatus(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Response<AreaDTO>>(res, res.getHttpStatus());
 		}
 	}
 }

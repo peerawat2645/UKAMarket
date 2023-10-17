@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import th.ac.ku.kps.eng.cpe.edu.project.api.util.Response;
 import th.ac.ku.kps.eng.cpe.edu.project.security.jwt.JwtUtils;
+import th.ac.ku.kps.eng.cpe.edu.project.services.AreaService;
 
 @CrossOrigin("http://localhost:8081/")
 @RestController
@@ -24,6 +25,9 @@ public class TestRestController {
 
 	@Autowired
 	JwtUtils jwtUtils;
+	
+	@Autowired
+	private AreaService areaService;
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<Response<ObjectNode>> handleValidationExceptions(MethodArgumentNotValidException ex) {
