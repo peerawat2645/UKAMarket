@@ -75,7 +75,7 @@ public class StoreRestController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Response<Store>> getStoreData(@PathVariable int storeId) {
+	public ResponseEntity<Response<Store>> getStoreData(@PathVariable("id") int storeId) {
 		Response<Store> res = new Response<>();
 		try {
 			Store store = storeService.findById(storeId);
@@ -154,14 +154,14 @@ public class StoreRestController {
 		}
 	}
 
-	@PostMapping("/like/{storeId}")
-	public ResponseEntity<Response<String>> like(@PathVariable("storeId") int storeId) {
+	@PostMapping("/like/{storeId}/userId/{userId}")
+	public ResponseEntity<Response<String>> like(@PathVariable("storeId") int storeId,@PathVariable("userId") int userId) {
 		Response<String> res = new Response<>();
 		try {
-			Likestore likestore = likestoreService.findByStoreIdAndUserId(storeId, 1);
+			Likestore likestore = likestoreService.findByStoreIdAndUserId(storeId, userId);
 			if (likestore == null) {
 				Store store = storeService.findById(storeId);
-				User user = userService.findById(1);
+				User user = userService.findById(userId);
 				Likestore ls = new Likestore(store, user);
 				likestoreService.save(ls);
 				res.setBody("Like Success");
