@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 
 class FavStore extends StatefulWidget {
   FavStore({super.key});
@@ -59,81 +58,76 @@ class _FavStore extends State<FavStore> {
               itemBuilder: (context, index) {
                 final item = storeList[index];
                 return Padding(
-                  padding: (index == 0)
-                      ? const EdgeInsets.symmetric(vertical: 20.0)
-                      : const EdgeInsets.only(bottom: 20.0),
-                  child: Slidable(
-                    key: Key('$item'),
-                    endActionPane:
-                        ActionPane(motion: ScrollMotion(), children: [
-                      SlidableAction(
-                        onPressed: (context) {
-                          setState(() {
-                            storeList.removeAt(index);
-                          });
-                        },
-                        backgroundColor: Colors.red,
-                        icon: Icons.delete,
-                      )
-                    ]),
-                    child: Container(
-                      margin: EdgeInsets.symmetric(horizontal: 20.0),
-                      padding: EdgeInsets.all(10.0),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.r),
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 1.0,
-                              spreadRadius: 1.0,
-                              color: Colors.grey.shade300,
-                            )
-                          ]),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Icon(
-                              Icons.store,
-                              size: 50.dg,
+                    padding: (index == 0)
+                        ? const EdgeInsets.symmetric(vertical: 20.0)
+                        : const EdgeInsets.only(bottom: 20.0),
+                    child: GestureDetector(
+                      onDoubleTap: () {
+                        setState(() {
+                          storeList.removeAt(index);
+                        });
+                      },
+                      child: Container(
+                        key: Key('$item'),
+                        margin: EdgeInsets.symmetric(horizontal: 20.0),
+                        padding: EdgeInsets.all(10.0),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.r),
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 1.0,
+                                spreadRadius: 1.0,
+                                color: Colors.grey.shade300,
+                              )
+                            ]),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Icon(
+                                Icons.store,
+                                size: 50.dg,
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            width: 10.w,
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                item['title']!,
-                                style: TextStyle(
-                                    fontFamily: 'Baijamjuree',
-                                    fontSize: 13.sp,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                              SizedBox(
-                                height: 5.h,
-                              ),
-                              Text(item['desc']!,
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  item['title']!,
                                   style: TextStyle(
                                       fontFamily: 'Baijamjuree',
                                       fontSize: 13.sp,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.grey)),
-                            ],
-                          ),
-                          SizedBox(
-                            width: 130.w,
-                          ),
-                          Icon(Icons.favorite , color: Colors.red,)
-                        ],
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                SizedBox(
+                                  height: 5.h,
+                                ),
+                                Text(item['desc']!,
+                                    style: TextStyle(
+                                        fontFamily: 'Baijamjuree',
+                                        fontSize: 13.sp,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.grey)),
+                              ],
+                            ),
+                            SizedBox(
+                              width: 130.w,
+                            ),
+                            const Icon(
+                              Icons.favorite,
+                              color: Colors.red,
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                  ),
-                );
+                    ));
               }),
     );
   }

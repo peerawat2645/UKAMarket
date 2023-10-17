@@ -78,12 +78,12 @@ class _MyStore extends State<MyStore> {
                         )
                       ]),
                       child: GestureDetector(
-                        onTap : () {
+                        onTap: () {
                           Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    EditStore() ));
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      EditStore(item['title']!,item['desc']!)));
                         },
                         child: Container(
                           margin: EdgeInsets.symmetric(horizontal: 20.0),
