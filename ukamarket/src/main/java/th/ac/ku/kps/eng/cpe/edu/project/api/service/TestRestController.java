@@ -1,11 +1,6 @@
 package th.ac.ku.kps.eng.cpe.edu.project.api.service;
 
-import java.util.Date;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties.Authentication;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -26,7 +21,7 @@ import th.ac.ku.kps.eng.cpe.edu.project.security.jwt.JwtUtils;
 @RestController
 @RequestMapping("/api/v1/test/")
 public class TestRestController {
-	
+
 	@Autowired
 	JwtUtils jwtUtils;
 
@@ -50,11 +45,16 @@ public class TestRestController {
 	}
 
 	@GetMapping("/all")
-	public String allAccess(HttpServletRequest request) {
-		System.out.println(new Date());
+	public String allAccess() {
+//		int i,j;
+//		for(i = 0;i<8;i++) {
+//			for(j = 0;j<18;j++) {
+//				Area area = new Area(i, j);
+//				areaService.save(area);
+//			}
+//		}
 		return "Public Content.";
 	}
-
 
 //	public static void main(String[] args) throws Exception {
 //		int key = 1;

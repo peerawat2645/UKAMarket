@@ -1,9 +1,10 @@
 package th.ac.ku.kps.eng.cpe.edu.project.api.service;
 
 import java.text.DateFormatSymbols;
+import java.text.SimpleDateFormat;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -11,8 +12,6 @@ import java.util.Locale;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -35,6 +34,8 @@ import th.ac.ku.kps.eng.cpe.edu.project.model.Reservation;
 import th.ac.ku.kps.eng.cpe.edu.project.model.Store;
 import th.ac.ku.kps.eng.cpe.edu.project.model.DTO.ReservationCreateDTO;
 import th.ac.ku.kps.eng.cpe.edu.project.model.DTO.ReservationDTO;
+import th.ac.ku.kps.eng.cpe.edu.project.model.DTO.ReservationDescriptionRequestDTO;
+import th.ac.ku.kps.eng.cpe.edu.project.model.DTO.ReservationRequestDTO;
 import th.ac.ku.kps.eng.cpe.edu.project.services.AreaService;
 import th.ac.ku.kps.eng.cpe.edu.project.services.ReservationService;
 import th.ac.ku.kps.eng.cpe.edu.project.services.StoreService;
@@ -49,7 +50,7 @@ public class ReservationRestController {
 
 	@Autowired
 	private StoreService storeService;
-	
+
 	@Autowired
 	private AreaService areaService;
 
@@ -118,7 +119,7 @@ public class ReservationRestController {
 		return dates;
 	}
 
-	@GetMapping("/choice/store/{id}/type/{type}") //dropdown month
+	@GetMapping("/choice/store/{id}/type/{type}") // dropdown month
 	public ResponseEntity<Response<ReservationDTO>> getDate(@PathVariable("id") int storeId,
 			@PathVariable("type") String type) {
 		Response<ReservationDTO> res = new Response<>();
@@ -139,22 +140,86 @@ public class ReservationRestController {
 		}
 	}
 
-	@GetMapping("/description") //checkinfo
-	public ResponseEntity<Response<ReservationCreateDTO>> getDate(@Param("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Date date,
-			@Param("month") String month, @Param("type") String type, @Param("storeId") int storeId) {
-		System.out.println(date);
+	@GetMapping("/choice/") // dropdown month
+	public ResponseEntity<Response<List<Area>>> getStore() {
+		Response<List<Area>> res = new Response<>();
+		try {
+			List<Area> areas = reservationService.findByNotInCurrentDate();
+			res.setBody(areas);
+			res.setHttpStatus(HttpStatus.OK);
+			return new ResponseEntity<Response<List<Area>>>(res, res.getHttpStatus());
+		} catch (Exception ex) {
+			res.setBody(null);
+			res.setHttpStatus(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Response<List<Area>>>(res, res.getHttpStatus());
+		}
+	}
+
+	@GetMapping("/choice/row/{row}/col/{col}") // dropdown month
+	public ResponseEntity<Response<String>> checkLock(@PathVariable("row") int row, @PathVariable("col") int col) {
+		Response<String> res = new Response<>();
+		try {
+			Area area = areaService.findByRowAndCol(row, col);
+			reservationService.findByAreaId(area.getAreaId()).get(0);
+			res.setBody("success");
+			res.setHttpStatus(HttpStatus.OK);
+			return new ResponseEntity<Response<String>>(res, res.getHttpStatus());
+		} catch (Exception ex) {
+			res.setBody("fail");
+			res.setHttpStatus(HttpStatus.OK);
+			return new ResponseEntity<Response<String>>(res, res.getHttpStatus());
+		}
+	}
+
+	public static int getMonthInt(String monthString) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date());
+		calendar.set(Calendar.MONTH, Month.valueOf(monthString.toUpperCase()).getValue() - 1);
+		return calendar.get(Calendar.MONTH);
+	}
+
+	public static Date getFirstDayOfMonth(int month) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.MONTH, month);
+		calendar.set(Calendar.DAY_OF_MONTH, 1);
+		return calendar.getTime();
+	}
+
+	@GetMapping("/choice/month/{month}") // dropdown month
+	public ResponseEntity<Response<List<Area>>> checkLock(@PathVariable("month") String month) {
+		Response<List<Area>> res = new Response<>();
+		try {
+			// Convert month string to Month enum
+			int monthInt = getMonthInt(month);
+
+			// Get the first day of the month
+			Date firstDayOfMonth = getFirstDayOfMonth(monthInt);
+			List<Area> areas = reservationService.findByDate(firstDayOfMonth);
+			res.setBody(areas);
+			res.setHttpStatus(HttpStatus.OK);
+			return new ResponseEntity<Response<List<Area>>>(res, res.getHttpStatus());
+		} catch (Exception ex) {
+			res.setBody(null);
+			res.setHttpStatus(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Response<List<Area>>>(res, res.getHttpStatus());
+		}
+	}
+
+	@GetMapping("/description") // checkinfo
+	public ResponseEntity<Response<ReservationCreateDTO>> getDate(@Valid @RequestBody ReservationDescriptionRequestDTO req) {
 		Response<ReservationCreateDTO> res = new Response<>();
 		try {
 			ReservationCreateDTO reserv = new ReservationCreateDTO();
-			if (type.equals("month")) {
-				reserv.setDates(getDayOfMonth(month));
+			if (req.getType().equals("month")) {
+				reserv.setDates(getDayOfMonth(req.getMonth()));
 			} else {
 				List<Date> dates = new ArrayList<Date>();
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				Date date = dateFormat.parse(req.getDate());
 				dates.add(date);
 				reserv.setDates(dates);
 			}
-			Store store = storeService.findById(storeId);
-			System.out.println(store.getUser().getUsername());
+			Store store = storeService.findById(req.getStoreId());
 			reserv.setStore(store);
 			res.setBody(reserv);
 			res.setHttpStatus(HttpStatus.OK);
@@ -167,19 +232,29 @@ public class ReservationRestController {
 	}
 
 	@PostMapping("/create")
-	public ResponseEntity<Response<Reservation>> getStoreData(@Param("row") int row, @Param("col") int col,
-			@Param("dates") List<Date> dates, @Param("type") String type, @Param("storeId") int storeId) {
+	public ResponseEntity<Response<Reservation>> getStoreData(@Valid @RequestBody ReservationRequestDTO req) {
 		Response<Reservation> res = new Response<>();
 		try {
-			Area a = areaService.findByRowAndCol(row, col);
-			Store store = storeService.findById(storeId);
-			Collections.sort(dates);
-			Reservation r = new Reservation(a,store,dates.get(0),dates.get(dates.size()-1),type);
+			Area a = areaService.findByRowAndCol(req.getRow(), req.getCol());
+			Store store = storeService.findById(req.getStoreId());
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			Date sDate = dateFormat.parse(req.getStartDate());
+			Date eDate = dateFormat.parse(req.getStartDate());
+			sDate.setHours(0);
+			sDate.setMinutes(0);
+			sDate.setSeconds(0);
+			eDate.setHours(23);
+			eDate.setMinutes(59);
+			eDate.setSeconds(59);
+
+			Reservation r = new Reservation(a, store, sDate, eDate, req.getType());
 			Reservation reserv = reservationService.save(r);
 			res.setBody(reserv);
 			res.setHttpStatus(HttpStatus.OK);
 			return new ResponseEntity<Response<Reservation>>(res, res.getHttpStatus());
-		} catch (Exception ex) {
+		} catch (
+
+		Exception ex) {
 			res.setBody(null);
 			res.setHttpStatus(HttpStatus.NOT_FOUND);
 			return new ResponseEntity<Response<Reservation>>(res, res.getHttpStatus());

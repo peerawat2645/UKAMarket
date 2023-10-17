@@ -5,11 +5,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -27,12 +25,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import th.ac.ku.kps.eng.cpe.edu.project.api.util.Response;
+import th.ac.ku.kps.eng.cpe.edu.project.model.Area;
 import th.ac.ku.kps.eng.cpe.edu.project.model.Likestore;
 import th.ac.ku.kps.eng.cpe.edu.project.model.Reservation;
 import th.ac.ku.kps.eng.cpe.edu.project.model.Store;
 import th.ac.ku.kps.eng.cpe.edu.project.model.User;
 import th.ac.ku.kps.eng.cpe.edu.project.model.DTO.LikestoreDTO;
-import th.ac.ku.kps.eng.cpe.edu.project.security.jwt.JwtUtils;
+import th.ac.ku.kps.eng.cpe.edu.project.services.AreaService;
 import th.ac.ku.kps.eng.cpe.edu.project.services.LikestoreService;
 import th.ac.ku.kps.eng.cpe.edu.project.services.ReservationService;
 import th.ac.ku.kps.eng.cpe.edu.project.services.StoreService;
@@ -54,6 +53,9 @@ public class StoreRestController {
 
 	@Autowired
 	private ReservationService reservationService;
+	
+	@Autowired
+	private AreaService areaService;
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<Response<ObjectNode>> handleValidationExceptions(MethodArgumentNotValidException ex) {
@@ -208,11 +210,11 @@ public class StoreRestController {
 		return null;
 	}
 
-	@GetMapping("/like")
-	public ResponseEntity<Response<List<LikestoreDTO>>> like() {
+	@GetMapping("/like/user/{userId}")
+	public ResponseEntity<Response<List<LikestoreDTO>>> like(@PathVariable("userId") int userId) {
 		Response<List<LikestoreDTO>> res = new Response<>();
 		try {
-			List<Likestore> likestore = likestoreService.findByUserId(1);
+			List<Likestore> likestore = likestoreService.findByUserId(userId);
 			List<LikestoreDTO> likestoreDTOs = new ArrayList<LikestoreDTO>();
 			for (Likestore ls : likestore) {
 				Reservation reservation = reservationService.findByStoreIdAndCurrentDate(ls.getStore().getStoreId());
@@ -231,6 +233,43 @@ public class StoreRestController {
 			res.setBody(null);
 			res.setHttpStatus(HttpStatus.NOT_FOUND);
 			return new ResponseEntity<Response<List<LikestoreDTO>>>(res, res.getHttpStatus());
+		}
+	}
+	
+	@GetMapping("/row/{row}/col/{col}")
+	public ResponseEntity<Response<LikestoreDTO>> getDataFromRowAndCol(@PathVariable("row")int row ,@PathVariable("col")int col) {
+		Response<LikestoreDTO> res = new Response<>();
+		try {
+			Area area = areaService.findByRowAndCol(row, col);
+			Reservation reservation = reservationService.findByAreaId(area.getAreaId()).get(0);
+			Date startDate = reservation.getStartDate();
+			Date endDate = reservation.getEndDate();
+			Date open1 = getDateMonOrWed(startDate, endDate);
+			Date open2 = getDateMonOrWed(getUTC(open1), endDate);
+			LikestoreDTO lsd = new LikestoreDTO(reservation.getStore().getName(), open1, open2);
+			res.setBody(lsd);
+			res.setHttpStatus(HttpStatus.OK);
+			return new ResponseEntity<Response<LikestoreDTO>>(res, res.getHttpStatus());
+		} catch (Exception ex) {
+			res.setBody(null);
+			res.setHttpStatus(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Response<LikestoreDTO>>(res, res.getHttpStatus());
+		}
+	}
+	
+	@GetMapping("/")
+	public ResponseEntity<Response<List<Area>>> getAllOpen() {
+		Response<List<Area>> res = new Response<>();
+		try {
+			List<Area> areas = reservationService.findAllByCurrentDate();
+
+			res.setBody(areas);
+			res.setHttpStatus(HttpStatus.OK);
+			return new ResponseEntity<Response<List<Area>>>(res, res.getHttpStatus());
+		} catch (Exception ex) {
+			res.setBody(null);
+			res.setHttpStatus(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Response<List<Area>>>(res, res.getHttpStatus());
 		}
 	}
 

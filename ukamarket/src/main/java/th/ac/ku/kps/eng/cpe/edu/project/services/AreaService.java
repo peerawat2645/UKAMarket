@@ -32,4 +32,8 @@ public class AreaService {
 	public Area findByRowAndCol(int row,int col) {
 		return areaRepository.findByRowAndCol(row, col);
 	}
+	
+	public List<Area> findNotInAreaIdList(List<Integer> areaIds){
+		return areaRepository.findNotInAreaIdList(areaIds);
+	}
 }

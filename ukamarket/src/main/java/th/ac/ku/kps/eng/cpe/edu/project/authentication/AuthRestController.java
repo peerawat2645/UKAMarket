@@ -1,6 +1,5 @@
 package th.ac.ku.kps.eng.cpe.edu.project.authentication;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +27,6 @@ import th.ac.ku.kps.eng.cpe.edu.project.api.util.Response;
 import th.ac.ku.kps.eng.cpe.edu.project.model.User;
 import th.ac.ku.kps.eng.cpe.edu.project.model.DTO.UserDTO;
 import th.ac.ku.kps.eng.cpe.edu.project.security.jwt.JwtUtils;
-import th.ac.ku.kps.eng.cpe.edu.project.security.services.UserDetailsImpl;
 import th.ac.ku.kps.eng.cpe.edu.project.services.UserService;
 
 @CrossOrigin("http://localhost:8081/")
