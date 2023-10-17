@@ -36,4 +36,8 @@ public class StoreService {
         return existingStore.isEmpty();
     }
 	
+	public List<Store> findByUserId(int userId){
+		return storeRepository.findByUserId(userId);
+	}
+	
 }

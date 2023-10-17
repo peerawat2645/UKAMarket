@@ -32,6 +32,7 @@ import th.ac.ku.kps.eng.cpe.edu.project.api.util.Response;
 import th.ac.ku.kps.eng.cpe.edu.project.model.Area;
 import th.ac.ku.kps.eng.cpe.edu.project.model.Reservation;
 import th.ac.ku.kps.eng.cpe.edu.project.model.Store;
+import th.ac.ku.kps.eng.cpe.edu.project.model.DTO.LikestoreDTO;
 import th.ac.ku.kps.eng.cpe.edu.project.model.DTO.ReservationCreateDTO;
 import th.ac.ku.kps.eng.cpe.edu.project.model.DTO.ReservationDTO;
 import th.ac.ku.kps.eng.cpe.edu.project.model.DTO.ReservationDescriptionRequestDTO;
@@ -117,6 +118,22 @@ public class ReservationRestController {
 			}
 		}
 		return dates;
+	}
+	
+	@GetMapping("/")
+	public ResponseEntity<Response<List<Area>>> getAllOpen() {
+		Response<List<Area>> res = new Response<>();
+		try {
+			List<Area> areas = reservationService.findAllByCurrentDate();
+
+			res.setBody(areas);
+			res.setHttpStatus(HttpStatus.OK);
+			return new ResponseEntity<Response<List<Area>>>(res, res.getHttpStatus());
+		} catch (Exception ex) {
+			res.setBody(null);
+			res.setHttpStatus(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Response<List<Area>>>(res, res.getHttpStatus());
+		}
 	}
 
 	@GetMapping("/choice/store/{id}/type/{type}") // dropdown month
@@ -258,6 +275,55 @@ public class ReservationRestController {
 			res.setBody(null);
 			res.setHttpStatus(HttpStatus.NOT_FOUND);
 			return new ResponseEntity<Response<Reservation>>(res, res.getHttpStatus());
+		}
+	}
+	
+	private Date getUTC(Date date) {
+		// Calculate milliseconds for one day
+		long oneDayInMillis = 24 * 60 * 60 * 1000;
+
+		// Calculate tomorrow's date in milliseconds
+		long tomorrowInMillis = date.getTime() + oneDayInMillis;
+
+		// Create a new Date object for tomorrow
+		Date tomorrowDate = new Date(tomorrowInMillis);
+		return tomorrowDate;
+	}
+
+	private Date getDateMonOrWed(Date startDate, Date endDate) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(startDate);
+
+		while (calendar.getTime().before(endDate) || calendar.getTime().equals(endDate)) {
+			int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+
+			if ((dayOfWeek == Calendar.MONDAY || dayOfWeek == Calendar.WEDNESDAY)) {
+				return getUTC(calendar.getTime());
+			}
+
+			calendar.add(Calendar.DAY_OF_MONTH, 1);
+		}
+		return null;
+	}
+	
+	@GetMapping("/row/{row}/col/{col}")
+	public ResponseEntity<Response<LikestoreDTO>> getDataFromRowAndCol(@PathVariable("row")int row ,@PathVariable("col")int col) {
+		Response<LikestoreDTO> res = new Response<>();
+		try {
+			Area area = areaService.findByRowAndCol(row, col);
+			Reservation reservation = reservationService.findByAreaId(area.getAreaId()).get(0);
+			Date startDate = reservation.getStartDate();
+			Date endDate = reservation.getEndDate();
+			Date open1 = getDateMonOrWed(startDate, endDate);
+			Date open2 = getDateMonOrWed(getUTC(open1), endDate);
+			LikestoreDTO lsd = new LikestoreDTO(reservation.getStore().getName(), open1, open2);
+			res.setBody(lsd);
+			res.setHttpStatus(HttpStatus.OK);
+			return new ResponseEntity<Response<LikestoreDTO>>(res, res.getHttpStatus());
+		} catch (Exception ex) {
+			res.setBody(null);
+			res.setHttpStatus(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Response<LikestoreDTO>>(res, res.getHttpStatus());
 		}
 	}
 }

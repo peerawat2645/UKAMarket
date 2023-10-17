@@ -48,15 +48,6 @@ public class StoreRestController {
 	@Autowired
 	private UserService userService;
 
-	@Autowired
-	private LikestoreService likestoreService;
-
-	@Autowired
-	private ReservationService reservationService;
-	
-	@Autowired
-	private AreaService areaService;
-
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<Response<ObjectNode>> handleValidationExceptions(MethodArgumentNotValidException ex) {
 		Response<ObjectNode> res = new Response<>();
@@ -74,6 +65,21 @@ public class StoreRestController {
 		res.setMessage(HttpStatus.BAD_REQUEST.getReasonPhrase());
 		res.setBody(responObject);
 		return new ResponseEntity<Response<ObjectNode>>(res, res.getHttpStatus());
+	}
+	
+	@GetMapping("/userId/{id}")
+	public ResponseEntity<Response<List<Store>>> getAllStoreByUserId(@PathVariable("id") int userId) {
+		Response<List<Store>> res = new Response<>();
+		try {
+			List<Store> store = storeService.findByUserId(userId);
+			res.setBody(store);
+			res.setHttpStatus(HttpStatus.OK);
+			return new ResponseEntity<Response<List<Store>>>(res, res.getHttpStatus());
+		} catch (Exception ex) {
+			res.setBody(null);
+			res.setHttpStatus(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Response<List<Store>>>(res, res.getHttpStatus());
+		}
 	}
 
 	@GetMapping("/{id}")
@@ -155,122 +161,7 @@ public class StoreRestController {
 			return new ResponseEntity<Response<String>>(res, res.getHttpStatus());
 		}
 	}
-
-	@PostMapping("/like/{storeId}/userId/{userId}")
-	public ResponseEntity<Response<String>> like(@PathVariable("storeId") int storeId,@PathVariable("userId") int userId) {
-		Response<String> res = new Response<>();
-		try {
-			Likestore likestore = likestoreService.findByStoreIdAndUserId(storeId, userId);
-			if (likestore == null) {
-				Store store = storeService.findById(storeId);
-				User user = userService.findById(userId);
-				Likestore ls = new Likestore(store, user);
-				likestoreService.save(ls);
-				res.setBody("Like Success");
-				res.setHttpStatus(HttpStatus.OK);
-				return new ResponseEntity<Response<String>>(res, res.getHttpStatus());
-			}
-
-			likestoreService.deleteById(likestore.getLikeId());
-			res.setBody("Unlike Success");
-			res.setHttpStatus(HttpStatus.OK);
-			return new ResponseEntity<Response<String>>(res, res.getHttpStatus());
-		} catch (Exception ex) {
-			res.setBody(null);
-			res.setHttpStatus(HttpStatus.NOT_FOUND);
-			return new ResponseEntity<Response<String>>(res, res.getHttpStatus());
-		}
-	}
-
-	private Date getUTC(Date date) {
-		// Calculate milliseconds for one day
-		long oneDayInMillis = 24 * 60 * 60 * 1000;
-
-		// Calculate tomorrow's date in milliseconds
-		long tomorrowInMillis = date.getTime() + oneDayInMillis;
-
-		// Create a new Date object for tomorrow
-		Date tomorrowDate = new Date(tomorrowInMillis);
-		return tomorrowDate;
-	}
-
-	private Date getDateMonOrWed(Date startDate, Date endDate) {
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(startDate);
-
-		while (calendar.getTime().before(endDate) || calendar.getTime().equals(endDate)) {
-			int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-
-			if ((dayOfWeek == Calendar.MONDAY || dayOfWeek == Calendar.WEDNESDAY)) {
-				return getUTC(calendar.getTime());
-			}
-
-			calendar.add(Calendar.DAY_OF_MONTH, 1);
-		}
-		return null;
-	}
-
-	@GetMapping("/like/user/{userId}")
-	public ResponseEntity<Response<List<LikestoreDTO>>> like(@PathVariable("userId") int userId) {
-		Response<List<LikestoreDTO>> res = new Response<>();
-		try {
-			List<Likestore> likestore = likestoreService.findByUserId(userId);
-			List<LikestoreDTO> likestoreDTOs = new ArrayList<LikestoreDTO>();
-			for (Likestore ls : likestore) {
-				Reservation reservation = reservationService.findByStoreIdAndCurrentDate(ls.getStore().getStoreId());
-
-				Date startDate = reservation.getStartDate();
-				Date endDate = reservation.getEndDate();
-				Date open1 = getDateMonOrWed(startDate, endDate);
-				Date open2 = getDateMonOrWed(getUTC(open1), endDate);
-
-				likestoreDTOs.add(new LikestoreDTO(ls.getStore().getName(), open1, open2));
-			}
-			res.setBody(likestoreDTOs);
-			res.setHttpStatus(HttpStatus.OK);
-			return new ResponseEntity<Response<List<LikestoreDTO>>>(res, res.getHttpStatus());
-		} catch (Exception ex) {
-			res.setBody(null);
-			res.setHttpStatus(HttpStatus.NOT_FOUND);
-			return new ResponseEntity<Response<List<LikestoreDTO>>>(res, res.getHttpStatus());
-		}
-	}
 	
-	@GetMapping("/row/{row}/col/{col}")
-	public ResponseEntity<Response<LikestoreDTO>> getDataFromRowAndCol(@PathVariable("row")int row ,@PathVariable("col")int col) {
-		Response<LikestoreDTO> res = new Response<>();
-		try {
-			Area area = areaService.findByRowAndCol(row, col);
-			Reservation reservation = reservationService.findByAreaId(area.getAreaId()).get(0);
-			Date startDate = reservation.getStartDate();
-			Date endDate = reservation.getEndDate();
-			Date open1 = getDateMonOrWed(startDate, endDate);
-			Date open2 = getDateMonOrWed(getUTC(open1), endDate);
-			LikestoreDTO lsd = new LikestoreDTO(reservation.getStore().getName(), open1, open2);
-			res.setBody(lsd);
-			res.setHttpStatus(HttpStatus.OK);
-			return new ResponseEntity<Response<LikestoreDTO>>(res, res.getHttpStatus());
-		} catch (Exception ex) {
-			res.setBody(null);
-			res.setHttpStatus(HttpStatus.NOT_FOUND);
-			return new ResponseEntity<Response<LikestoreDTO>>(res, res.getHttpStatus());
-		}
-	}
 	
-	@GetMapping("/")
-	public ResponseEntity<Response<List<Area>>> getAllOpen() {
-		Response<List<Area>> res = new Response<>();
-		try {
-			List<Area> areas = reservationService.findAllByCurrentDate();
-
-			res.setBody(areas);
-			res.setHttpStatus(HttpStatus.OK);
-			return new ResponseEntity<Response<List<Area>>>(res, res.getHttpStatus());
-		} catch (Exception ex) {
-			res.setBody(null);
-			res.setHttpStatus(HttpStatus.NOT_FOUND);
-			return new ResponseEntity<Response<List<Area>>>(res, res.getHttpStatus());
-		}
-	}
 
 }
