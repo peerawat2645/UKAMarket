@@ -6,7 +6,10 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import '../ui/afterlogin/main_page.dart';
 
 class RegisterReservation extends StatefulWidget {
-  const RegisterReservation({super.key});
+
+    final int userId; // Declare userId as an instance variable
+
+  const RegisterReservation({Key? key, required this.userId}) : super(key: key);
 
   @override
   State<RegisterReservation> createState() => _RegisterReservationState();
@@ -203,7 +206,7 @@ class _RegisterReservationState extends State<RegisterReservation> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => MainPage()),
+                            builder: (context) => MainPage(userId: widget.userId,)),
                       );
                       // Submit the form data to your backend or process it as needed
                       // You can access the form values like _storeName, _phoneNumber, etc.

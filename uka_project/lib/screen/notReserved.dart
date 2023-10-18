@@ -4,7 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 class NotReserve extends StatefulWidget {
-  const NotReserve({super.key});
+
+  final int userId; // Declare userId as an instance variable
+
+  const NotReserve({Key? key, required this.userId}) : super(key: key);
 
   @override
   State<NotReserve> createState() => _NotReserveState();
@@ -56,7 +59,7 @@ class _NotReserveState extends State<NotReserve> {
                        Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => RegisterReservation(),
+                builder: (context) => RegisterReservation(userId: widget.userId,),
               ),
             );
                     },

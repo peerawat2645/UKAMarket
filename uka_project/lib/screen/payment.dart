@@ -4,7 +4,9 @@ import 'package:uka_project/screen/reserve.dart';
 import 'package:uka_project/ui/afterlogin/main_page.dart';
 
 class PaymentPage extends StatefulWidget {
-  const PaymentPage({super.key});
+  final int userId; // Declare userId as an instance variable
+
+  const PaymentPage({Key? key, required this.userId}) : super(key: key);
 
   @override
   State<PaymentPage> createState() => _PaymentPageState();
@@ -154,7 +156,7 @@ class _PaymentPageState extends State<PaymentPage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => MainPage()),
+                                      builder: (context) => MainPage(userId: widget.userId,)),
                                 );
                               },
                               style: ElevatedButton.styleFrom(

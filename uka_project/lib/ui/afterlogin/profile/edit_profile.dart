@@ -3,6 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 class EditProfile extends StatelessWidget {
+
+  final int userId; // Declare userId as an instance variable
+
+  EditProfile({Key? key, required this.userId}) : super(key: key);
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
 

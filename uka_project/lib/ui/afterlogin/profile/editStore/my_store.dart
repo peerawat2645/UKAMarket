@@ -4,7 +4,9 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import './edit_store.dart';
 
 class MyStore extends StatefulWidget {
-  MyStore({super.key});
+  final int userId; // Declare userId as an instance variable
+
+  MyStore({Key? key, required this.userId}) : super(key: key);
   @override
   State<MyStore> createState() => _MyStore();
 }
@@ -83,7 +85,7 @@ class _MyStore extends State<MyStore> {
                               context,
                               MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      EditStore(item['title']!,item['desc']!)));
+                                      EditStore(item['title']!,item['desc']!, userId: widget.userId,)));
                         },
                         child: Container(
                           margin: EdgeInsets.symmetric(horizontal: 20.0),

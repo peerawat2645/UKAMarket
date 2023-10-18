@@ -7,7 +7,9 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'selectArea.dart';
 
 class ReservationSelectDate extends StatefulWidget {
-  const ReservationSelectDate({super.key});
+          final int userId; // Declare userId as an instance variable
+
+  const ReservationSelectDate({Key? key, required this.userId}) : super(key: key);
 
   @override
   State<ReservationSelectDate> createState() => _ReservationSelectDateState();
@@ -112,7 +114,7 @@ String selectedValue = 'ตุลาคม 2566'; // Initial selected value
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return SelectAreaPage(); // Replace with the name of the screen you want to navigate to
+                                return SelectAreaPage(userId: widget.userId,); // Replace with the name of the screen you want to navigate to
                               },
                             ),
                           );
@@ -214,7 +216,7 @@ String selectedValue = 'ตุลาคม 2566'; // Initial selected value
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return SelectAreaPage(); // Replace with the name of the screen you want to navigate to
+                                return SelectAreaPage(userId: widget.userId,); // Replace with the name of the screen you want to navigate to
                               },
                             ),
                           );

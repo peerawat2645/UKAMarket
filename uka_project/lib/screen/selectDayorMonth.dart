@@ -6,7 +6,9 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'selectArea.dart';
 
 class SelectDayOrMonthPage extends StatefulWidget {
-  const SelectDayOrMonthPage({super.key});
+  final int userId; // Declare userId as an instance variable
+
+  const SelectDayOrMonthPage({Key? key, required this.userId}) : super(key: key);
 
   @override
   State<SelectDayOrMonthPage> createState() => _SelectDayOrMonthPageState();
@@ -55,7 +57,7 @@ class _SelectDayOrMonthPageState extends State<SelectDayOrMonthPage> {
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return ReservationSelectDate(); // Replace with the name of the screen you want to navigate to
+                                return ReservationSelectDate(userId: widget.userId,); // Replace with the name of the screen you want to navigate to
                               },
                             ),
                           );
@@ -85,7 +87,7 @@ class _SelectDayOrMonthPageState extends State<SelectDayOrMonthPage> {
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return ReservationSelectDate(); // Replace with the name of the screen you want to navigate to
+                                return ReservationSelectDate(userId: widget.userId,); // Replace with the name of the screen you want to navigate to
                               },
                             ),
                           );

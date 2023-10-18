@@ -5,7 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 class Home2Page extends StatefulWidget {
-  const Home2Page({super.key});
+      final int userId; // Declare userId as an instance variable
+
+  const Home2Page({Key? key, required this.userId}) : super(key: key);
 
   @override
   State<Home2Page> createState() => _Home2PageState();
@@ -71,7 +73,7 @@ class _Home2PageState extends State<Home2Page> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => MainPage2()),
+                                builder: (context) => MainPage2(userId: widget.userId,)),
                           );
                         },
                         style: ElevatedButton.styleFrom(
@@ -96,7 +98,7 @@ class _Home2PageState extends State<Home2Page> {
                   child: Container(
                     width:
                         MediaQuery.of(context).size.width, // 50% width
-                    height: 485, // Adjust the height as needed
+                    height: 500, // Adjust the height as needed
                     decoration: BoxDecoration(
                       color: const Color(0xFF9EB384), // Background color
                       borderRadius: BorderRadius.circular(10), // Border radius

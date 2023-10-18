@@ -6,7 +6,9 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'selectDate.dart';
 
 class ThingAreaPage extends StatefulWidget {
-  const ThingAreaPage({super.key});
+  final int userId; // Declare userId as an instance variable
+
+  const ThingAreaPage({Key? key, required this.userId}) : super(key: key);
 
   @override
   State<ThingAreaPage> createState() => _ThingAreaPageState();
@@ -70,7 +72,7 @@ class _ThingAreaPageState extends State<ThingAreaPage> {
                     child: Container(
                       width:
                           MediaQuery.of(context).size.width * 0.95, // 50% width
-                      height: 485, // Adjust the height as needed
+                      height: 500, // Adjust the height as needed
                       decoration: BoxDecoration(
                         color: const Color(0xFF9EB384), // Background color
                         borderRadius: BorderRadius.circular(10), // Border radius
@@ -176,7 +178,7 @@ class _ThingAreaPageState extends State<ThingAreaPage> {
                                                                             context,
                                                                             MaterialPageRoute(
                                                                                 builder: (context) =>
-                                                                                    ReservationSelectDate()),
+                                                                                    ReservationSelectDate(userId: widget.userId,)),
                                                                           ); // Close the dialog
                                                                         },
                                                                         icon:

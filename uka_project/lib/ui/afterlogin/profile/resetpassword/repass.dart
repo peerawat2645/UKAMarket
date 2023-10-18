@@ -4,7 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class Repass extends StatelessWidget {
   final TextEditingController _repassController = TextEditingController();
 
-  Repass({super.key});
+  final int userId; // Declare userId as an instance variable
+
+  Repass({Key? key, required this.userId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

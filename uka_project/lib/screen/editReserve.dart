@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:uka_project/screen/regisReservation.dart';
 
 class EditReservation extends StatefulWidget {
-  const EditReservation({super.key});
+  final int userId; // Declare userId as an instance variable
+
+  const EditReservation({Key? key, required this.userId}) : super(key: key);
 
   @override
   State<EditReservation> createState() => _EditReservationState();
@@ -150,7 +152,7 @@ class _EditReservationState extends State<EditReservation> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => RegisterReservation()),
+                            builder: (context) => RegisterReservation(userId: widget.userId,)),
                       );
                       // Submit the form data to your backend or process it as needed
                       // You can access the form values like _storeName, _phoneNumber, etc.

@@ -5,7 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 class ReservationInfo extends StatefulWidget {
-  const ReservationInfo({super.key});
+      final int userId; // Declare userId as an instance variable
+
+  const ReservationInfo({Key? key, required this.userId}) : super(key: key);
 
   @override
   State<ReservationInfo> createState() => _ReservationInfoState();
@@ -200,7 +202,7 @@ class _ReservationInfoState extends State<ReservationInfo> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return PaymentPage(); // Replace with the name of the screen you want to navigate to
+                                  return PaymentPage(userId: widget.userId,); // Replace with the name of the screen you want to navigate to
                                 },
                               ),
                             );

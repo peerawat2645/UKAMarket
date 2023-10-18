@@ -9,7 +9,9 @@ import 'regisReservation.dart';
 import 'selectDayorMonth.dart';
 
 class ReservationPage extends StatefulWidget {
-  const ReservationPage({super.key});
+    final int userId; // Declare userId as an instance variable
+
+  const ReservationPage({Key? key, required this.userId}) : super(key: key);
 
   @override
   State<ReservationPage> createState() => _ReservationPageState();
@@ -47,7 +49,7 @@ class _ReservationPageState extends State<ReservationPage> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => RegisterReservation()),
+                MaterialPageRoute(builder: (context) => RegisterReservation(userId: widget.userId,)),
               );
               print('Add button pressed');
             },
@@ -72,7 +74,7 @@ class _ReservationPageState extends State<ReservationPage> {
                  Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => SelectDayOrMonthPage(),
+                    builder: (context) => SelectDayOrMonthPage(userId: widget.userId,),
                   ),
                 );
                 print('Tapped on ${store.name}');
@@ -145,7 +147,7 @@ class _ReservationPageState extends State<ReservationPage> {
                           Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => EditReservation()),
+                                      builder: (context) => EditReservation(userId: widget.userId,)),
                                 );
                           // Handle edit action
                           print('Edit ${store.name}');

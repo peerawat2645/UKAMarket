@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FavStore extends StatefulWidget {
-  FavStore({super.key});
+  final int userId; // Declare userId as an instance variable
+
+  const FavStore({Key? key, required this.userId}) : super(key: key);
   @override
   State<FavStore> createState() => _FavStore();
 }

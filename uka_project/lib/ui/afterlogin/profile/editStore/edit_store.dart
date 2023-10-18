@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 class EditStore extends StatelessWidget {
-  EditStore(this.nameStore, this.storeDetail, {super.key,  });
+  final int userId; // Declare userId as an instance variable
+
+  EditStore(String s, String n, {Key? key, required this.userId,this.nameStore, this.storeDetail,}) : super(key: key);
   final nameStore;
   final storeDetail;
   final TextEditingController _nameStoreController = TextEditingController();

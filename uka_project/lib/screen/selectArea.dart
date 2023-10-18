@@ -3,7 +3,9 @@ import 'package:uka_project/screen/FoodArea.dart';
 import 'package:uka_project/screen/ThingArea.dart';
 
 class SelectAreaPage extends StatefulWidget {
-  const SelectAreaPage({super.key});
+        final int userId; // Declare userId as an instance variable
+
+  const SelectAreaPage({Key? key, required this.userId}) : super(key: key);
 
   @override
   State<SelectAreaPage> createState() => _SelectAreaPageState();
@@ -14,10 +16,10 @@ class _SelectAreaPageState extends State<SelectAreaPage> {
   Widget build(BuildContext context) {
     bool p =true;
     if(p){
-      return const FoodAreaPage();
+      return FoodAreaPage(userId: widget.userId,);
     }
     else{
-      return const ThingAreaPage();
+      return ThingAreaPage(userId: widget.userId,);
     }
   }
 }

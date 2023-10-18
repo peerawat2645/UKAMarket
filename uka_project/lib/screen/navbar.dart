@@ -5,15 +5,17 @@ import 'package:uka_project/screen/reserve.dart';
 import 'package:uka_project/screen/reserved.dart';
 
 class NavBar extends StatelessWidget {
-  const NavBar({super.key});
+  final int userId; // Declare userId as an instance variable
+
+  const NavBar({Key? key, required this.userId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Nav(),
       routes: {
-        '/pageOne': (context) => Home2Page(),
-        '/pageTwo': (context) => ReservationCheck(),
+        '/pageOne': (context) => Home2Page(userId: 1,),
+        '/pageTwo': (context) => ReservationCheck(userId: 1,),
       },
     );
   }

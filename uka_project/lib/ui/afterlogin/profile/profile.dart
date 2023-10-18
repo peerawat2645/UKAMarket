@@ -6,7 +6,9 @@ import './resetpassword/repass.dart';
 import './edit_profile.dart';
 
 class Profile extends StatefulWidget {
-  const Profile({super.key});
+  final int userId; // Declare userId as an instance variable
+
+  const Profile({Key? key, required this.userId}) : super(key: key);
 
   @override
   State<Profile> createState() => _Profile();
@@ -63,7 +65,7 @@ class _Profile extends State<Profile> {
                             context,
                             MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                     EditProfile()));
+                                     EditProfile(userId: widget.userId,)));
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF435334),
@@ -98,7 +100,7 @@ class _Profile extends State<Profile> {
                             context,
                             MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    MyStore() ));
+                                    MyStore(userId: widget.userId,) ));
                   },
                 ),
                 ProfileMenuWidget(
@@ -109,7 +111,7 @@ class _Profile extends State<Profile> {
                             context,
                             MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    Repass() ));
+                                    Repass(userId: widget.userId,) ));
                       },
                 ),
                 SizedBox(

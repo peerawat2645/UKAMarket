@@ -7,7 +7,9 @@ import 'favModel/favStore.dart';
 import 'profile/profile.dart';
 
 class MainPage2 extends StatefulWidget {
-  const MainPage2({super.key});
+  final int userId; // Declare userId as an instance variable
+
+  const MainPage2({Key? key, required this.userId}) : super(key: key);
   @override
   State<MainPage2> createState() => _MyViewPage2();
 }
@@ -15,15 +17,16 @@ class MainPage2 extends StatefulWidget {
 class _MyViewPage2 extends State<MainPage2> {
   var _currentIndex = 0;
   // ignore: non_constant_identifier_names
-  final Screen = [
-    const HomePage(),
-    FavStore(),
-    const ReservationCheck() ,
-    const Profile()
-  ];
+
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> Screen = <Widget>[
+     HomePage(userId: widget.userId,),
+    FavStore(userId: widget.userId,),
+    ReservationCheck(userId: widget.userId,) ,
+    Profile(userId: widget.userId,)
+  ];
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home : Scaffold(

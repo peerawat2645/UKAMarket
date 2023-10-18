@@ -7,7 +7,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 class FoodAreaPage extends StatefulWidget {
-  const FoodAreaPage({super.key});
+  final int userId; // Declare userId as an instance variable
+
+  const FoodAreaPage({Key? key, required this.userId}) : super(key: key);
 
   @override
   State<FoodAreaPage> createState() => _FoodAreaPageState();
@@ -69,7 +71,7 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                       child: Container(
                         width:
                             MediaQuery.of(context).size.width * 0.95, // 50% width
-                        height: 485, // Adjust the height as needed
+                        height: 500, // Adjust the height as needed
                         decoration: BoxDecoration(
                           color: const Color(0xFF9EB384), // Background color
                           borderRadius:
@@ -177,7 +179,7 @@ class _FoodAreaPageState extends State<FoodAreaPage> {
                                                                             context,
                                                                             MaterialPageRoute(
                                                                                 builder: (context) =>
-                                                                                    ReservationInfo()),
+                                                                                    ReservationInfo(userId: widget.userId,)),
                                                                           ); // Close the dialog
                                                                         },
                                                                         icon:

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../api/baseclient.dart';
 import '../afterlogin/main_page.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 
@@ -13,6 +14,29 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
+
+  void _handleLogin() {
+    final String username = _emailController.text;
+    final String password = _passController.text;
+
+    Map<String, dynamic> jsonData = {
+      "password": password,
+      "username": username,
+    };
+    BaseClient().login('/login', jsonData).then((result) {
+      if (result != null) {
+        print('login Successful: $result');
+        int userId = result['body']['userId'];
+        print(userId);
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (BuildContext context) => MainPage(userId: userId)));
+      }
+    }).catchError((error) {
+      print('POST Failed: $error');
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -155,13 +179,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   width: 329.w,
                                   height: 56.h,
                                   child: ElevatedButton(
-                                    onPressed: () {
-                                      Navigator.pushReplacement(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (BuildContext context) =>
-                                                  const MainPage()));
-                                    },
+                                    onPressed: _handleLogin,
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: const Color(0xFF435334),
                                     ),
@@ -240,8 +258,11 @@ Widget loading() {
   );
 }
 
-Widget noInternet(){
+Widget noInternet() {
   return Center(
-    child: Text('คุณไม่ได้เชื่อมต่ออินเทอร์เน็ต' , style: TextStyle(fontFamily: 'Baijamjuree' , fontSize: 15.sp),),
+    child: Text(
+      'คุณไม่ได้เชื่อมต่ออินเทอร์เน็ต',
+      style: TextStyle(fontFamily: 'Baijamjuree', fontSize: 15.sp),
+    ),
   );
 }
