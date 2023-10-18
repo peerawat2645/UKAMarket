@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 import 'selectArea.dart';
+import 'selectMonth.dart';
 
 class SelectDayOrMonthPage extends StatefulWidget {
   final int userId; // Declare userId as an instance variable
@@ -87,7 +88,7 @@ class _SelectDayOrMonthPageState extends State<SelectDayOrMonthPage> {
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return ReservationSelectDate(userId: widget.userId,); // Replace with the name of the screen you want to navigate to
+                                return ReservationSelectMonth(userId: widget.userId,); // Replace with the name of the screen you want to navigate to
                               },
                             ),
                           );
