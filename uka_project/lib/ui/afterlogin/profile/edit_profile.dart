@@ -1,14 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:uka_project/api/baseclient.dart';
 
+class EditProfile extends StatefulWidget {
+  EditProfile(
+      {super.key,
+      required this.userId,
+      required this.userName,
+      required this.email,
+      required this.name,
+      required this.lastName, required this.password});
 
-class EditProfile extends StatelessWidget {
+  final int userId;
+  final String userName;
+  final String email;
+  final String name;
+  final String lastName;
+  final String password;
 
-  final int userId; // Declare userId as an instance variable
+  @override
+  State<EditProfile> createState() => _EditProfileState();
+}
 
-  EditProfile({Key? key, required this.userId}) : super(key: key);
-  final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
+class _EditProfileState extends State<EditProfile> {
+  late final TextEditingController _usernameController =
+      TextEditingController(text: '${widget.userName}');
+  late final TextEditingController _emailController =
+      TextEditingController(text: '${widget.email}');
+  late final TextEditingController _nameController =
+      TextEditingController(text: '${widget.name}');
+  late final TextEditingController _surnameController =
+      TextEditingController(text: '${widget.lastName}');
 
   @override
   Widget build(BuildContext context) {
@@ -48,94 +70,187 @@ class EditProfile extends StatelessWidget {
               Padding(
                   padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
                   child: Column(
-                children: [
-                  TextField(
-                    controller: _usernameController,
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      color: const Color(0xFF393939),
-                      fontSize: 13.sp,
-                      fontFamily: 'BaiJamjuree',
-                      fontWeight: FontWeight.w400,
-                    ),
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.person),
-                      labelText: '@Username',
-                      labelStyle: TextStyle(
-                        color: const Color(0xFF040D12),
-                        fontSize: 15.sp,
-                        fontFamily: 'BaiJamjuree',
-                        fontWeight: FontWeight.w100,
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius:
-                           BorderRadius.all(Radius.circular(100.r)),
-                        borderSide: BorderSide(
-                          width: 1.w,
-                          color: const Color(0xFF837E93),
+                    children: [
+                      TextField(
+                        controller: _usernameController,
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          color: const Color(0xFF393939),
+                          fontSize: 13.sp,
+                          fontFamily: 'BaiJamjuree',
+                          fontWeight: FontWeight.w400,
+                        ),
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.person),
+                          labelText: '@Username',
+                          labelStyle: TextStyle(
+                            color: const Color(0xFF040D12),
+                            fontSize: 15.sp,
+                            fontFamily: 'BaiJamjuree',
+                            fontWeight: FontWeight.w100,
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(100.r)),
+                            borderSide: BorderSide(
+                              width: 1.w,
+                              color: const Color(0xFF837E93),
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.r)),
+                            borderSide: BorderSide(
+                              width: 1.w,
+                              color: const Color(0xFF040D12),
+                            ),
+                          ),
                         ),
                       ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius:
-                             BorderRadius.all(Radius.circular(20.r)),
-                        borderSide: BorderSide(
-                          width: 1.w,
-                          color: const Color(0xFF040D12),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
+                      SizedBox(
                         height: 10.h,
                       ),
-                  TextField(
-                    controller: _emailController,
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      color: const Color(0xFF393939),
-                      fontSize: 13.sp,
-                      fontFamily: 'BaiJamjuree',
-                      fontWeight: FontWeight.w400,
-                    ),
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.email),
-                      labelText: 'อีเมล',
-                      labelStyle: TextStyle(
-                        color: const Color(0xFF040D12),
-                        fontSize: 15.sp,
-                        fontFamily: 'BaiJamjuree',
-                        fontWeight: FontWeight.w100,
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius:
-                            BorderRadius.all(Radius.circular(100.r)),
-                        borderSide: BorderSide(
-                          width: 1.w,
-                          color: const Color(0xFF837E93),
+                      TextField(
+                        controller: _emailController,
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          color: const Color(0xFF393939),
+                          fontSize: 13.sp,
+                          fontFamily: 'BaiJamjuree',
+                          fontWeight: FontWeight.w400,
+                        ),
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.email),
+                          labelText: 'อีเมล',
+                          labelStyle: TextStyle(
+                            color: const Color(0xFF040D12),
+                            fontSize: 15.sp,
+                            fontFamily: 'BaiJamjuree',
+                            fontWeight: FontWeight.w100,
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(100.r)),
+                            borderSide: BorderSide(
+                              width: 1.w,
+                              color: const Color(0xFF837E93),
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.r)),
+                            borderSide: BorderSide(
+                              width: 1.w,
+                              color: const Color(0xFF040D12),
+                            ),
+                          ),
                         ),
                       ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius:
-                            BorderRadius.all(Radius.circular(20.r)),
-                        borderSide: BorderSide(
-                          width: 1.w,
-                          color: const Color(0xFF040D12),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      TextField(
+                        controller: _nameController,
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          color: const Color(0xFF393939),
+                          fontSize: 13.sp,
+                          fontFamily: 'BaiJamjuree',
+                          fontWeight: FontWeight.w400,
+                        ),
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.info),
+                          labelText: 'ชื่อ',
+                          labelStyle: TextStyle(
+                            color: const Color(0xFF040D12),
+                            fontSize: 15.sp,
+                            fontFamily: 'BaiJamjuree',
+                            fontWeight: FontWeight.w100,
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(100.r)),
+                            borderSide: BorderSide(
+                              width: 1.w,
+                              color: const Color(0xFF837E93),
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.r)),
+                            borderSide: BorderSide(
+                              width: 1.w,
+                              color: const Color(0xFF040D12),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15.h,
-                  ),
-                  ClipRRect(
-                        borderRadius:
-                            BorderRadius.all(Radius.circular(100.r)),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      TextField(
+                        controller: _surnameController,
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          color: const Color(0xFF393939),
+                          fontSize: 13.sp,
+                          fontFamily: 'BaiJamjuree',
+                          fontWeight: FontWeight.w400,
+                        ),
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.info),
+                          labelText: 'นามสกุล',
+                          labelStyle: TextStyle(
+                            color: const Color(0xFF040D12),
+                            fontSize: 15.sp,
+                            fontFamily: 'BaiJamjuree',
+                            fontWeight: FontWeight.w100,
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(100.r)),
+                            borderSide: BorderSide(
+                              width: 1.w,
+                              color: const Color(0xFF837E93),
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.r)),
+                            borderSide: BorderSide(
+                              width: 1.w,
+                              color: const Color(0xFF040D12),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15.h,
+                      ),
+                      ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(100.r)),
                         child: SizedBox(
                           width: 129.w,
                           height: 36.h,
                           child: ElevatedButton(
                             onPressed: () {
-                              Navigator.pop(context);
+                              Map<String, dynamic> jsonData = {
+                                "email": _emailController.text,
+                                "name": _nameController.text,
+                                "password": widget.password,
+                                "surname": _surnameController.text,
+                                "userId": widget.userId,
+                                "username": _usernameController.text
+                              };
+                              BaseClient()
+                                  .updateProfile('/v1/user/update', jsonData)
+                                  .then((result) {
+                                if (result != null) {
+                                  Navigator.pop(context);
+                                }
+                              }).catchError((error) {
+                                print('POST Failed: $error');
+                              });
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFF435334),
@@ -152,8 +267,8 @@ class EditProfile extends StatelessWidget {
                           ),
                         ),
                       ),
-                ],
-              ))
+                    ],
+                  ))
             ],
           ),
         ),
