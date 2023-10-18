@@ -24,6 +24,7 @@ class _MyViewPage extends State<MainPage> {
   String nameProfile = '';
   String surnameP = '';
   String passwordP = '';
+  List likeMain =[];
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,7 @@ class _MyViewPage extends State<MainPage> {
         userId: widget.userId,
       ),
       FavStore(
-        userId: widget.userId,
+        userId: widget.userId, likeStore: likeMain,
       ),
       ReservationCheck(
         userId: widget.userId,
@@ -58,7 +59,6 @@ class _MyViewPage extends State<MainPage> {
                 Map<String, dynamic> jsonData = {};
                 BaseClient().getProfile('/user/', widget.userId).then((result) {
                   if (result != null) {
-                  
                     String userName = result['body']['username'];
                     String email = result['body']['email'];
                     String name = result['body']['name'];
@@ -69,6 +69,20 @@ class _MyViewPage extends State<MainPage> {
                     nameProfile = name;
                     surnameP = lastName;
                     passwordP = password;
+                  }
+                  ;
+                }).catchError((error) {
+                  print('POST Failed: $error');
+                });
+
+                BaseClient()
+                    .getMyStore('/like/user/', widget.userId)
+                    .then((result) {
+                  if (result != null) {
+                    final List store = result;
+                    likeMain = store;
+                    print(store);
+                    
                   }
                   ;
                 }).catchError((error) {

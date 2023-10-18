@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import '../../../../api/baseclient.dart';
 import './edit_store.dart';
 
 class MyStore extends StatefulWidget {
   final int userId; // Declare userId as an instance variable
-  final List stores ;
-  MyStore( {Key? key, required this.userId, required this.stores}) : super(key: key);
+  final List stores;
+  MyStore({Key? key, required this.userId, required this.stores})
+      : super(key: key);
   @override
   State<MyStore> createState() => _MyStore();
 }
 
 class _MyStore extends State<MyStore> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,11 +59,19 @@ class _MyStore extends State<MyStore> {
                       endActionPane:
                           ActionPane(motion: ScrollMotion(), children: [
                         SlidableAction(
-                          onPressed: (context) {
+                          onPressed: (context) async {
                             setState(() {
-                              //widget.stores.removeAt(index);
-                              print(widget.stores.length);
-
+                              Map<String, dynamic> jsonData = {};
+                              BaseClient()
+                                  .delete('stores/delete/', item['storeId'])
+                                  .then((result) {
+                                if (result != null) {
+                                  
+                                }
+                                ;
+                              }).catchError((error) {
+                                print('POST Failed: $error');
+                              });
                             });
                           },
                           backgroundColor: Colors.red,
@@ -74,8 +83,15 @@ class _MyStore extends State<MyStore> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      EditStore(item['name'],item['description'], userId: widget.userId,)));
+                                  builder: (BuildContext context) => EditStore(
+                                        nameStore: item['name'],
+                                        storeDetail: item['description'],
+                                        phoneNum: item['phone'],
+                                        storeId: item['storeId'],
+                                        userId: widget.userId,
+                                        imgPath: item['imgPath'],
+                                        type: item['type'],
+                                      )));
                         },
                         child: Container(
                           margin: EdgeInsets.symmetric(horizontal: 20.0),

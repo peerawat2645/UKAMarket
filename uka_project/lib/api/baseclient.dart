@@ -125,6 +125,29 @@ class BaseClient {
       }
   }
 
+  //deleteStore
+   Future<dynamic> delete(String api , int storeId) async{
+    String id = storeId.toString();
+    const String baseUrl = 'http://localhost:8080/api/v1/';
+    var url = Uri.parse(baseUrl + api+id);
+
+  try {
+    final response = await http.post(url, headers: headers);
+
+    if (response.statusCode == 200) {
+      // The DELETE request was successful.
+      return 'Success'; // You can return a relevant success message or data.
+    } else {
+      // Handle other status codes as needed.
+      throw Exception('Failed to delete: ${response.statusCode}');
+    }
+  } catch (e) {
+    // Handle exceptions if the request fails.
+    print('Error: $e');
+    throw e; // Rethrow the exception if needed.
+  }
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
