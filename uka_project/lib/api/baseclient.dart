@@ -105,7 +105,6 @@ class BaseClient {
   }
 
   //getmyStore
-  List<Store> storeList = [];
   Future<dynamic> getMyStore(String api , int userId) async{
 
     Map<String, String> headers = {'Content-Type': 'application/json'};
@@ -113,16 +112,16 @@ class BaseClient {
 
     const String baseUrl = 'http://localhost:8080/api/v1';
     var url = Uri.parse(baseUrl+api+id);
-      print(url);
+
       final response = await http.get(url, headers: headers);
-      //print(response.body);
-      //print('GET User ID: $userId');
+      
       if(response.statusCode==200){
         final responseData = json.decode(utf8.decode(response.bodyBytes));
-        print(responseData);
-        return responseData;
+        print(responseData['body']);
+        return responseData['body'];
       }
       else{
+        throw Exception('Failed to load data. Status Code: ${response.statusCode}');
       }
   }
 
@@ -132,3 +131,12 @@ class BaseClient {
     throw UnimplementedError();
   }
 }
+
+class Store{
+  final String name,phone,description,type,imgPath;
+  final int storeId;
+
+  Store( {required this.storeId, required this.name, required this.phone, required this.description, required this.type, required this.imgPath});
+
+}
+

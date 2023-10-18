@@ -5,25 +5,13 @@ import './edit_store.dart';
 
 class MyStore extends StatefulWidget {
   final int userId; // Declare userId as an instance variable
-
-  MyStore({Key? key, required this.userId}) : super(key: key);
+  final List stores ;
+  MyStore( {Key? key, required this.userId, required this.stores}) : super(key: key);
   @override
   State<MyStore> createState() => _MyStore();
 }
 
 class _MyStore extends State<MyStore> {
-  final storeList = [
-    {
-      'icon': 'restaurant_menu',
-      'title': 'Store 1',
-      'desc': 'Description',
-    },
-    {
-      'icon': 'restaurant_menu',
-      'title': 'Store 1',
-      'desc': 'Description',
-    }
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +27,7 @@ class _MyStore extends State<MyStore> {
         ),
         backgroundColor: Color(0xFF435334),
       ),
-      body: (storeList.isEmpty)
+      body: (widget.stores.isEmpty)
           ? SizedBox(
               height: double.infinity,
               width: double.infinity,
@@ -58,9 +46,9 @@ class _MyStore extends State<MyStore> {
               ),
             )
           : ListView.builder(
-              itemCount: storeList.length,
+              itemCount: widget.stores.length,
               itemBuilder: (context, index) {
-                final item = storeList[index];
+                final item = widget.stores[index];
                 return Padding(
                     padding: (index == 0)
                         ? const EdgeInsets.symmetric(vertical: 20.0)
@@ -72,7 +60,9 @@ class _MyStore extends State<MyStore> {
                         SlidableAction(
                           onPressed: (context) {
                             setState(() {
-                              storeList.removeAt(index);
+                              //widget.stores.removeAt(index);
+                              print(widget.stores.length);
+
                             });
                           },
                           backgroundColor: Colors.red,
@@ -85,7 +75,7 @@ class _MyStore extends State<MyStore> {
                               context,
                               MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      EditStore(item['title']!,item['desc']!, userId: widget.userId,)));
+                                      EditStore(item['name'],item['description'], userId: widget.userId,)));
                         },
                         child: Container(
                           margin: EdgeInsets.symmetric(horizontal: 20.0),
@@ -119,7 +109,7 @@ class _MyStore extends State<MyStore> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    item['title']!,
+                                    item['name']!,
                                     style: TextStyle(
                                         fontFamily: 'Baijamjuree',
                                         fontSize: 13.sp,
@@ -128,7 +118,7 @@ class _MyStore extends State<MyStore> {
                                   SizedBox(
                                     height: 5.h,
                                   ),
-                                  Text(item['desc']!,
+                                  Text(item['description']!,
                                       style: TextStyle(
                                           fontFamily: 'Baijamjuree',
                                           fontSize: 13.sp,

@@ -118,12 +118,13 @@ class _Profile extends State<Profile> {
                     Map<String, dynamic> jsonData = {};
                 BaseClient().getMyStore('/stores/userId/', widget.userId).then((result) {
                   if (result != null) {
-                    final store = result['body'];
+                    final List store = result;
+                    print(store);
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (BuildContext context) => MyStore(
-                                  userId: widget.userId,storeList: [store],
+                                  userId: widget.userId, stores: store,
                                 )));
                   }
                   ;
