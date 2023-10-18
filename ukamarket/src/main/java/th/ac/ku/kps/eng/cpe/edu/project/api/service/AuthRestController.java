@@ -1,4 +1,4 @@
-package th.ac.ku.kps.eng.cpe.edu.project.authentication;
+package th.ac.ku.kps.eng.cpe.edu.project.api.service;
 
 import javax.validation.Valid;
 
@@ -29,7 +29,7 @@ import th.ac.ku.kps.eng.cpe.edu.project.model.DTO.UserDTO;
 import th.ac.ku.kps.eng.cpe.edu.project.security.jwt.JwtUtils;
 import th.ac.ku.kps.eng.cpe.edu.project.services.UserService;
 
-@CrossOrigin("http://localhost:8081/")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/auth")
 public class AuthRestController {
