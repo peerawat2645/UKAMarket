@@ -49,7 +49,9 @@ class _FavStore extends State<FavStore> {
               itemCount: widget.likeStore.length,
               itemBuilder: (context, index) {
                 final item = widget.likeStore[index];
-
+                if (item['nextDate' == null]) {
+                  item['nextDate'] = 'ไม่มีกำหนด';
+                }
                 return Padding(
                   padding: (index == 0)
                       ? const EdgeInsets.symmetric(vertical: 20.0)
