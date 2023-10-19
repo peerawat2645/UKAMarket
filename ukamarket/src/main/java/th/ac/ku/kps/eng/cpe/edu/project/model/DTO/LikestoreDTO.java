@@ -9,6 +9,7 @@ public class LikestoreDTO {
 	private String status;
 	private Date startDate;
 	private Date nextDate;
+	private int storeId;
 
 	public LikestoreDTO() {
 		super();
@@ -16,7 +17,7 @@ public class LikestoreDTO {
 	}
 
 	public LikestoreDTO(String name, String description, String phoneNumber, String status, Date startDate,
-			Date nextDate) {
+			Date nextDate, int storeId) {
 		super();
 		this.name = name;
 		this.description = description;
@@ -24,6 +25,15 @@ public class LikestoreDTO {
 		this.status = status;
 		this.startDate = startDate;
 		this.nextDate = nextDate;
+		this.storeId = storeId;
+	}
+
+	public int getStoreId() {
+		return storeId;
+	}
+
+	public void setStoreId(int storeId) {
+		this.storeId = storeId;
 	}
 
 	public String getName() {

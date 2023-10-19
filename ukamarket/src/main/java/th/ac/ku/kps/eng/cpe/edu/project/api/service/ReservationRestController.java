@@ -304,7 +304,7 @@ public class ReservationRestController {
 				Reservation r = reservation.get(0);
 				Store s = r.getStore();
 				LikestoreDTO lsd = new LikestoreDTO();
-				lsd = new LikestoreDTO(s.getName(), s.getDescription(), s.getPhone(), null, null, null);
+				lsd = new LikestoreDTO(s.getName(), s.getDescription(), s.getPhone(), null, null, null, s.getStoreId());
 				res.setBody(lsd);
 			}
 			res.setHttpStatus(HttpStatus.OK);

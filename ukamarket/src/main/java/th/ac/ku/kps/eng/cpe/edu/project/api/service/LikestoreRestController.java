@@ -151,14 +151,14 @@ public class LikestoreRestController {
 					Date currentDate = new Date();
 					if (currentDate.after(open1)) {
 						likestoreDTOs.add(
-								new LikestoreDTO(s.getName(), s.getDescription(), s.getPhone(), "open", getUTC(open1), getUTC(open2)));
+								new LikestoreDTO(s.getName(), s.getDescription(), s.getPhone(), "open", getUTC(open1), getUTC(open2), s.getStoreId()));
 					} else {
 						likestoreDTOs.add(
-								new LikestoreDTO(s.getName(), s.getDescription(), s.getPhone(), "close", getUTC(open1), getUTC(open2)));
+								new LikestoreDTO(s.getName(), s.getDescription(), s.getPhone(), "close", getUTC(open1), getUTC(open2), s.getStoreId()));
 					}
 				} else {
 					likestoreDTOs
-							.add(new LikestoreDTO(s.getName(), s.getDescription(), s.getPhone(), "close", null, null));
+							.add(new LikestoreDTO(s.getName(), s.getDescription(), s.getPhone(), "close", null, null, s.getStoreId()));
 				}
 			}
 			res.setBody(likestoreDTOs);
