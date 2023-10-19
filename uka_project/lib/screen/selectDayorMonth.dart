@@ -8,8 +8,9 @@ import 'selectMonth.dart';
 
 class SelectDayOrMonthPage extends StatefulWidget {
   final int userId; // Declare userId as an instance variable
+  final int storeId;
 
-  const SelectDayOrMonthPage({Key? key, required this.userId}) : super(key: key);
+  const SelectDayOrMonthPage({Key? key, required this.userId, required this.storeId}) : super(key: key);
 
   @override
   State<SelectDayOrMonthPage> createState() => _SelectDayOrMonthPageState();
@@ -58,7 +59,7 @@ class _SelectDayOrMonthPageState extends State<SelectDayOrMonthPage> {
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return ReservationSelectDate(userId: widget.userId,); // Replace with the name of the screen you want to navigate to
+                                return ReservationSelectDate(userId: widget.userId,storeId: widget.storeId); // Replace with the name of the screen you want to navigate to
                               },
                             ),
                           );
@@ -88,7 +89,7 @@ class _SelectDayOrMonthPageState extends State<SelectDayOrMonthPage> {
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return ReservationSelectMonth(userId: widget.userId,); // Replace with the name of the screen you want to navigate to
+                                return ReservationSelectMonth(userId: widget.userId,storeId: widget.storeId); // Replace with the name of the screen you want to navigate to
                               },
                             ),
                           );

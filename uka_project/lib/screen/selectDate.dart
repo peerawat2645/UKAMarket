@@ -8,8 +8,9 @@ import 'selectArea.dart';
 
 class ReservationSelectDate extends StatefulWidget {
   final int userId; // Declare userId as an instance variable
+  final int storeId;
 
-  const ReservationSelectDate({Key? key, required this.userId})
+  const ReservationSelectDate({Key? key, required this.userId, required this.storeId})
       : super(key: key);
 
   @override
@@ -202,7 +203,7 @@ class _ReservationSelectDateState extends State<ReservationSelectDate> {
                       MaterialPageRoute(
                         builder: (context) {
                           return SelectAreaPage(
-                            userId: widget.userId,
+                            userId: widget.userId, type:type,startDate:_selectedDate.toLocal(),endDate:_selectedDate.toLocal(),storetype:"Day",month:"",storeId: widget.storeId
                           ); // Replace with the name of the screen you want to navigate to
                         },
                       ),

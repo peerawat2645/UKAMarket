@@ -3,13 +3,15 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:uka_project/screen/reserveInfo.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:intl/intl.dart';
 
 import 'selectArea.dart';
 
 class ReservationSelectMonth extends StatefulWidget {
   final int userId; // Declare userId as an instance variable
+   final int storeId;
 
-  const ReservationSelectMonth({Key? key, required this.userId})
+  const ReservationSelectMonth({Key? key, required this.userId, required this.storeId})
       : super(key: key);
 
   @override
@@ -18,6 +20,12 @@ class ReservationSelectMonth extends StatefulWidget {
 
 class _ReservationSelectMonthState extends State<ReservationSelectMonth> {
   DateTime _selectedDate = DateTime.now();
+   final List<String> months = [
+    'October', 'November', 'December'
+  ];
+
+  String selectedMonth = DateFormat.MMMM().format(DateTime.now());
+  int selectedYear = DateTime.now().year;
 
   @override
   void initState() {
@@ -82,50 +90,6 @@ class _ReservationSelectMonthState extends State<ReservationSelectMonth> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  width: 400,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: DropdownButton<String>(
-                          value: selectedValue,
-                          style: TextStyle(
-                              color: const Color.fromARGB(255, 0, 0,
-                                  0)), // Set text style for the selected item
-                          underline: Container(
-                            // Customize the underline (divider) of the dropdown
-                            height: 2,
-                            color: Color(0xFF435334),
-                          ),
-                          items: items.map((String item) {
-                            return DropdownMenuItem<String>(
-                              value: item,
-                              child: Text(
-                                item,
-                                style: TextStyle(
-                                    fontFamily: 'Baijamjuree',
-                                    fontSize: 20.sp,
-                                    fontWeight: FontWeight.w600,
-                                    color: Color.fromARGB(255, 0, 0, 0)),
-                              ),
-                            );
-                          }).toList(),
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              selectedValue = newValue!;
-                            });
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Padding(
               padding: const EdgeInsets.all(8.0),
               child: Center(
                 child: Row(
@@ -176,6 +140,38 @@ class _ReservationSelectMonthState extends State<ReservationSelectMonth> {
               ),
             ),
             Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                  width: 400,
+                  child: Column(
+      children: [
+        Container(
+          width: 200,
+          child: DropdownButton<String>(
+            value: selectedMonth,
+            items: months.map((String month) {
+              return DropdownMenuItem<String>(
+                value: month,
+                child: Text(month,style: TextStyle(
+                      fontFamily: 'Baijamjuree',
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.w600,
+                    ),),
+              );
+            }).toList(),
+            onChanged: (String? newValue) {
+              setState(() {
+                selectedMonth = newValue!;
+              });
+            },
+          ),
+        ),
+        
+      ],
+    )
+                ),
+              ),
+            Padding(
               padding: const EdgeInsets.all(10.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start, // Align contents at the top
@@ -191,7 +187,7 @@ class _ReservationSelectMonthState extends State<ReservationSelectMonth> {
                   ),
                   SizedBox(height: 16),
                   Text(
-                    'เดือนที่เลือก : ${selectedValue}',
+                    'เดือนที่เลือก : $selectedMonth $selectedYear',
                     style: TextStyle(
                       fontFamily: 'Baijamjuree',
                       fontSize: 18.sp,
@@ -218,7 +214,7 @@ class _ReservationSelectMonthState extends State<ReservationSelectMonth> {
                         MaterialPageRoute(
                           builder: (context) {
                             return SelectAreaPage(
-                              userId: widget.userId,
+                              userId: widget.userId, type:type,startDate:getFirstMonday(selectedMonth, selectedYear),endDate:getLastWednesday(selectedMonth, selectedYear),storetype:"Month",month:selectedMonth,storeId: widget.storeId
                             ); // Replace with the name of the screen you want to navigate to
                           },
                         ),
@@ -240,5 +236,30 @@ class _ReservationSelectMonthState extends State<ReservationSelectMonth> {
             ],
           ),
         ));
+  }
+  DateTime getFirstMonday(String month, int year) {
+    DateTime firstMonDay = DateTime(year, months.indexOf(month) + 10, 1);
+    DateTime firstWedDay = DateTime(year, months.indexOf(month) + 10, 1);
+    while (firstMonDay.weekday != DateTime.monday) {
+      firstMonDay = firstMonDay.add(Duration(days: 1));
+    }
+    while (firstWedDay.weekday != DateTime.wednesday) {
+      firstWedDay = firstWedDay.add(Duration(days: 1));
+    }
+    DateTime firstDay = firstMonDay.isBefore(firstWedDay) ? firstMonDay : firstWedDay;
+    return firstDay;
+  }
+
+  DateTime getLastWednesday(String month, int year) {
+    DateTime lastMonDay = DateTime(year, months.indexOf(month) + 11, 0);
+    DateTime lastWedDay = DateTime(year, months.indexOf(month) + 11, 0);
+    while (lastMonDay.weekday != DateTime.monday) {
+      lastMonDay = lastMonDay.subtract(Duration(days: 1));
+    }
+    while (lastWedDay.weekday != DateTime.wednesday) {
+      lastWedDay = lastWedDay.subtract(Duration(days: 1));
+    }
+    DateTime lastDay = lastMonDay.isBefore(lastWedDay) ? lastWedDay : lastMonDay;
+    return lastDay;
   }
 }

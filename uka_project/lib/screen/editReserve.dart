@@ -1,17 +1,72 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:uka_project/screen/regisReservation.dart';
+import 'package:uka_project/ui/afterlogin/main_page.dart';
+
+import '../api/baseclient.dart';
 
 class EditReservation extends StatefulWidget {
-  final int userId; // Declare userId as an instance variable
+  final int userId;
+  final int storeId; // Declare userId as an instance variable
 
-  const EditReservation({Key? key, required this.userId}) : super(key: key);
+  const EditReservation({Key? key, required this.userId, required this.storeId})
+      : super(key: key);
 
   @override
   State<EditReservation> createState() => _EditReservationState();
 }
 
+class Store {
+  final String name;
+  final String phonenumber;
+  final String type;
+  final String description;
+  final int storeId;
+
+  Store(this.name, this.phonenumber, this.type, this.description, this.storeId);
+}
+
 class _EditReservationState extends State<EditReservation> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController descriptionController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  Store store = Store('', '', '', '', 0); // Change from List<Store> to Store
+
+  @override
+  void initState() {
+    super.initState();
+    fetchData(); // Fetch data from the API when the page loads
+  }
+
+  Future<void> fetchData() async {
+    int id = widget.storeId;
+    try {
+      dynamic userData = await BaseClient().getStoreById('/stores/$id');
+      Map<String, dynamic> jsonMap = json.decode(userData);
+      if (jsonMap.containsKey('body') && jsonMap['body'] is Map<String, dynamic>) {
+        final storeData = jsonMap['body'];
+
+        setState(() {
+          store = Store(
+            storeData['name'],
+            storeData['phone'],
+            storeData['type'],
+            storeData['description'],
+            storeData['storeId'],
+          );
+        });
+      } else {
+        
+        // Handle the case where the 'body' is not in the expected format
+        print('Invalid response format');
+      }
+    } catch (error) {
+      // Handle any errors or exceptions here
+      print('Error fetching data: $error');
+    }
+  }
 
   // Form fields
   String _storeName = '';
@@ -52,13 +107,13 @@ class _EditReservationState extends State<EditReservation> {
                 child: SizedBox(
                   width: 250,
                   child: TextFormField(
+                    controller: nameController,
                     obscureText: false,
-                    
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
-                      labelText: 'Store Name',
+                      labelText: '${store.name}',
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Color(0xFF435334)),
                       ),
@@ -69,12 +124,10 @@ class _EditReservationState extends State<EditReservation> {
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Please enter store name';
+                        nameController.text =store.name;
+                        return null;
                       }
                       return null;
-                    },
-                    onSaved: (value) {
-                      _storeName = value!;
                     },
                   ),
                 ),
@@ -84,13 +137,14 @@ class _EditReservationState extends State<EditReservation> {
                 child: SizedBox(
                   width: 250,
                   child: TextFormField(
+                    controller: phoneController,
                     obscureText: false,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
-                      labelText: 'Phone number',
+                      labelText: '${store.phonenumber}',
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Color(0xFF435334)),
                       ),
@@ -101,12 +155,10 @@ class _EditReservationState extends State<EditReservation> {
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Please enter phone number';
+                        phoneController.text=store.phonenumber;
+                        return null;
                       }
                       return null;
-                    },
-                    onSaved: (value) {
-                      _phoneNumber = value!;
                     },
                   ),
                 ),
@@ -116,12 +168,13 @@ class _EditReservationState extends State<EditReservation> {
                 child: SizedBox(
                   width: 250,
                   child: TextFormField(
+                    controller: descriptionController,
                     obscureText: false,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
-                      labelText: 'Store Details',
+                      labelText: '${store.description}',
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Color(0xFF435334)),
                       ),
@@ -132,12 +185,10 @@ class _EditReservationState extends State<EditReservation> {
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Please enter store details';
+                        descriptionController.text=store.description;
+                        return null;
                       }
                       return null;
-                    },
-                    onSaved: (value) {
-                      _storeDetails = value!;
                     },
                   ),
                 ),
@@ -148,17 +199,40 @@ class _EditReservationState extends State<EditReservation> {
                 child: ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      _formKey.currentState?.save();
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => RegisterReservation(userId: widget.userId,)),
-                      );
-                      // Submit the form data to your backend or process it as needed
-                      // You can access the form values like _storeName, _phoneNumber, etc.
-                      print('Store Name: $_storeName');
-                      print('Phone Number: $_phoneNumber');
-                      print('Store Details: $_storeDetails');
+                      String description = descriptionController.text;
+                      String name = nameController.text;
+                      String phone = phoneController.text;
+                      print(store.storeId);
+                      print(description);
+                      print(name);
+                      print(phone);
+                      print(widget.userId);
+                      // Do something with the form values (e.g., validation, submission).
+                      int id = widget.userId;
+                      Map<String, dynamic> jsonData = {
+                        "description": description,
+                        "name": name,
+                        "phone": phone,
+                        "storeId":store.storeId,
+                        "type":store.type,
+                        "userId":widget.userId
+                      };
+                      BaseClient()
+                          .UpdateStore('/stores/update', jsonData)
+                          .then((result) {
+                        if (result != null) {
+                          print('POST Successful: $result');
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MainPage(
+                                      userId: id,
+                                    )),
+                          );
+                        }
+                      }).catchError((error) {
+                        print('POST Failed: $error');
+                      });
                     }
                   },
                   style: ButtonStyle(
