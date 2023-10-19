@@ -263,7 +263,7 @@ class ButtonGrid extends StatelessWidget {
                           child: FittedBox(
                             fit: BoxFit.contain,
                             child: Text(
-                              'ว่าง',
+                              'ไม่ว่าง',
                               style: TextStyle(
                                 fontSize: 10.0,
                                 color: Color.fromARGB(141, 62, 62, 62),
@@ -473,7 +473,7 @@ class ButtonGridMonth extends StatelessWidget {
                           child: FittedBox(
                             fit: BoxFit.contain,
                             child: Text(
-                              'ว่าง',
+                              'ไม่ว่าง',
                               style: TextStyle(
                                 fontSize: 10.0,
                                 color: Color.fromARGB(141, 62, 62, 62),
@@ -679,7 +679,7 @@ class ButtonGridCol extends StatelessWidget {
                         child: FittedBox(
                           fit: BoxFit.contain,
                           child: Text(
-                            'ว่าง',
+                            'ไม่ว่าง',
                             style: TextStyle(
                               fontSize: 20.0,
                               color: Color.fromARGB(159, 46, 43, 43),
@@ -858,7 +858,7 @@ class ButtonGridColMonth extends StatelessWidget {
                         child: FittedBox(
                           fit: BoxFit.contain,
                           child: Text(
-                            'ว่าง',
+                            'ไม่ว่าง',
                             style: TextStyle(
                               fontSize: 20.0,
                               color: Color.fromARGB(159, 46, 43, 43),
