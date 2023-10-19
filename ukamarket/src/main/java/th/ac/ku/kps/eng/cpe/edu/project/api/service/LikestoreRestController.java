@@ -131,6 +131,7 @@ public class LikestoreRestController {
 			for (Likestore ls : likestore) {
 				List<Reservation> rev = reservationService.findByStoreIdAndCurrentDate(ls.getStore().getStoreId());
 				Store s = ls.getStore();
+				System.out.println("in2");
 				if (rev.size() > 0) {
 					Reservation reservation = rev.get(0);
 					Reservation reservation2 = null;
@@ -145,23 +146,36 @@ public class LikestoreRestController {
 						reservation2 = rev.get(1);
 						open2 = getDateMonOrWed(reservation2.getStartDate(), reservation2.getEndDate());
 					}
+					System.out.println(open1 + " " + open2 + " " + s.getPhone() + " " + s.getStoreId());
 					Date currentDate = new Date();
 					if (currentDate.after(open1)) {
-						likestoreDTOs.add(new LikestoreDTO(s.getName(), s.getDescription(), s.getPhone(), "open",
-								getUTC(open1), getUTC(open2), s.getStoreId()));
+						if (open2 != null) {
+							likestoreDTOs.add(new LikestoreDTO(s.getName(), s.getDescription(), s.getPhone(), "open",
+									getUTC(open1), getUTC(open2), s.getStoreId()));
+						} else {
+							likestoreDTOs.add(new LikestoreDTO(s.getName(), s.getDescription(), s.getPhone(), "open",
+									getUTC(open1), null, s.getStoreId()));
+						}
 					} else {
-						likestoreDTOs.add(new LikestoreDTO(s.getName(), s.getDescription(), s.getPhone(), "close",
-								getUTC(open1), getUTC(open2), s.getStoreId()));
+						if (open2 != null) {
+							likestoreDTOs.add(new LikestoreDTO(s.getName(), s.getDescription(), s.getPhone(), "close",
+									getUTC(open1), getUTC(open2), s.getStoreId()));
+						} else {
+							likestoreDTOs.add(new LikestoreDTO(s.getName(), s.getDescription(), s.getPhone(), "close",
+									getUTC(open1), null, s.getStoreId()));
+						}
 					}
 				} else {
 					likestoreDTOs.add(new LikestoreDTO(s.getName(), s.getDescription(), s.getPhone(), "close", null,
 							null, s.getStoreId()));
 				}
 			}
+			System.out.println("in3");
 			res.setBody(likestoreDTOs);
 			res.setHttpStatus(HttpStatus.OK);
 			return new ResponseEntity<Response<List<LikestoreDTO>>>(res, res.getHttpStatus());
 		} catch (Exception ex) {
+			System.err.println(ex.getMessage());
 			res.setBody(null);
 			res.setHttpStatus(HttpStatus.NOT_FOUND);
 			return new ResponseEntity<Response<List<LikestoreDTO>>>(res, res.getHttpStatus());
