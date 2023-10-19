@@ -148,6 +148,30 @@ class BaseClient {
   }
   }
 
+  //deletelike
+  Future<dynamic> unlike(int stId , String api , int userId) async{
+    String id = userId.toString();
+    String storeId = stId.toString();
+    const String baseUrl = 'http://localhost:8080/api/v1/like/'; ///api/v1/like/{storeId}/userId/{userId}
+    var url = Uri.parse(baseUrl + storeId +  api +id);
+
+  try {
+    final response = await http.post(url, headers: headers);
+
+    if (response.statusCode == 200) {
+      // The DELETE request was successful.
+      return 'Success'; // You can return a relevant success message or data.
+    } else {
+      // Handle other status codes as needed.
+      throw Exception('Failed to delete: ${response.statusCode}');
+    }
+  } catch (e) {
+    // Handle exceptions if the request fails.
+    print('Error: $e');
+    throw e; // Rethrow the exception if needed.
+  }
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
