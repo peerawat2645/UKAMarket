@@ -277,7 +277,8 @@ public class ReservationRestController {
 			eDate.setHours(23);
 			eDate.setMinutes(59);
 			eDate.setSeconds(59);
-
+			System.out.println(req.getType().toLowerCase());
+			req.setType(req.getType().toLowerCase());
 			Reservation r = new Reservation(a, store, sDate, eDate, req.getType());
 			Reservation reserv = reservationService.save(r);
 			res.setBody(reserv);
@@ -304,7 +305,7 @@ public class ReservationRestController {
 				Reservation r = reservation.get(0);
 				Store s = r.getStore();
 				LikestoreDTO lsd = new LikestoreDTO();
-				lsd = new LikestoreDTO(s.getName(), s.getDescription(), s.getPhone(), null, null, null, s.getStoreId());
+				lsd = new LikestoreDTO(s.getName(), s.getDescription(), s.getPhone(), null, null, null,s.getStoreId());
 				res.setBody(lsd);
 			}
 			res.setHttpStatus(HttpStatus.OK);

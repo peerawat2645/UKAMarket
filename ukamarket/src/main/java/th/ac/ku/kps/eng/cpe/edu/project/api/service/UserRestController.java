@@ -84,4 +84,30 @@ public class UserRestController {
 			return new ResponseEntity<Response<User>>(res, res.getHttpStatus());
 		}
 	}
+
+	@PostMapping("/resetPassword")
+	public ResponseEntity<Response<String>> resetPassword(@Valid @RequestBody ResetPasswordDTO reset) {
+		Response<String> res = new Response<>();
+		try {
+			User user = userService.findById(reset.getUserId());
+			if (!encoder.matches(reset.getCurrPassword(), user.getPassword())) {
+				res.setBody("password not correct!");
+				res.setHttpStatus(HttpStatus.BAD_REQUEST);
+				return new ResponseEntity<Response<String>>(res, res.getHttpStatus());
+			} else if (!reset.getNewPassword().equals(reset.getConfirmPassword())) {
+				res.setBody("new password not matching!");
+				res.setHttpStatus(HttpStatus.BAD_REQUEST);
+				return new ResponseEntity<Response<String>>(res, res.getHttpStatus());
+			}
+			user.setPassword(encoder.encode(reset.getNewPassword()));
+			userService.save(user);
+			res.setBody("change password successfully!");
+			res.setHttpStatus(HttpStatus.OK);
+			return new ResponseEntity<Response<String>>(res, res.getHttpStatus());
+		} catch (Exception ex) {
+			res.setBody(null);
+			res.setHttpStatus(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Response<String>>(res, res.getHttpStatus());
+		}
+	}
 }

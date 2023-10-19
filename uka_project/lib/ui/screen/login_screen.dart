@@ -168,7 +168,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     validator: (value) {
                                       if (value!.isEmpty)
                                         return 'กรุณากรอกรหัสผ่าน';
-                                      if (value.length <= 8) {
+                                      if (value.length < 8) {
                                         return "รหัสผ่านต้องมีอย่างน้อย 8 อักขระ";
                                       }
                                       return null;

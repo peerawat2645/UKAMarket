@@ -137,28 +137,25 @@ public class LikestoreRestController {
 					Date startDate = reservation.getStartDate();
 					Date endDate = reservation.getEndDate();
 					Date open1 = getDateMonOrWed(startDate, endDate);
-					
-					
-					
+
 					Date open2 = null;
 					if (reservation.getType().equals("month")) {
 						open2 = getDateMonOrWed(getUTC(open1), endDate);
-					}
-					else if(rev.size() > 1){
+					} else if (rev.size() > 1) {
 						reservation2 = rev.get(1);
 						open2 = getDateMonOrWed(reservation2.getStartDate(), reservation2.getEndDate());
 					}
 					Date currentDate = new Date();
 					if (currentDate.after(open1)) {
-						likestoreDTOs.add(
-								new LikestoreDTO(s.getName(), s.getDescription(), s.getPhone(), "open", getUTC(open1), getUTC(open2), s.getStoreId()));
+						likestoreDTOs.add(new LikestoreDTO(s.getName(), s.getDescription(), s.getPhone(), "open",
+								getUTC(open1), getUTC(open2), s.getStoreId()));
 					} else {
-						likestoreDTOs.add(
-								new LikestoreDTO(s.getName(), s.getDescription(), s.getPhone(), "close", getUTC(open1), getUTC(open2), s.getStoreId()));
+						likestoreDTOs.add(new LikestoreDTO(s.getName(), s.getDescription(), s.getPhone(), "close",
+								getUTC(open1), getUTC(open2), s.getStoreId()));
 					}
 				} else {
-					likestoreDTOs
-							.add(new LikestoreDTO(s.getName(), s.getDescription(), s.getPhone(), "close", null, null, s.getStoreId()));
+					likestoreDTOs.add(new LikestoreDTO(s.getName(), s.getDescription(), s.getPhone(), "close", null,
+							null, s.getStoreId()));
 				}
 			}
 			res.setBody(likestoreDTOs);
