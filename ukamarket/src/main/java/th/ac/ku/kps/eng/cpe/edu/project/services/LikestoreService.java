@@ -31,7 +31,8 @@ public class LikestoreService {
 	}
 	
 	public Likestore findByStoreIdAndUserId(int storeId,int userId) {
-		return likestoreRepository.findByStoreIdAndUserId(storeId,userId);
+		Likestore ls = likestoreRepository.findByStoreIdAndUserId(storeId,userId);
+		return ls;
 	}
 	
 	public List<Likestore> findByUserId(int userId) {

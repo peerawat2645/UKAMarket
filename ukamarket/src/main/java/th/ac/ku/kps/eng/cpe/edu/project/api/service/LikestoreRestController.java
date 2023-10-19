@@ -137,6 +137,9 @@ public class LikestoreRestController {
 					Date startDate = reservation.getStartDate();
 					Date endDate = reservation.getEndDate();
 					Date open1 = getDateMonOrWed(startDate, endDate);
+					
+					
+					
 					Date open2 = null;
 					if (reservation.getType().equals("month")) {
 						open2 = getDateMonOrWed(getUTC(open1), endDate);

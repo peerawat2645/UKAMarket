@@ -31,6 +31,10 @@ public class StoreService {
 		storeRepository.deleteById(id);
 	}
 	
+	public Store findByName(String name) {
+		return storeRepository.findByName(name).orElse(null);
+	}
+	
 	public boolean isNameUnique(String name) {
         Optional<Store> existingStore = storeRepository.findByName(name);
         return existingStore.isEmpty();

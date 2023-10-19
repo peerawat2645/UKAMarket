@@ -86,6 +86,21 @@ public class StoreRestController {
 			return new ResponseEntity<Response<Store>>(res, res.getHttpStatus());
 		}
 	}
+	
+	@GetMapping("/storeName/{name}")
+	public ResponseEntity<Response<Integer>> getStoreId(@PathVariable("name") String name) {
+		Response<Integer> res = new Response<>();
+		try {
+			Store store = storeService.findByName(name);
+			res.setBody(store.getStoreId());
+			res.setHttpStatus(HttpStatus.OK);
+			return new ResponseEntity<Response<Integer>>(res, res.getHttpStatus());
+		} catch (Exception ex) {
+			res.setBody(null);
+			res.setHttpStatus(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Response<Integer>>(res, res.getHttpStatus());
+		}
+	}
 
 	@PostMapping("/create/{userId}")
 	public ResponseEntity<Response<Store>> create(@Valid @RequestBody Store store, @PathVariable("userId")int id) {
@@ -101,6 +116,7 @@ public class StoreRestController {
 				User user = userService.findById(id);
 				store.setUser(user);
 				Store ss = storeService.save(store);
+				ss.setUser(user);
 				res.setBody(ss);
 				res.setHttpStatus(HttpStatus.OK);
 			} else {
@@ -121,7 +137,11 @@ public class StoreRestController {
 	public ResponseEntity<Response<Store>> update(@Valid @RequestBody Store store) {
 		Response<Store> res = new Response<>();
 		try {
-			Store ss = storeService.save(store);
+			Store ss = storeService.findById(store.getStoreId());
+			ss.setName(store.getName());
+			ss.setPhone(store.getPhone());
+			ss.setDescription(store.getDescription());
+			ss = storeService.save(ss);
 			res.setBody(ss);
 			res.setHttpStatus(HttpStatus.OK);
 			return new ResponseEntity<Response<Store>>(res, res.getHttpStatus());
