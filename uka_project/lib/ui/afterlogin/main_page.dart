@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:uka_project/screen/navbar.dart';
+import '../../api/baseclient.dart';
 import '../../screen/home2.dart';
 import '../../screen/reserve.dart';
 import 'favModel/favStore.dart';
@@ -18,25 +19,78 @@ class MainPage extends StatefulWidget {
 class _MyViewPage extends State<MainPage> {
   var _currentIndex = 0;
   // ignore: non_constant_identifier_names
-
+  String userProfile = '';
+  String emailProfile = '';
+  String nameProfile = '';
+  String surnameP = '';
+  String passwordP = '';
+  List likeMain =[];
 
   @override
   Widget build(BuildContext context) {
     final List<Widget> Screen = <Widget>[
-     Home2Page(userId: widget.userId,),
-    FavStore(userId: widget.userId,),
-    ReservationCheck(userId: widget.userId,) ,
-    Profile(userId: widget.userId,)
-  ];
+      Home2Page(
+        userId: widget.userId,
+      ),
+      FavStore(
+        userId: widget.userId, likeStore: likeMain,
+      ),
+      ReservationCheck(
+        userId: widget.userId,
+      ),
+      Profile(
+        userId: widget.userId,
+        userxname: userProfile,
+        email: emailProfile,
+        name: nameProfile,
+        lastName: surnameP,
+        password: passwordP,
+      )
+    ];
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home : Scaffold(
+      home: Scaffold(
         body: Screen[_currentIndex],
         bottomNavigationBar: SalomonBottomBar(
             currentIndex: _currentIndex,
-            onTap: (i) => setState(() => _currentIndex = i),
-            items: [
+            onTap: (i) async {
+              setState(() {
+                _currentIndex = i;
+                Map<String, dynamic> jsonData = {};
+                BaseClient().getProfile('/user/', widget.userId).then((result) {
+                  if (result != null) {
+                    String userName = result['body']['username'];
+                    String email = result['body']['email'];
+                    String name = result['body']['name'];
+                    String lastName = result['body']['surname'];
+                    String password = result['body']['password'];
+                    userProfile = userName;
+                    emailProfile = email;
+                    nameProfile = name;
+                    surnameP = lastName;
+                    passwordP = password;
+                  }
+                  ;
+                }).catchError((error) {
+                  print('POST Failed: $error');
+                });
 
+                BaseClient()
+                    .getMyStore('/like/user/', widget.userId)
+                    .then((result) {
+                  if (result != null) {
+                    final List store = result;
+                    likeMain = store;
+                    print(store);
+                    
+                  }
+                  ;
+                }).catchError((error) {
+                  print('POST Failed: $error');
+                });
+              });
+            },
+            items: [
               /// Home
               SalomonBottomBarItem(
                 icon: const Icon(Icons.home),

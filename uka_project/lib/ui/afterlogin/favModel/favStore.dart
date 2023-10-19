@@ -3,25 +3,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FavStore extends StatefulWidget {
   final int userId; // Declare userId as an instance variable
-
-  const FavStore({Key? key, required this.userId}) : super(key: key);
+  final List likeStore;
+  const FavStore({Key? key, required this.userId, required this.likeStore}) : super(key: key);
   @override
   State<FavStore> createState() => _FavStore();
 }
 
 class _FavStore extends State<FavStore> {
-  final storeList = [
-    {
-      'icon': 'restaurant_menu',
-      'title': 'Store 1',
-      'desc': 'Description',
-    },
-    {
-      'icon': 'restaurant_menu',
-      'title': 'Store 1',
-      'desc': 'Description',
-    }
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +25,7 @@ class _FavStore extends State<FavStore> {
         ),
         backgroundColor: Color(0xFF435334),
       ),
-      body: (storeList.isEmpty)
+      body: (widget.likeStore.isEmpty)
           ? SizedBox(
               height: double.infinity,
               width: double.infinity,
@@ -56,9 +44,9 @@ class _FavStore extends State<FavStore> {
               ),
             )
           : ListView.builder(
-              itemCount: storeList.length,
+              itemCount: widget.likeStore.length,
               itemBuilder: (context, index) {
-                final item = storeList[index];
+                final item = widget.likeStore[index];
                 return Padding(
                     padding: (index == 0)
                         ? const EdgeInsets.symmetric(vertical: 20.0)
@@ -66,7 +54,7 @@ class _FavStore extends State<FavStore> {
                     child: GestureDetector(
                       onDoubleTap: () {
                         setState(() {
-                          storeList.removeAt(index);
+                          widget.likeStore.removeAt(index);
                         });
                       },
                       child: Container(
@@ -102,7 +90,7 @@ class _FavStore extends State<FavStore> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  item['title']!,
+                                  item['name']!,
                                   style: TextStyle(
                                       fontFamily: 'Baijamjuree',
                                       fontSize: 13.sp,
@@ -111,7 +99,7 @@ class _FavStore extends State<FavStore> {
                                 SizedBox(
                                   height: 5.h,
                                 ),
-                                Text(item['desc']!,
+                                Text(item['description']!,
                                     style: TextStyle(
                                         fontFamily: 'Baijamjuree',
                                         fontSize: 13.sp,
@@ -125,6 +113,7 @@ class _FavStore extends State<FavStore> {
                             const Icon(
                               Icons.favorite,
                               color: Colors.red,
+                              
                             )
                           ],
                         ),

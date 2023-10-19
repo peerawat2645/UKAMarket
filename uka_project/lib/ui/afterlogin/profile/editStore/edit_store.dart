@@ -1,16 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../api/baseclient.dart';
 
 class EditStore extends StatelessWidget {
   final int userId; // Declare userId as an instance variable
 
-  EditStore(String s, String n, {Key? key, required this.userId,this.nameStore, this.storeDetail,}) : super(key: key);
-  final nameStore;
-  final storeDetail;
-  final TextEditingController _nameStoreController = TextEditingController();
-  final TextEditingController _detailController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
+  EditStore({
+    Key? key,
+    required this.nameStore,
+    required this.storeDetail,
+    required this.phoneNum,
+    required this.storeId,
+    required this.userId,
+    required this.imgPath,
+    required this.type,
+  }) : super(key: key);
+  final String nameStore;
+  final String storeDetail;
+  final String phoneNum;
+  final int storeId;
+  final String imgPath;
+  final String type;
+  late final TextEditingController _nameStoreController =
+      TextEditingController(text: nameStore);
+  late final TextEditingController _detailController =
+      TextEditingController(text: storeDetail);
+  late final TextEditingController _phoneController =
+      TextEditingController(text: phoneNum);
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +65,7 @@ class EditStore extends StatelessWidget {
                           fontWeight: FontWeight.w400,
                         ),
                         decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.person ,size: 22.dm),
+                          prefixIcon: Icon(Icons.person, size: 22.dm),
                           labelText: 'ชื่อร้าน',
                           labelStyle: TextStyle(
                             color: const Color(0xFF040D12),
@@ -87,7 +104,10 @@ class EditStore extends StatelessWidget {
                           fontWeight: FontWeight.w400,
                         ),
                         decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.edit_note , size: 22.dm,),
+                          prefixIcon: Icon(
+                            Icons.edit_note,
+                            size: 22.dm,
+                          ),
                           labelText: 'รายละเอียด',
                           labelStyle: TextStyle(
                             color: const Color(0xFF040D12),
@@ -126,7 +146,7 @@ class EditStore extends StatelessWidget {
                           fontWeight: FontWeight.w400,
                         ),
                         decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.call,size: 22.dm),
+                          prefixIcon: Icon(Icons.call, size: 22.dm),
                           labelText: 'เบอร์โทร',
                           labelStyle: TextStyle(
                             color: const Color(0xFF040D12),
@@ -162,8 +182,25 @@ class EditStore extends StatelessWidget {
                           width: 129.w,
                           height: 36.h,
                           child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.pop(context);
+                            onPressed: () async {
+                              Map<String, dynamic> jsonData = {
+                                "userId" : userId,
+                                "description": _detailController.text,
+                                "imgPath": imgPath,
+                                "name": _nameStoreController.text,
+                                "phone": _phoneController.text,
+                                "storeId": storeId,
+                                "type": type
+                              };
+                              BaseClient()
+                                  .regis('/v1/stores/update', jsonData)
+                                  .then((result) {
+                                if (result != null) {
+                                  Navigator.pop(context);
+                                }
+                              }).catchError((error) {
+                                print('POST Failed: $error');
+                              });
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFF435334),
@@ -180,7 +217,6 @@ class EditStore extends StatelessWidget {
                           ),
                         ),
                       ),
-
                     ],
                   ))
             ],

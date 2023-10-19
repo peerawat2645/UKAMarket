@@ -1,30 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import '../../../../api/baseclient.dart';
 import './edit_store.dart';
 
 class MyStore extends StatefulWidget {
   final int userId; // Declare userId as an instance variable
-
-  MyStore({Key? key, required this.userId}) : super(key: key);
+  final List stores;
+  MyStore({Key? key, required this.userId, required this.stores})
+      : super(key: key);
   @override
   State<MyStore> createState() => _MyStore();
 }
 
 class _MyStore extends State<MyStore> {
-  final storeList = [
-    {
-      'icon': 'restaurant_menu',
-      'title': 'Store 1',
-      'desc': 'Description',
-    },
-    {
-      'icon': 'restaurant_menu',
-      'title': 'Store 1',
-      'desc': 'Description',
-    }
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +28,7 @@ class _MyStore extends State<MyStore> {
         ),
         backgroundColor: Color(0xFF435334),
       ),
-      body: (storeList.isEmpty)
+      body: (widget.stores.isEmpty)
           ? SizedBox(
               height: double.infinity,
               width: double.infinity,
@@ -58,9 +47,9 @@ class _MyStore extends State<MyStore> {
               ),
             )
           : ListView.builder(
-              itemCount: storeList.length,
+              itemCount: widget.stores.length,
               itemBuilder: (context, index) {
-                final item = storeList[index];
+                final item = widget.stores[index];
                 return Padding(
                     padding: (index == 0)
                         ? const EdgeInsets.symmetric(vertical: 20.0)
@@ -70,9 +59,19 @@ class _MyStore extends State<MyStore> {
                       endActionPane:
                           ActionPane(motion: ScrollMotion(), children: [
                         SlidableAction(
-                          onPressed: (context) {
+                          onPressed: (context) async {
                             setState(() {
-                              storeList.removeAt(index);
+                              Map<String, dynamic> jsonData = {};
+                              BaseClient()
+                                  .delete('stores/delete/', item['storeId'])
+                                  .then((result) {
+                                if (result != null) {
+                                  
+                                }
+                                ;
+                              }).catchError((error) {
+                                print('POST Failed: $error');
+                              });
                             });
                           },
                           backgroundColor: Colors.red,
@@ -84,8 +83,15 @@ class _MyStore extends State<MyStore> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      EditStore(item['title']!,item['desc']!, userId: widget.userId,)));
+                                  builder: (BuildContext context) => EditStore(
+                                        nameStore: item['name'],
+                                        storeDetail: item['description'],
+                                        phoneNum: item['phone'],
+                                        storeId: item['storeId'],
+                                        userId: widget.userId,
+                                        imgPath: item['imgPath'],
+                                        type: item['type'],
+                                      )));
                         },
                         child: Container(
                           margin: EdgeInsets.symmetric(horizontal: 20.0),
@@ -119,7 +125,7 @@ class _MyStore extends State<MyStore> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    item['title']!,
+                                    item['name']!,
                                     style: TextStyle(
                                         fontFamily: 'Baijamjuree',
                                         fontSize: 13.sp,
@@ -128,7 +134,7 @@ class _MyStore extends State<MyStore> {
                                   SizedBox(
                                     height: 5.h,
                                   ),
-                                  Text(item['desc']!,
+                                  Text(item['description']!,
                                       style: TextStyle(
                                           fontFamily: 'Baijamjuree',
                                           fontSize: 13.sp,
