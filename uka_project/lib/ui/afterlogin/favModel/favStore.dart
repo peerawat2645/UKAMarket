@@ -49,7 +49,7 @@ class _FavStore extends State<FavStore> {
               itemCount: widget.likeStore.length,
               itemBuilder: (context, index) {
                 final item = widget.likeStore[index];
-                if (item['nextDate' == null]) {
+                if (item['nextDate'] == null) {
                   item['nextDate'] = 'ไม่มีกำหนด';
                 }
                 return Padding(
@@ -133,7 +133,7 @@ class _FavStore extends State<FavStore> {
                             ],
                           ),
                           SizedBox(
-                            width: 70.w,
+                            width: 50.w,
                           ),
                           IconButton(
                             color: Colors.red,

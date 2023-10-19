@@ -24,7 +24,7 @@ class _MyViewPage extends State<MainPage> {
   String nameProfile = '';
   String surnameP = '';
   String passwordP = '';
-  List likeMain =[];
+  List likeMain = [];
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,8 @@ class _MyViewPage extends State<MainPage> {
         userId: widget.userId,
       ),
       FavStore(
-        userId: widget.userId, likeStore: likeMain,
+        userId: widget.userId,
+        likeStore: likeMain,
       ),
       ReservationCheck(
         userId: widget.userId,
@@ -82,7 +83,6 @@ class _MyViewPage extends State<MainPage> {
                     final List store = result;
                     likeMain = store;
                     print(store);
-                    
                   }
                   ;
                 }).catchError((error) {
